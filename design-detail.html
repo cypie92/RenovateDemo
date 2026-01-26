@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Design Details - The Makeover Guys</title>
+    <meta name="description" content="Explore our designs in detail." />
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body class="detail--page">
+
+    <header>
+        <div class="mog-container header-wrapper">
+            <a href="index.html" class="logo">
+                <img src="assets/images/company_logo.png" alt="MOG LOGO" style="width: 140px; height: auto;">
+            </a>
+
+            <a href="javascript:;" class="mobile-menu--btn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </a>
+
+            <nav class="desktop-nav">
+                <a href="index.html#our-designs" class="nav-link">Our Designs</a>
+                <div class="nav--dropdown">
+                    <a href="index.html#our-services" class="nav-link nav--dropdown-btn">Services <i
+                            class="arrow-down"></i></a>
+                    <div class="nav--dropdown-content">
+                        <a href="index.html#our-services">What We Offer</a>
+                        <a href="index.html#club">Makeover Club</a>
+                        <a href="index.html#loan">Loan Assistance</a>
+                    </div>
+                </div>
+                <div class="nav--dropdown">
+                    <a href="javascript:;" class="nav-link nav--dropdown-btn">Insights <i class="arrow-down"></i></a>
+                    <div class="nav--dropdown-content">
+                        <a href="index.html#why-us">Why Choose Us</a>
+                        <a href="index.html#research">Property Research</a>
+                        <a href="index.html#tips">Property Tips</a>
+                        <a href="index.html#faq">FAQ</a>
+                    </div>
+                </div>
+                <!-- Active Page -->
+                <div class="nav--dropdown">
+                    <a href="javascript:;" class="nav-link nav--dropdown-btn">Company <i class="arrow-down"></i></a>
+                    <div class="nav--dropdown-content">
+                        <a href="about.html">Who We Are</a>
+                        <a href="index.html#careers">Careers</a>
+                        <a href="index.html#contact">Contact Us</a>
+                    </div>
+                </div>
+            </nav>
+
+            <div class="header-cta">
+                <a href="#estimate" class="cta-button">Get Cost Estimate</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Detail Hero -->
+    <section class="detail-hero" id="detail-hero">
+        <div class="overlay"></div>
+        <div class="mog-container">
+            <h1 id="project-title" class="title-text" style="color:#fff;">Loading...</h1>
+            <p id="project-desc" class="description-text" style="color:#eee;">Please wait while we load the design
+                details.</p>
+        </div>
+    </section>
+
+    <!-- Project Info Bar -->
+    <div class="project-stats-bar">
+        <div class="mog-container stats-grid">
+            <div class="stat-item">
+                <span class="label">Size</span>
+                <span class="value" id="project-size">- sqft</span>
+            </div>
+            <div class="stat-item">
+                <span class="label">Duration</span>
+                <span class="value" id="project-duration">- weeks</span>
+            </div>
+            <div class="stat-item">
+                <span class="label">Style</span>
+                <span class="value" id="project-style">-</span>
+            </div>
+            <div class="stat-item">
+                <span class="label">Est. Cost</span>
+                <span class="value" id="project-cost">-</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Interactive Floorplan & Gallery -->
+    <section class="detail-content">
+        <div class="mog-container">
+            <div class="detail-split">
+
+                <!-- Left: Floorplan -->
+                <div class="floorplan-wrapper">
+                    <h3>Interactive Floorplan</h3>
+                    <p>Click on a room to see more.</p>
+                    <div class="floorplan-container">
+                        <img src="assets/images/floorplan.png" alt="Floorplan" class="floorplan-img">
+
+                        <!-- Hotspots (Positions relative to image percentage) -->
+                        <button class="hotspot" style="top: 35%; left: 25%;" data-room="living">
+                            <span class="pulse"></span>
+                            <span class="tooltip">Living Room</span>
+                        </button>
+
+                        <button class="hotspot" style="top: 25%; left: 75%;" data-room="bedroom">
+                            <span class="pulse"></span>
+                            <span class="tooltip">Master Bedroom</span>
+                        </button>
+
+                        <button class="hotspot" style="top: 65%; left: 35%;" data-room="kitchen">
+                            <span class="pulse"></span>
+                            <span class="tooltip">Kitchen</span>
+                        </button>
+
+                    </div>
+                    <!-- View All moved below -->
+                    <div style="text-align: center; margin-top: 15px;">
+                        <button class="view-all-btn" data-room="all" style="
+                            background: var(--primary-gold); 
+                            color: #fff; 
+                            border: none; 
+                            padding: 10px 25px; 
+                            border-radius: 4px; 
+                            font-weight: 700; 
+                            cursor: pointer;
+                            transition: transform 0.2s ease;">
+                            View All Areas
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Right: Gallery -->
+                <div class="gallery-wrapper">
+                    <h3 id="gallery-title">Gallery: All Areas</h3>
+                    <div class="gallery-grid" id="gallery-grid">
+                        <!-- Dynamic Images Injected Here -->
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="mog-container">
+            <div class="footer-bottom">
+                <div class="copyright">Copyright &copy; The Makeover Guys Sdn Bhd (1125623-P) All rights reserved</div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+    <script>
+        // Inline script for simple detail logic or move to main.js if complex
+        // We will move the logic to main.js to keep it clean, but this page relies on main.js being updated.
+    </script>
+</body>
+
+</html>
