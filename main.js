@@ -553,4 +553,154 @@ document.addEventListener('DOMContentLoaded', () => {
         // Initialize
         showStep(1);
     }
+
+    // =========================================
+    // 8. Contact Form Logic
+    // =========================================
+    const contactForm = document.getElementById('contact-form');
+    if (contactForm) {
+        initContactForm();
+    }
+
+    function initContactForm() {
+        const form = document.getElementById('contact-form');
+        const formStatus = document.getElementById('form-status');
+        const submitBtn = form.querySelector('.submit-contact-btn');
+
+        // Form field references
+        const fields = {
+            name: document.getElementById('contact-name'),
+            email: document.getElementById('contact-email'),
+            phone: document.getElementById('contact-phone'),
+            subject: document.getElementById('contact-subject'),
+            message: document.getElementById('contact-message')
+        };
+
+        // Validation patterns
+        const patterns = {
+            email: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+            phone: /^[\+]?[(]?[0-9]{1,4}[)]?[-\s\.]?[0-9]{1,4}[-\s\.]?[0-9]{1,9}$/
+        };
+
+        // Real-time validation
+        Object.entries(fields).forEach(([key, field]) => {
+            if (field) {
+                field.addEventListener('blur', () => validateField(key, field));
+                field.addEventListener('input', () => {
+                    field.classList.remove('error');
+                    field.classList.remove('valid');
+                });
+            }
+        });
+
+        function validateField(key, field) {
+            const value = field.value.trim();
+            let isValid = true;
+
+            // Required field check
+            if (field.hasAttribute('required') && !value) {
+                isValid = false;
+            }
+
+            // Pattern validation
+            if (value) {
+                if (key === 'email' && !patterns.email.test(value)) {
+                    isValid = false;
+                }
+                if (key === 'phone' && value && !patterns.phone.test(value)) {
+                    isValid = false;
+                }
+            }
+
+            // Apply visual feedback
+            field.classList.remove('error', 'valid');
+            if (!isValid) {
+                field.classList.add('error');
+            } else if (value) {
+                field.classList.add('valid');
+            }
+
+            return isValid;
+        }
+
+        function validateForm() {
+            let isValid = true;
+
+            Object.entries(fields).forEach(([key, field]) => {
+                if (field && !validateField(key, field)) {
+                    isValid = false;
+                }
+            });
+
+            return isValid;
+        }
+
+        function showStatus(type, message) {
+            formStatus.className = 'form-status ' + type;
+            formStatus.innerHTML = message;
+        }
+
+        function resetForm() {
+            form.reset();
+            Object.values(fields).forEach(field => {
+                if (field) {
+                    field.classList.remove('error', 'valid');
+                }
+            });
+            formStatus.className = 'form-status';
+            formStatus.innerHTML = '';
+        }
+
+        // Form submission
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            // Validate all fields
+            if (!validateForm()) {
+                showStatus('error', '⚠️ Please fill in all required fields correctly.');
+                return;
+            }
+
+            // Show loading state
+            const originalBtnText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<span>Sending...</span>';
+            submitBtn.disabled = true;
+            showStatus('loading', '⏳ Sending your message...');
+
+            // Collect form data
+            const formData = {
+                name: fields.name.value.trim(),
+                email: fields.email.value.trim(),
+                phone: fields.phone.value.trim(),
+                subject: fields.subject.value,
+                message: fields.message.value.trim(),
+                newsletter: document.getElementById('contact-newsletter').checked
+            };
+
+            // Simulate form submission (replace with actual API call)
+            try {
+                // Simulated delay for demo purposes
+                await new Promise(resolve => setTimeout(resolve, 1500));
+
+                // Log form data (in production, send to backend)
+                console.log('Contact Form Submission:', formData);
+
+                // Show success message
+                showStatus('success', '✅ Thank you! Your message has been sent successfully. We\'ll get back to you within 24 hours.');
+
+                // Reset form after delay
+                setTimeout(() => {
+                    resetForm();
+                }, 3000);
+
+            } catch (error) {
+                console.error('Form submission error:', error);
+                showStatus('error', '❌ Oops! Something went wrong. Please try again or contact us directly.');
+            } finally {
+                // Restore button
+                submitBtn.innerHTML = originalBtnText;
+                submitBtn.disabled = false;
+            }
+        });
+    }
 });
