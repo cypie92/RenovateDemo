@@ -11,7 +11,7 @@ const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
 const THEMES = [
     {
         slug: 'emerald-atelier', name: 'Emerald Atelier', style: 'modern', styleLabel: 'Modern luxe',
-        tagline: 'Velvet, marble & fluted timber', img: 'theme-emerald', priceFrom: 68000, sqft: 1250, days: 30, bestFor: 'Own stay & premium rentals',
+        tagline: 'Velvet, marble & fluted timber', img: 'theme-emerald', sqft: 1250, bestFor: 'Own stay & premium rentals',
         desc: 'A jewel-toned living space anchored by a deep green velvet sofa, book-matched marble and warm fluted timber. Designed for owners who entertain — and investors targeting premium expat tenants.',
         palette: [['Forest velvet', '#2E5141'], ['Calacatta', '#ECE8E1'], ['Smoked oak', '#6B4A33'], ['Brass', '#B8954A']],
         shots: ['Velvet lounge', 'Fluted timber & art', 'Marble centre table'],
@@ -20,7 +20,7 @@ const THEMES = [
     },
     {
         slug: 'linen-morning', name: 'Linen Morning', style: 'minimal', styleLabel: 'Warm minimal',
-        tagline: 'Oak, linen & soft daylight', img: 'theme-linen', priceFrom: 42000, sqft: 1000, days: 30, bestFor: 'Young families',
+        tagline: 'Oak, linen & soft daylight', img: 'theme-linen', sqft: 1000, bestFor: 'Young families',
         desc: 'Pale oak, washed linen and built-in shelving that keeps clutter out of sight. Our most-requested theme for young families moving into their first home.',
         palette: [['Oat linen', '#E6DCCB'], ['White oak', '#C9A97E'], ['Chalk', '#F4F1EA'], ['Sage', '#A3AE95']],
         shots: ['Built-in oak shelving', 'Linen lounge', 'Round oak table'],
@@ -29,7 +29,7 @@ const THEMES = [
     },
     {
         slug: 'ember-loft', name: 'Ember Loft', style: 'industrial', styleLabel: 'Industrial',
-        tagline: 'Leather, brick & black steel', img: 'theme-ember', priceFrom: 47000, sqft: 900, days: 30, bestFor: 'Rentals near city centres',
+        tagline: 'Leather, brick & black steel', img: 'theme-ember', sqft: 900, bestFor: 'Rentals near city centres',
         desc: 'Tan leather, charcoal limewash and black steel track lighting. A loft feel for compact units that rents especially well to young professionals near city centres.',
         palette: [['Cognac leather', '#8A5232'], ['Charcoal', '#2F2F2D'], ['Raw steel', '#5A5D5F'], ['Walnut', '#5B3E2B']],
         shots: ['Steel shelving & art', 'Industrial pendants', 'Leather & reclaimed timber'],
@@ -37,7 +37,7 @@ const THEMES = [
     },
     {
         slug: 'salon-boheme', name: 'Salon Bohème', style: 'eclectic', styleLabel: 'Eclectic',
-        tagline: 'Gallery walls & collected colour', img: 'theme-boheme', priceFrom: 45000, sqft: 1100, days: 30, bestFor: 'Creative own-stay homes',
+        tagline: 'Gallery walls & collected colour', img: 'theme-boheme', sqft: 1100, bestFor: 'Creative own-stay homes',
         desc: 'Teal velvet, layered rugs and a floor-to-ceiling gallery wall. For people who want a home that looks collected over years, delivered in thirty days.',
         palette: [['Teal', '#22566A'], ['Terracotta', '#B4583A'], ['Mustard', '#C9A13B'], ['Ivory', '#F1EBDD']],
         shots: ['Gallery wall', 'Textiles & art', 'Layered rugs'],
@@ -45,7 +45,7 @@ const THEMES = [
     },
     {
         slug: 'soft-arc', name: 'Soft Arc', style: 'minimal', styleLabel: 'Warm minimal',
-        tagline: 'Curves, cove light & calm', img: 'theme-softarc', priceFrom: 38000, sqft: 750, days: 25, bestFor: 'Studios & 2-bed rentals',
+        tagline: 'Curves, cove light & calm', img: 'theme-softarc', sqft: 750, bestFor: 'Studios & 2-bed rentals',
         desc: 'Curved furniture, hidden cove lighting and a quiet, tonal palette. Our best-value theme for rental studios and 2-bedroom units.',
         palette: [['Mist', '#DCD8D2'], ['Honey oak', '#C08A55'], ['Bone', '#F3EFE8'], ['Graphite', '#4A4B4D']],
         shots: ['Curved lounge', 'Media wall', 'Cove lighting'],
@@ -54,15 +54,15 @@ const THEMES = [
     },
     {
         slug: 'skyline-walnut', name: 'Skyline Walnut', style: 'modern', styleLabel: 'Modern luxe',
-        tagline: 'Walnut, stone & city views', img: 'theme-skyline', priceFrom: 72000, sqft: 1600, days: 35, bestFor: 'High-floor & penthouse units',
+        tagline: 'Walnut, stone & city views', img: 'theme-skyline', sqft: 1600, bestFor: 'High-floor & penthouse units',
         desc: 'Walnut panelling, stacked stone and layered ambient lighting built for high-floor units with a view. Hotel-suite polish for penthouses and dual-key homes.',
         palette: [['Walnut', '#5A3B28'], ['Travertine', '#CDBFA8'], ['Bronze', '#8C6A45'], ['Ink', '#1E1F1D']],
-        shots: ['Stacked-stone fireplace', 'Curved sofa & view', 'Travertine table'],
+        shots: ['Stacked-stone feature wall', 'Curved sofa & view', 'Travertine table'],
         finishes: { dining: 'Travertine table, walnut chairs, bronze chandelier.', kitchen: 'Walnut veneer cabinets, travertine island, bronze fittings.', master: 'Walnut panelled bed wall, bronze sconces, motorised curtains.' }
     },
     {
         slug: 'ivory-hearth', name: 'Ivory Hearth', style: 'minimal', styleLabel: 'Warm minimal',
-        tagline: 'Arches, plaster & rust accents', img: 'room-living', priceFrom: 44000, sqft: 1050, days: 30, bestFor: 'Landed homes',
+        tagline: 'Arches, plaster & rust accents', img: 'room-living', sqft: 1050, bestFor: 'Landed homes',
         desc: 'Limewashed walls, arched windows and a low, curved sofa with rust cushions. Mediterranean warmth that suits landed homes and low-density condos.',
         palette: [['Plaster', '#EDE6DA'], ['Rust', '#A4532F'], ['Ash', '#B9A890'], ['Clay', '#C98F6B']],
         shots: ['Curved sofa', 'Arched window & art', 'Low oak table'],
@@ -70,7 +70,7 @@ const THEMES = [
     },
     {
         slug: 'marble-pantry', name: 'Marble Pantry', style: 'modern', styleLabel: 'Modern luxe',
-        tagline: 'Island living & brass pendants', img: 'room-kitchen', priceFrom: 56000, sqft: 1300, days: 35, bestFor: 'Home cooks',
+        tagline: 'Island living & brass pendants', img: 'room-kitchen', sqft: 1300, bestFor: 'Home cooks',
         desc: 'A kitchen-first theme: waterfall marble island, walnut open shelving and brass pendants. Ideal if you cook, and want the kitchen to be the heart of the home.',
         palette: [['Carrara', '#EEECE8'], ['Walnut', '#6C4A32'], ['Brass', '#B48D4C'], ['Fog', '#D7D6D2']],
         shots: ['Walnut shelving', 'Waterfall island', 'Built-in ovens'],
@@ -78,10 +78,10 @@ const THEMES = [
     },
     {
         slug: 'clay-cotton', name: 'Clay & Cotton', style: 'eclectic', styleLabel: 'Eclectic',
-        tagline: 'Fireside textures & terracotta', img: 'room-bedroom', priceFrom: 41000, sqft: 950, days: 30, bestFor: 'Slow-living own stay',
+        tagline: 'Knit textures & terracotta', img: 'room-bedroom', sqft: 950, bestFor: 'Slow-living own stay',
         desc: 'Chunky knits, terracotta cushions and soft, low lighting — a bedroom-led theme for slow mornings and long weekends.',
         palette: [['Cotton', '#F1ECE3'], ['Terracotta', '#B5603E'], ['Teak', '#7A5236'], ['Stone', '#A79C8C']],
-        shots: ['Layered bedding', 'Fireside corner', 'Teak bedside'],
+        shots: ['Layered bedding', 'Reading corner', 'Teak bedside'],
         finishes: { living: 'Stone-coloured modular sofa, teak coffee table, knit throws.', dining: 'Teak table, cotton-slipcover chairs, clay pendant.', kitchen: 'Cotton-white cabinets, teak worktop, terracotta splashback.' }
     }
 ];
@@ -105,7 +105,7 @@ const themeCard = (t, opts = {}) => `
                 <h3>${t.name}</h3>
                 <p>${t.tagline}</p>
             </div>
-            <span class="theme-card__price">from <strong>RM ${Math.round(t.priceFrom / 1000)}k</strong></span>
+            <span class="theme-card__price">from <strong>${kRM(t.priceFrom)}</strong></span>
         </div>
         ${opts.meta ? `<div class="theme-card__meta"><span><svg class="i" aria-hidden="true"><use href="#i-ruler" /></svg>${fmt(t.sqft)} sq ft</span><span><svg class="i" aria-hidden="true"><use href="#i-clock" /></svg>${t.days} working days</span></div>` : ''}
     </a>`;
@@ -113,6 +113,7 @@ const themeCard = (t, opts = {}) => `
 document.addEventListener('DOMContentLoaded', () => {
     initHeader();
     initHeroThemes();
+    syncThemePrices();
     initPromo();
     initReveal();
     initCounters();
@@ -167,6 +168,24 @@ function initHeader() {
         }
     });
     window.addEventListener('resize', () => { if (window.innerWidth > 1040) setOpen(false); });
+}
+
+// =========================================
+// Keep every hard-coded theme price in step with the pricing model
+// =========================================
+function syncThemePrices() {
+    const bySlug = Object.fromEntries(THEMES.map((t) => [t.slug, t]));
+    $$('a.theme-card[href*="theme="]').forEach((card) => {
+        const t = bySlug[new URL(card.href).searchParams.get('theme')];
+        const el = $('.theme-card__price strong', card);
+        if (t && el) el.textContent = kRM(t.priceFrom);
+    });
+    $$('.theme-dot').forEach((d) => { const t = bySlug[d.dataset.slug]; if (t) d.dataset.price = kRM(t.priceFrom).replace('RM ', ''); });
+    const active = $('.theme-dot.is-active');
+    if (active) $('#hero-theme-price').textContent = `from RM ${active.dataset.price}`;
+    const ex = $('#example-text');
+    const linen = bySlug['linen-morning'];
+    if (ex && linen) ex.innerHTML = `RM ${fmt(linen.priceFrom)} over 7 years ≈ <b>RM ${fmt(monthlyFlat(linen.priceFrom, 84))}/month</b> at 4.99% p.a. flat.`;
 }
 
 // =========================================
@@ -293,6 +312,7 @@ function initPaths() {
         seg.dataset.active = String(i);
         if (focus) tabs[i].focus();
     };
+    if (new URLSearchParams(location.search).get('path') === 'invest') select(1);
     tabs.forEach((t, i) => {
         t.addEventListener('click', () => select(i));
         t.addEventListener('keydown', (e) => {
@@ -379,8 +399,8 @@ const PRICING = {
 };
 const FLAT_RATE = 0.0499;
 const LOAN_CAP = 200000;
-// Working days grow by 5 for every 500 sq ft above 1,500 sq ft.
-const workingDays = (scope, size) => scope.days + Math.max(0, Math.ceil((size - 1500) / 500)) * 5;
+// Working days grow by 5 for every 500 sq ft above 1,500 sq ft, up to 60.
+const workingDays = (scope, size) => Math.min(60, scope.days + Math.max(0, Math.ceil((size - 1500) / 500)) * 5);
 // Malaysian mobile: optional +60/60/0 prefix, then 1x and 7–8 digits; spaces, dashes and brackets ignored.
 const isMyMobile = (v) => /^(\+?60|0)?1\d{8,9}$/.test(v.replace(/[\s\-().]/g, ''));
 const monthlyFlat = (principal, months) => (principal * (1 + FLAT_RATE * (months / 12))) / months;
@@ -396,6 +416,31 @@ const effectiveRate = (months) => {
     }
     return ((lo + hi) / 2) * 12;
 };
+
+const typicalBeds = (size) => (size < 600 ? 1 : size < 900 ? 2 : size < 1400 ? 3 : size < 2200 ? 4 : size < 3000 ? 5 : 6);
+
+// The one pricing model. The estimator, theme prices, monthly figures and delivery days all come from here.
+function estimate(s) {
+    const scope = PRICING.scope[s.scope];
+    const areaShare = s.areas.includes('whole')
+        ? 1
+        : Math.min(1, s.areas.reduce((sum, a) => sum + (PRICING.areas[a] || 0), 0));
+    // Larger homes get a modest economy of scale on the per-sq-ft rate.
+    const scale = s.size > 1500 ? 1 - Math.min(0.12, (s.size - 1500) / 25000) : 1;
+    const bedAdj = 1 + (s.beds - 3) * 0.03;
+    const base = s.size * areaShare * PRICING.type[s.type].mult * PRICING.style[s.style] * scale * bedAdj;
+    const low = Math.max(15000, Math.round((base * scope.rate[0]) / 500) * 500);
+    const high = Math.max(low + 5000, Math.round((base * scope.rate[1]) / 500) * 500);
+    return { low, high, scope, days: workingDays(scope, s.size) };
+}
+
+// A theme's price is the estimate for its sample unit: a whole-home makeover of a condo that size.
+const themeSample = (t) => ({ purpose: 'own', type: 'condo', size: t.sqft, beds: typicalBeds(t.sqft), areas: ['whole'], scope: 'partial', style: t.style });
+THEMES.forEach((t) => {
+    const e = estimate(themeSample(t));
+    Object.assign(t, { priceFrom: e.low, priceTo: e.high, days: e.days, beds: typicalBeds(t.sqft) });
+});
+const kRM = (n) => `RM ${n % 1000 === 0 ? n / 1000 : (n / 1000).toFixed(1)}k`;
 
 function initEstimator() {
     const form = $('#est-form');
@@ -427,19 +472,7 @@ function initEstimator() {
         };
     };
 
-    const calc = (s) => {
-        const scope = PRICING.scope[s.scope];
-        const areaShare = s.areas.includes('whole')
-            ? 1
-            : Math.min(1, s.areas.reduce((sum, a) => sum + (PRICING.areas[a] || 0), 0));
-        // Larger homes get a modest economy of scale on the per-sq-ft rate.
-        const scale = s.size > 1500 ? 1 - Math.min(0.12, (s.size - 1500) / 25000) : 1;
-        const bedAdj = 1 + (s.beds - 3) * 0.03;
-        const base = s.size * areaShare * PRICING.type[s.type].mult * PRICING.style[s.style] * scale * bedAdj;
-        const low = Math.max(15000, Math.round((base * scope.rate[0]) / 500) * 500);
-        const high = Math.max(low + 5000, Math.round((base * scope.rate[1]) / 500) * 500);
-        return { low, high, scope };
-    };
+    const calc = estimate;
 
     let lastLow = 0;
     let lastHigh = 0;
@@ -455,7 +488,6 @@ function initEstimator() {
     };
 
     const maxBeds = (size) => Math.min(6, Math.max(1, Math.round(size / 300)));
-    const typicalBeds = (size) => (size < 600 ? 1 : size < 900 ? 2 : size < 1400 ? 3 : size < 2200 ? 4 : size < 3000 ? 5 : 6);
     let bedsTouched = false;
     const clampBeds = () => {
         const max = maxBeds(parseInt(sizeInput.value, 10));
@@ -528,9 +560,9 @@ function initEstimator() {
         $('#est-stepcount').textContent = n <= contentSteps ? `Step ${n} of ${contentSteps}` : 'Almost done';
         backBtn.disabled = n === 1;
         nextBtn.innerHTML = n === total
-            ? 'Send me my quote <svg class="i" aria-hidden="true"><use href="#i-arrow" /></svg>'
+            ? 'Save my estimate <svg class="i" aria-hidden="true"><use href="#i-arrow" /></svg>'
             : n === contentSteps
-                ? 'See my estimate <svg class="i" aria-hidden="true"><use href="#i-arrow" /></svg>'
+                ? 'Get my itemised quote <svg class="i" aria-hidden="true"><use href="#i-arrow" /></svg>'
                 : 'Continue <svg class="i" aria-hidden="true"><use href="#i-arrow" /></svg>';
     };
 
@@ -568,8 +600,19 @@ function initEstimator() {
         $('#done-name').textContent = name || 'there';
         $('#done-ref').textContent = `KS-${String(Math.floor(1000 + Math.random() * 9000))}`;
         if (latest) {
-            const range = `RM ${fmt(latest.low)} – ${fmt(latest.high)}`;
+            const range = `${kRM(latest.low)} – ${kRM(latest.high).replace('RM ', '')}`;
             $('#done-range').textContent = range;
+            // Recommend themes in the chosen style first, then any theme whose sample price fits under the top of the range.
+            const recs = THEMES
+                .filter((t) => t.priceFrom <= latest.high)
+                .sort((a, b) => (b.style === latest.s.style) - (a.style === latest.s.style) || a.priceFrom - b.priceFrom)
+                .slice(0, 3);
+            $('#est-recs').hidden = !recs.length;
+            $('#est-recs-list').innerHTML = recs.map((t) => `
+                <a class="rec" href="design-detail.html?theme=${t.slug}">
+                    <img src="assets/img/${t.img}-sm.webp" alt="" width="640" height="640" loading="lazy">
+                    <span><strong>${t.name}</strong><small>${t.styleLabel} · sample from ${kRM(t.priceFrom)}</small></span>
+                </a>`).join('');
             $('#done-scope').textContent = latest.scope.label;
             $('#done-days').textContent = `${workingDays(latest.scope, latest.s.size)} working days`;
             const msg = `Hi Kemas! My estimate (${$('#done-ref').textContent}): ${range}, ${latest.scope.label}, ${PRICING.type[latest.s.type].label} ${fmt(latest.s.size)} sq ft. ${shareUrl()}`;
@@ -581,6 +624,7 @@ function initEstimator() {
         $('#est-progress').style.width = '100%';
         const done = $('#est-done');
         done.hidden = false;
+        root.classList.add('is-done');
         done.focus();
     });
 
@@ -595,6 +639,7 @@ function initEstimator() {
         clampBeds();
         $$('.field', form).forEach((f) => f.classList.remove('is-invalid'));
         $('#est-done').hidden = true;
+        root.classList.remove('is-done');
         $('#est-nav').hidden = false;
         showStep(1);
         render();
@@ -660,7 +705,7 @@ function initEstimator() {
     const restore = () => {
         const params = new URLSearchParams(location.search);
         const code = params.get('est');
-        if (!code) return;
+        if (!code) return false;
         touched = true;
         bedsTouched = true;
         const fromTheme = THEMES.find((t) => t.slug === params.get('theme'));
@@ -683,6 +728,8 @@ function initEstimator() {
             const list = areas.split(/[_+\s]/);
             $$('input[name="areas"]', form).forEach((c) => { c.checked = list.includes(c.value); });
         }
+        $('#beds-out').textContent = bedsInput.value;
+        return true;
     };
     $$('[data-share-estimate]').forEach((btn) => btn.addEventListener('click', async () => {
         const url = shareUrl();
@@ -715,10 +762,11 @@ function initEstimator() {
         form.addEventListener('click', sync);
     }
 
-    restore();
+    const restored = restore();
     updateFill(sizeInput);
-    clampBeds();
-    showStep(1);
+    if (!restored) clampBeds();
+    // A pre-filled estimate skips to the last question, with everything already answered.
+    showStep(restored ? total - 1 : 1);
     render();
 }
 
@@ -946,7 +994,8 @@ function initDetailPage() {
         + `<div class="total"><dt>From</dt><dd>RM ${fmt(p)}</dd></div>`;
     $('#dt-monthly').textContent = `RM ${fmt(monthlyFlat(p, 84))}`;
     $('#dt-aside-title').textContent = `Get the ${theme.name} look`;
-    $('#dt-estimate').href = `index.html?est=own.condo.${theme.sqft}.${Math.min(6, Math.max(1, Math.round(theme.sqft / 380)))}.whole.partial.${theme.style}&theme=${theme.slug}#estimate`;
+    $('#dt-estimate').href = `index.html?est=own.condo.${theme.sqft}.${theme.beds}.whole.partial.${theme.style}&theme=${theme.slug}#estimate`;
+    $('#dt-sample').textContent = `Sample unit: ${fmt(theme.sqft)} sq ft condo, ${theme.beds}-bed, whole-home makeover · RM ${fmt(theme.priceFrom)} – ${fmt(theme.priceTo)}`;
     $('#dt-wa').href = `https://wa.me/60123456789?text=${encodeURIComponent(`Hi Kemas! I'm interested in the ${theme.name} theme (from RM ${fmt(theme.priceFrom)}). Could a designer advise on my unit?`)}`;
 
     // Floor plan: the photographed room shows its photo; the rest show the theme's finish spec.
