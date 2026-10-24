@@ -4,665 +4,741 @@
 <head>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<title>The Makeover Guys: Interior Decoration For Homes</title>
+	<title>Kemas Studio — Home makeovers in 30 working days</title>
 	<meta name="description"
-		content="Turn your house into your dream home or strategise for rental investment with The Makeover Guys." />
+		content="Kemas Studio designs, builds and furnishes move-in-ready homes across Malaysia in 30 working days — for own stay or rental investment. Get a free estimate in 60 seconds." />
+	<meta name="theme-color" content="#F5F1EA" />
+	<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml" />
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link
-		href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap"
+		href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300..600&family=Instrument+Sans:wght@400..700&display=swap"
 		rel="stylesheet">
 	<link rel="stylesheet" href="style.css" />
 </head>
 
-<body class="landing--page">
+<body class="page-home">
+	<a class="skip-link" href="#main">Skip to content</a>
 
-	<header>
-		<div class="mog-container header-wrapper">
-			<a href="/" class="logo">
-				<img src="assets/images/company_logo.png" alt="MOG LOGO" style="width: 140px; height: auto;">
+	<!-- Promo bar -->
+	<div class="promo-bar" id="promo-bar" role="region" aria-label="Current offer">
+		<div class="container promo-bar__inner">
+			<p><strong>Year-End Makeover Season</strong><span class="promo-bar__long"> <span class="promo-bar__sep" aria-hidden="true">·</span> Pick 8% off <em>or</em> a free appliance bundle.</span> <span class="promo-bar__count" data-countdown="2026-12-31T23:59:59+08:00">Ends 31 Dec</span></p>
+			<a href="#estimate" class="promo-bar__link">Claim it <svg class="i" aria-hidden="true"><use href="#i-arrow" /></svg></a>
+			<button class="promo-bar__close" type="button" aria-label="Dismiss offer"><svg class="i" aria-hidden="true"><use href="#i-close" /></svg></button>
+		</div>
+	</div>
+
+	<header class="site-header" id="site-header">
+		<div class="container site-header__inner">
+			<a href="index.html" class="brand" aria-label="Kemas Studio home">
+				<span class="brand__mark" aria-hidden="true"></span>
+				<span class="brand__name">Kemas<span>Studio</span></span>
 			</a>
 
-			<a href="javascript:;" class="mobile-menu--btn">
-				<span></span>
-				<span></span>
-				<span></span>
-			</a>
-
-			<nav class="desktop-nav">
-				<!-- Direct Link -->
-				<a href="#our-designs" class="nav-link">Our Designs</a>
-
-				<!-- Services Dropdown (Consolidated) -->
-				<div class="nav--dropdown">
-					<a href="#our-services" class="nav-link nav--dropdown-btn">Services <i class="arrow-down"></i></a>
-					<div class="nav--dropdown-content">
-						<a href="#our-services">What We Offer</a>
-						<a href="#club">Makeover Club</a>
-						<a href="#loan">Loan Assistance</a>
-					</div>
-				</div>
-
-				<!-- Insights Dropdown (Resources + Why Us) -->
-				<div class="nav--dropdown">
-					<a href="javascript:;" class="nav-link nav--dropdown-btn">Insights <i class="arrow-down"></i></a>
-					<div class="nav--dropdown-content">
-						<a href="#why-us">Why Choose Us</a>
-						<a href="#research">Property Research</a>
-						<a href="#tips">Property Tips</a>
-						<a href="#faq">FAQ</a>
-					</div>
-				</div>
-
-				<!-- Company Dropdown -->
-				<div class="nav--dropdown">
-					<a href="javascript:;" class="nav-link nav--dropdown-btn">Company <i class="arrow-down"></i></a>
-					<div class="nav--dropdown-content">
-						<a href="about.html">Who We Are</a>
-						<a href="#careers">Careers</a>
-						<a href="#contact">Contact Us</a>
-					</div>
+			<nav class="nav" id="nav" aria-label="Primary">
+				<a href="designs.html" class="nav__link">Designs</a>
+				<a href="#paths" class="nav__link">Services</a>
+				<a href="#process" class="nav__link">How it works</a>
+				<a href="#financing" class="nav__link">Financing</a>
+				<a href="#care" class="nav__link">Care &amp; Club</a>
+				<a href="about.html" class="nav__link">About</a>
+				<a href="#faq" class="nav__link">FAQ</a>
+				<div class="nav__mobile-cta">
+					<a href="#estimate" class="btn btn--primary btn--block">Get my free estimate</a>
+					<a href="https://wa.me/60123456789" class="btn btn--ghost btn--block" target="_blank" rel="noopener"><svg class="i" aria-hidden="true"><use href="#i-whatsapp" /></svg> Chat on WhatsApp</a>
 				</div>
 			</nav>
 
-			<div class="header-cta">
-				<a href="#estimate" class="cta-button">Get Cost Estimate</a>
+			<div class="site-header__actions">
+				<a href="tel:+60312345678" class="site-header__phone"><svg class="i" aria-hidden="true"><use href="#i-phone" /></svg> 03-1234 5678</a>
+				<a href="#estimate" class="btn btn--primary btn--sm">Free estimate</a>
+				<button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav" aria-label="Open menu">
+					<span></span><span></span>
+				</button>
 			</div>
 		</div>
 	</header>
 
-	<section class="property-banner"
-		style="background-image: url('assets/images/hero_new.png'); background-size: cover; background-position: center;">
-		<div class="banner-content">
-			<div class="mog-container">
-				<div class="text-wrapper">
-					<h1 class="sub-title-text">THE MAKEOVER GUYS</h1>
-					<h2 class="title-text">HOME <span class="yellow-text">INTERIOR DECORATORS</span> IN MALAYSIA</h2>
-				</div>
-				<div class="flex-center">
-					<a href="#estimate" class="learn-more-button">Get A Free Cost Estimation</a>
-				</div>
-			</div>
-		</div>
+	<main id="main">
 
-		<div class="video-overlay"></div>
-		<!-- Placeholder Video Container -->
-		<div class="video-container">
-			<div class="placeholder-video-text">
-				VIDEO PLACEHOLDER
-			</div>
-			<!-- When ready, uncomment and use real video:
-            <video autoplay muted loop playsinline poster="path/to/poster.jpg">
-                <source src="path/to/video.webm" type="video/webm">
-                <source src="path/to/video.mp4" type="video/mp4">
-            </video> 
-            -->
-		</div>
-	</section>
-
-	<div class="mog-container promo-banner-section">
-		<div class="promo-grid">
-			<div class="promo-text">
-				<h2 class="title-text">Where The Art Of Interior Decor Meets The Science Of Rental Investment</h2>
-				<p class="description-text">Looking for an interior decorator in Malaysia? We provide makeovers for both
-					own stay and rental investment. Using template designs personalized to you, our makeovers are
-					hassle-free and take around 30 working days to complete.</p>
-				<a href="#services" class="learn-more-button"><span>Our Services</span></a>
-			</div>
-
-			<div class="promo-ads">
-				<!-- Simple advertising card (Carousel replaced by static card used in placeholder) -->
-				<div class="ad-card">
-					<img src="assets/images/promo.png" alt="Promotion" style="margin-bottom: 20px;">
-					<div class="ad-content">
-						<h2>Makeover Mania is BACK!</h2>
-						<p>Jaw-dropping deals are here. Choose a discount or a FREE gift, then lock it in before it’s
-							gone.</p>
-						<a href="#estimate" class="primary-btn2">Get Started</a>
+		<!-- HERO -->
+		<section class="hero">
+			<div class="container hero__grid">
+				<div class="hero__copy">
+					<p class="eyebrow"><span class="dot" aria-hidden="true"></span> Interior makeovers across Malaysia</p>
+					<h1 class="display">Move-in ready in <em>30&nbsp;working days.</em></h1>
+					<p class="lead">We design, build and furnish your home from one fixed quote — whether you’re moving in or renting it out. No contractor juggling. No surprise bills.</p>
+					<div class="hero__ctas">
+						<a href="#estimate" class="btn btn--primary btn--lg">Get my estimate in 60s <svg class="i" aria-hidden="true"><use href="#i-arrow" /></svg></a>
+						<a href="designs.html" class="btn btn--ghost btn--lg">Browse all 9 themes</a>
 					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<section class="service-work grey-one">
-		<div class="mog-container">
-			<div class="section-intro">
-				<h2>Experience Our <span class="yellow-text">Space Design</span></h2>
-			</div>
-
-			<div class="projects-grid">
-				<!-- Project Item 1 -->
-				<a href="design-detail.html" class="project-item">
-					<img src="assets/images/project1.png" alt="Sienna Sunday"
-						style="width: 100%; height: 250px; object-fit: cover;">
-					<div class="project-footer">
-						<div class="project-title">Sienna Sunday</div>
-						<div class="primary-btn">View Gallery</div>
-					</div>
-				</a>
-				<!-- Project Item 2 -->
-				<a href="design-detail.html" class="project-item">
-					<img src="assets/images/project2.png" alt="50 Shades of Chris"
-						style="width: 100%; height: 250px; object-fit: cover;">
-					<div class="project-footer">
-						<div class="project-title">50 Shades of Chris</div>
-						<div class="primary-btn">View Gallery</div>
-					</div>
-				</a>
-				<!-- Project Item 3 -->
-				<a href="design-detail.html" class="project-item">
-					<img src="assets/images/project3.png" alt="Leonardo In Love"
-						style="width: 100%; height: 250px; object-fit: cover;">
-					<div class="project-footer">
-						<div class="project-title">Leonardo In Love</div>
-						<div class="primary-btn">View Gallery</div>
-					</div>
-				</a>
-			</div>
-
-			<div class="button-container">
-				<a class="more-theme-button" href="#designs">More Themes</a>
-			</div>
-		</div>
-	</section>
-
-	<section class="landing-more-reasons" id="more-reasons">
-		<div class="mog-container">
-			<div class="section-intro">
-				<h2>Why Choose <span class="yellow-text">The Makeover Guys</span>?</h2>
-				<p class="description">Home makeovers are our passion, and we strive to do everything we can to make the
-					entire process and outcome enjoyable for you - from ownstay to investors, and even tenants in mind.
-				</p>
-			</div>
-
-			<div class="reasons-grid">
-				<div class="reason-item">
-					<div class="reason-thumbnail">
-						<img src="assets/images/icon_budget.png" alt="Budget Friendly"
-							style="width: 100px; height: 100px;">
-						<label><span class='top'>save</span><span class="major">70</span><span>%</span></label>
-					</div>
-					<div class="reason-title">Budget-Friendly Makeovers</div>
-					<p>We spend only on essential materials in order to provide you with an affordable designer home.
-					</p>
+					<ul class="hero__proof" aria-label="Highlights">
+						<li><strong>2,400+</strong><span>homes handed over</span></li>
+						<li><strong>4.9<svg class="i i--star" aria-hidden="true"><use href="#i-star" /></svg></strong><span>from 1,100+ Google reviews</span></li>
+						<li><strong>84 mo</strong><span>financing from 4.99% p.a.</span></li>
+					</ul>
 				</div>
 
-				<div class="reason-item">
-					<div class="reason-thumbnail">
-						<img src="assets/images/icon_speed.png" alt="Fast Work" style="width: 100px; height: 100px;">
-						<label><span class="major">30</span><span class="minor">days</span></label>
-					</div>
-					<div class="reason-title">We Work Fast</div>
-					<p>Your property will be ready to rent in just 30 working days!</p>
-				</div>
-
-				<div class="reason-item">
-					<div class="reason-thumbnail">
-						<img src="assets/images/icon_rental.png" alt="High Rental" style="width: 100px; height: 100px;">
-						<label><span class="major">99</span><span>%</span></label>
-					</div>
-					<div class="reason-title">High Rental Rate</div>
-					<p>99.2% of our units are successfully rented out at top tier rates!</p>
-				</div>
-			</div>
-
-			<div class="button-container">
-				<a class="learn-more-button" href="#why-us">Why Us</a>
-			</div>
-		</div>
-	</section>
-
-	<!-- Cost Estimation Section -->
-	<section class="cost-estimation-section" id="estimate">
-		<div class="mog-container">
-			<div class="section-intro">
-				<h2>Get Your <span class="yellow-text">Free Cost Estimation</span></h2>
-				<p class="description">Answer a few questions about your property and we'll provide you with a personalized makeover cost estimate.</p>
-			</div>
-
-			<div class="estimation-container">
-				<!-- Progress Bar -->
-				<div class="progress-bar">
-					<div class="progress-fill" id="progress-fill"></div>
-					<div class="progress-steps">
-						<div class="progress-step active" data-step="1">1</div>
-						<div class="progress-step" data-step="2">2</div>
-						<div class="progress-step" data-step="3">3</div>
-						<div class="progress-step" data-step="4">4</div>
-						<div class="progress-step" data-step="5">5</div>
-					</div>
-				</div>
-
-				<!-- Step 1: Property Type -->
-				<div class="form-step active" data-step="1">
-					<h3 class="step-title">What type of property do you have?</h3>
-					<div class="options-grid">
-						<label class="option-card">
-							<input type="radio" name="propertyType" value="condo">
-							<div class="option-content">
-								<div class="option-icon">🏢</div>
-								<span>Condominium</span>
-							</div>
-						</label>
-						<label class="option-card">
-							<input type="radio" name="propertyType" value="apartment">
-							<div class="option-content">
-								<div class="option-icon">🏬</div>
-								<span>Apartment</span>
-							</div>
-						</label>
-						<label class="option-card">
-							<input type="radio" name="propertyType" value="terrace">
-							<div class="option-content">
-								<div class="option-icon">🏠</div>
-								<span>Terrace House</span>
-							</div>
-						</label>
-						<label class="option-card">
-							<input type="radio" name="propertyType" value="semi-d">
-							<div class="option-content">
-								<div class="option-icon">🏡</div>
-								<span>Semi-Detached</span>
-							</div>
-						</label>
-						<label class="option-card">
-							<input type="radio" name="propertyType" value="bungalow">
-							<div class="option-content">
-								<div class="option-icon">🏛️</div>
-								<span>Bungalow</span>
-							</div>
-						</label>
-					</div>
-				</div>
-
-				<!-- Step 2: Property Size -->
-				<div class="form-step" data-step="2">
-					<h3 class="step-title">What is your property size?</h3>
-					<div class="options-grid">
-						<label class="option-card">
-							<input type="radio" name="propertySize" value="small">
-							<div class="option-content">
-								<div class="option-icon">📐</div>
-								<span>Below 800 sqft</span>
-							</div>
-						</label>
-						<label class="option-card">
-							<input type="radio" name="propertySize" value="medium">
-							<div class="option-content">
-								<div class="option-icon">📐</div>
-								<span>800 - 1,200 sqft</span>
-							</div>
-						</label>
-						<label class="option-card">
-							<input type="radio" name="propertySize" value="large">
-							<div class="option-content">
-								<div class="option-icon">📐</div>
-								<span>1,200 - 1,800 sqft</span>
-							</div>
-						</label>
-						<label class="option-card">
-							<input type="radio" name="propertySize" value="xlarge">
-							<div class="option-content">
-								<div class="option-icon">📐</div>
-								<span>1,800 - 2,500 sqft</span>
-							</div>
-						</label>
-						<label class="option-card">
-							<input type="radio" name="propertySize" value="xxlarge">
-							<div class="option-content">
-								<div class="option-icon">📐</div>
-								<span>Above 2,500 sqft</span>
-							</div>
-						</label>
-					</div>
-				</div>
-
-				<!-- Step 3: Renovation Scope -->
-				<div class="form-step" data-step="3">
-					<h3 class="step-title">What areas do you want to renovate?</h3>
-					<div class="options-grid checkbox-grid">
-						<label class="option-card">
-							<input type="checkbox" name="areas" value="living">
-							<div class="option-content">
-								<div class="option-icon">🛋️</div>
-								<span>Living Room</span>
-							</div>
-						</label>
-						<label class="option-card">
-							<input type="checkbox" name="areas" value="bedroom">
-							<div class="option-content">
-								<div class="option-icon">🛏️</div>
-								<span>Bedroom(s)</span>
-							</div>
-						</label>
-						<label class="option-card">
-							<input type="checkbox" name="areas" value="kitchen">
-							<div class="option-content">
-								<div class="option-icon">🍳</div>
-								<span>Kitchen</span>
-							</div>
-						</label>
-						<label class="option-card">
-							<input type="checkbox" name="areas" value="bathroom">
-							<div class="option-content">
-								<div class="option-icon">🚿</div>
-								<span>Bathroom(s)</span>
-							</div>
-						</label>
-						<label class="option-card">
-							<input type="checkbox" name="areas" value="dining">
-							<div class="option-content">
-								<div class="option-icon">🍽️</div>
-								<span>Dining Area</span>
-							</div>
-						</label>
-						<label class="option-card">
-							<input type="checkbox" name="areas" value="all">
-							<div class="option-content">
-								<div class="option-icon">🏠</div>
-								<span>Whole House</span>
-							</div>
-						</label>
-					</div>
-				</div>
-
-				<!-- Step 4: Renovation Type -->
-				<div class="form-step" data-step="4">
-					<h3 class="step-title">What type of makeover are you looking for?</h3>
-					<div class="options-grid">
-						<label class="option-card">
-							<input type="radio" name="renovationType" value="furniture">
-							<div class="option-content">
-								<div class="option-icon">🪑</div>
-								<span>Furniture Only</span>
-								<small>New furniture & decor</small>
-							</div>
-						</label>
-						<label class="option-card">
-							<input type="radio" name="renovationType" value="partial">
-							<div class="option-content">
-								<div class="option-icon">🔧</div>
-								<span>Partial Makeover</span>
-								<small>Furniture + Minor works</small>
-							</div>
-						</label>
-						<label class="option-card">
-							<input type="radio" name="renovationType" value="full">
-							<div class="option-content">
-								<div class="option-icon">🏗️</div>
-								<span>Full Makeover</span>
-								<small>Complete renovation</small>
-							</div>
-						</label>
-					</div>
-				</div>
-
-				<!-- Step 5: Style Preference -->
-				<div class="form-step" data-step="5">
-					<h3 class="step-title">What style do you prefer?</h3>
-					<div class="options-grid">
-						<label class="option-card">
-							<input type="radio" name="style" value="modern">
-							<div class="option-content">
-								<div class="option-icon">✨</div>
-								<span>Modern</span>
-							</div>
-						</label>
-						<label class="option-card">
-							<input type="radio" name="style" value="minimalist">
-							<div class="option-content">
-								<div class="option-icon">⬜</div>
-								<span>Minimalist</span>
-							</div>
-						</label>
-						<label class="option-card">
-							<input type="radio" name="style" value="contemporary">
-							<div class="option-content">
-								<div class="option-icon">🎨</div>
-								<span>Contemporary</span>
-							</div>
-						</label>
-						<label class="option-card">
-							<input type="radio" name="style" value="classic">
-							<div class="option-content">
-								<div class="option-icon">🏛️</div>
-								<span>Classic</span>
-							</div>
-						</label>
-						<label class="option-card">
-							<input type="radio" name="style" value="scandinavian">
-							<div class="option-content">
-								<div class="option-icon">🌲</div>
-								<span>Scandinavian</span>
-							</div>
-						</label>
-					</div>
-				</div>
-
-				<!-- Results Step -->
-				<div class="form-step results-step" data-step="results">
-					<div class="results-container">
-						<div class="results-header">
-							<h3>Your Estimated Makeover Cost</h3>
-							<p>Based on your selections</p>
+				<div class="hero__media">
+					<figure class="hero__img" id="hero-img">
+						<img src="assets/img/theme-emerald.webp" alt="Living room in the Emerald Atelier theme with a green velvet sofa, marble floor and timber wall panels" width="1024" height="1024" fetchpriority="high">
+					</figure>
+					<div class="float-card float-card--timeline" aria-hidden="true">
+						<div class="float-card__row">
+							<span class="float-card__label">Unit B-12-3, Mont Kiara</span>
+							<span class="chip chip--ok">On schedule</span>
 						</div>
-						<div class="cost-display">
-							<span class="currency">RM</span>
-							<span class="cost-amount" id="cost-amount">0</span>
-							<span class="cost-range">- <span id="cost-max">0</span></span>
+						<div class="mini-track">
+							<span class="mini-track__fill" style="--p: 86%"></span>
 						</div>
-						<div class="results-breakdown" id="results-breakdown">
-							<!-- Breakdown items will be inserted here by JS -->
-						</div>
-						<div class="results-note">
-							<p>* This is an estimated range. Actual costs may vary based on specific requirements and site conditions.</p>
-						</div>
-						<div class="results-cta">
-							<a href="#contact" class="learn-more-button">Get Detailed Quote</a>
-							<button class="more-theme-button" id="restart-btn">Start Over</button>
+						<div class="float-card__row float-card__row--muted">
+							<span>Day 26 of 30</span><span>Furnishing</span>
 						</div>
 					</div>
-				</div>
-
-				<!-- Navigation Buttons -->
-				<div class="form-navigation">
-					<button class="nav-btn prev-btn" id="prev-btn" disabled>Previous</button>
-					<button class="nav-btn next-btn" id="next-btn">Next</button>
-					<button class="nav-btn submit-btn" id="submit-btn" style="display: none;">Get Estimation</button>
-				</div>
-			</div>
-		</div>
-	</section>
-
-	<section class="about-group-companies">
-		<div class="mog-container">
-			<div class="section-intro">
-				<h2>Our group of companies</h2>
-			</div>
-			<div class="companies-grid">
-				<img src="assets/images/company_logo.png" alt="TMOG" style="height: 60px; width: auto; opacity: 0.6;">
-				<img src="assets/images/company_logo.png" alt="CozyHomes"
-					style="height: 60px; width: auto; opacity: 0.6;">
-				<img src="assets/images/company_logo.png" alt="EasyHome"
-					style="height: 60px; width: auto; opacity: 0.6;">
-				<img src="assets/images/company_logo.png" alt="Groundwork"
-					style="height: 60px; width: auto; opacity: 0.6;">
-				<img src="assets/images/company_logo.png" alt="Iherng" style="height: 60px; width: auto; opacity: 0.6;">
-			</div>
-		</div>
-
-		<div class="service-work grey-one extra-padding">
-			<div class="mog-container">
-				<div class="button-container">
-					<a class="more-theme-button" href="about.html">About us</a>
+					<div class="float-card float-card--theme" role="group" aria-label="Preview a design theme">
+						<span class="float-card__label">Preview a theme</span>
+						<div class="theme-dots">
+							<button type="button" class="theme-dot is-active" aria-pressed="true" data-img="theme-emerald" data-name="Emerald Atelier" data-price="68k" data-slug="emerald-atelier"><img src="assets/img/theme-emerald-sm.webp" alt="" width="640" height="640"><span class="sr-only">Emerald Atelier</span></button>
+							<button type="button" class="theme-dot" aria-pressed="false" data-img="theme-linen" data-name="Linen Morning" data-price="42k" data-slug="linen-morning"><img src="assets/img/theme-linen-sm.webp" alt="" width="640" height="640"><span class="sr-only">Linen Morning</span></button>
+							<button type="button" class="theme-dot" aria-pressed="false" data-img="theme-ember" data-name="Ember Loft" data-price="47k" data-slug="ember-loft"><img src="assets/img/theme-ember-sm.webp" alt="" width="640" height="640"><span class="sr-only">Ember Loft</span></button>
+							<button type="button" class="theme-dot" aria-pressed="false" data-img="theme-softarc" data-name="Soft Arc" data-price="38k" data-slug="soft-arc"><img src="assets/img/theme-softarc-sm.webp" alt="" width="640" height="640"><span class="sr-only">Soft Arc</span></button>
+						</div>
+						<a class="float-card__theme" id="hero-theme-link" href="design-detail.html?theme=emerald-atelier"><strong id="hero-theme-name">Emerald Atelier</strong><span id="hero-theme-price">from RM 68k</span></a>
+					</div>
 				</div>
 			</div>
-		</div>
-	</section>
+		</section>
 
-	<!-- Contact Section -->
-	<section class="contact-section" id="contact">
-		<div class="mog-container">
-			<div class="section-intro">
-				<h2>Get In <span class="yellow-text">Touch</span></h2>
-				<p class="description">Have a question or ready to start your makeover journey? Fill out the form below and our team will get back to you within 24 hours.</p>
+		<!-- TRUST STRIP -->
+		<section class="trust" aria-label="Why homeowners trust us">
+			<div class="container">
+				<ul class="trust__list">
+					<li><svg class="i" aria-hidden="true"><use href="#i-shield" /></svg><span><strong>CIDB-registered</strong> G7 contractor</span></li>
+					<li><svg class="i" aria-hidden="true"><use href="#i-tag" /></svg><span><strong>Fixed quote</strong> — no variation orders</span></li>
+					<li><svg class="i" aria-hidden="true"><use href="#i-clock" /></svg><span><strong>RM 150/day</strong> late-handover guarantee</span></li>
+					<li><svg class="i" aria-hidden="true"><use href="#i-wrench" /></svg><span><strong>12-month</strong> workmanship warranty</span></li>
+				</ul>
 			</div>
+		</section>
 
-			<div class="contact-container">
-				<div class="contact-info">
-					<div class="info-item">
-						<div class="info-icon">📍</div>
-						<div class="info-content">
-							<h4>Visit Us</h4>
-							<p>Level 15, Menara TMOG<br>Jalan Sultan Ismail<br>50250 Kuala Lumpur, Malaysia</p>
-						</div>
+		<!-- PATHS: own stay vs investor -->
+		<section class="section paths" id="paths">
+			<div class="container">
+				<div class="section-head">
+					<p class="eyebrow">Two ways to work with us</p>
+					<h2 class="h2">One studio. Built for how you’ll <em>use</em> the home.</h2>
+				</div>
+
+				<div class="segmented" role="tablist" aria-label="Choose your goal">
+					<button class="segmented__btn is-active" role="tab" aria-selected="true" aria-controls="path-own" id="tab-own" type="button">I’m moving in</button>
+					<button class="segmented__btn" role="tab" aria-selected="false" aria-controls="path-invest" id="tab-invest" type="button" tabindex="-1">I’m renting it out</button>
+					<span class="segmented__pill" aria-hidden="true"></span>
+				</div>
+
+				<div class="path is-active" id="path-own" role="tabpanel" aria-labelledby="tab-own">
+					<div class="path__media">
+						<img src="assets/img/theme-linen.webp" alt="Bright living room with linen sofas and built-in oak shelving" loading="lazy" width="1024" height="1024">
 					</div>
-					<div class="info-item">
-						<div class="info-icon">📞</div>
-						<div class="info-content">
-							<h4>Call Us</h4>
-							<p>+60 3-1234 5678</p>
-							<p class="info-note">Mon - Fri: 9am - 6pm</p>
-						</div>
-					</div>
-					<div class="info-item">
-						<div class="info-icon">✉️</div>
-						<div class="info-content">
-							<h4>Email Us</h4>
-							<p>hello@themakeoverguys.com</p>
-						</div>
-					</div>
-					<div class="info-item">
-						<div class="info-icon">💬</div>
-						<div class="info-content">
-							<h4>WhatsApp</h4>
-							<p>+60 12-345 6789</p>
-							<p class="info-note">Quick responses!</p>
-						</div>
+					<div class="path__body">
+						<h3 class="h3">A designer home without the designer bill.</h3>
+						<p>Start from a proven theme, then make it yours — swap finishes, layouts and furniture with your designer. We price from templates, so you get bespoke-looking results at a fraction of a full-custom ID fee.</p>
+						<ul class="ticks">
+							<li><svg class="i" aria-hidden="true"><use href="#i-check" /></svg> Dedicated designer + 3D walkthrough before you sign</li>
+							<li><svg class="i" aria-hidden="true"><use href="#i-check" /></svg> Carpentry, lighting, paint, furniture &amp; décor in one quote</li>
+							<li><svg class="i" aria-hidden="true"><use href="#i-check" /></svg> Live progress updates and photos every working day</li>
+						</ul>
+						<a href="#estimate" class="btn btn--dark" data-set-purpose="own">Estimate my home</a>
 					</div>
 				</div>
 
-				<div class="contact-form-wrapper">
-					<form id="contact-form" class="contact-form">
-						<div class="form-row">
-							<div class="form-group">
-								<label for="contact-name">Full Name *</label>
-								<input type="text" id="contact-name" name="name" required placeholder="Your full name">
+				<div class="path" id="path-invest" role="tabpanel" aria-labelledby="tab-invest" hidden>
+					<div class="path__media">
+						<img src="assets/img/theme-softarc.webp" alt="Minimal rental-ready living room with curved sofa and cove lighting" loading="lazy" width="1024" height="1024">
+					</div>
+					<div class="path__body">
+						<h3 class="h3">Designed for tenants. Priced for yield.</h3>
+						<p>We research who rents in your area — students, young professionals, expats — and design for them, spending only where it lifts rent. Then our leasing partners find the tenant for you.</p>
+						<div class="kpis">
+							<div><strong>99.2%</strong><span>units tenanted</span></div>
+							<div><strong>+31%</strong><span>avg. rent vs. bare unit</span></div>
+							<div><strong>18 days</strong><span>avg. time to tenant</span></div>
+						</div>
+						<a href="#estimate" class="btn btn--dark" data-set-purpose="rental">Estimate my rental unit</a>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- DESIGN THEMES -->
+		<section class="section themes" id="designs">
+			<div class="container">
+				<div class="section-head section-head--split">
+					<div>
+						<p class="eyebrow">Design themes</p>
+						<h2 class="h2">Pick a look. <em>We’ll fit it</em> to your floor plan.</h2>
+					</div>
+					<a href="designs.html" class="link-arrow">See all 9 themes <svg class="i" aria-hidden="true"><use href="#i-arrow" /></svg></a>
+				</div>
+
+				<div class="chips" role="group" aria-label="Filter themes by style">
+					<button class="chip-btn is-active" type="button" data-filter="all" aria-pressed="true">All</button>
+					<button class="chip-btn" type="button" data-filter="minimal" aria-pressed="false">Warm minimal</button>
+					<button class="chip-btn" type="button" data-filter="modern" aria-pressed="false">Modern luxe</button>
+					<button class="chip-btn" type="button" data-filter="industrial" aria-pressed="false">Industrial</button>
+					<button class="chip-btn" type="button" data-filter="eclectic" aria-pressed="false">Eclectic</button>
+				</div>
+
+				<div class="theme-grid" id="theme-grid">
+					<a href="design-detail.html?theme=skyline-walnut" class="theme-card theme-card--wide" data-style="modern">
+						<div class="theme-card__img"><img src="assets/img/theme-skyline.webp" alt="" loading="lazy" width="1024" height="1024"></div>
+						<div class="theme-card__body">
+							<div>
+								<h3>Skyline Walnut</h3>
+								<p>Walnut, stone &amp; city views</p>
 							</div>
-							<div class="form-group">
-								<label for="contact-email">Email Address *</label>
-								<input type="email" id="contact-email" name="email" required placeholder="your@email.com">
+							<span class="theme-card__price">from <strong>RM 72k</strong></span>
+						</div>
+					</a>
+					<a href="design-detail.html?theme=linen-morning" class="theme-card" data-style="minimal">
+						<div class="theme-card__img"><img src="assets/img/theme-linen-sm.webp" alt="" loading="lazy" width="640" height="640"></div>
+						<div class="theme-card__body">
+							<div>
+								<h3>Linen Morning</h3>
+								<p>Oak, linen &amp; soft daylight</p>
 							</div>
+							<span class="theme-card__price">from <strong>RM 42k</strong></span>
 						</div>
-						<div class="form-row">
-							<div class="form-group">
-								<label for="contact-phone">Phone Number</label>
-								<input type="tel" id="contact-phone" name="phone" placeholder="+60 12-345 6789">
+					</a>
+					<a href="design-detail.html?theme=ember-loft" class="theme-card" data-style="industrial">
+						<div class="theme-card__img"><img src="assets/img/theme-ember-sm.webp" alt="" loading="lazy" width="640" height="640"></div>
+						<div class="theme-card__body">
+							<div>
+								<h3>Ember Loft</h3>
+								<p>Leather, brick &amp; black steel</p>
 							</div>
-							<div class="form-group">
-								<label for="contact-subject">Subject *</label>
-								<select id="contact-subject" name="subject" required>
-									<option value="">Select a topic</option>
-									<option value="quote">Get a Quote</option>
-									<option value="consultation">Free Consultation</option>
-									<option value="partnership">Business Partnership</option>
-									<option value="careers">Career Inquiry</option>
-									<option value="other">Other</option>
-								</select>
+							<span class="theme-card__price">from <strong>RM 47k</strong></span>
+						</div>
+					</a>
+					<a href="design-detail.html?theme=salon-boheme" class="theme-card" data-style="eclectic">
+						<div class="theme-card__img"><img src="assets/img/theme-boheme-sm.webp" alt="" loading="lazy" width="640" height="640"></div>
+						<div class="theme-card__body">
+							<div>
+								<h3>Salon Bohème</h3>
+								<p>Gallery walls &amp; collected colour</p>
 							</div>
+							<span class="theme-card__price">from <strong>RM 45k</strong></span>
 						</div>
-						<div class="form-group full-width">
-							<label for="contact-message">Message *</label>
-							<textarea id="contact-message" name="message" rows="5" required placeholder="Tell us about your project or inquiry..."></textarea>
+					</a>
+					<a href="design-detail.html?theme=soft-arc" class="theme-card" data-style="minimal">
+						<div class="theme-card__img"><img src="assets/img/theme-softarc-sm.webp" alt="" loading="lazy" width="640" height="640"></div>
+						<div class="theme-card__body">
+							<div>
+								<h3>Soft Arc</h3>
+								<p>Curves, cove light &amp; calm</p>
+							</div>
+							<span class="theme-card__price">from <strong>RM 38k</strong></span>
 						</div>
-						<div class="form-group full-width checkbox-group">
-							<label class="checkbox-label">
-								<input type="checkbox" name="newsletter" id="contact-newsletter">
-								<span class="checkmark"></span>
-								Keep me updated with makeover tips and exclusive offers
-							</label>
+					</a>
+					<a href="design-detail.html?theme=emerald-atelier" class="theme-card" data-style="modern">
+						<div class="theme-card__img"><img src="assets/img/theme-emerald-sm.webp" alt="" loading="lazy" width="640" height="640"></div>
+						<div class="theme-card__body">
+							<div>
+								<h3>Emerald Atelier</h3>
+								<p>Velvet, marble &amp; fluted timber</p>
+							</div>
+							<span class="theme-card__price">from <strong>RM 68k</strong></span>
 						</div>
-						<div class="form-actions">
-							<button type="submit" class="submit-contact-btn">
-								<span>Send Message</span>
-								<span class="btn-icon">→</span>
-							</button>
+					</a>
+				</div>
+				<p class="themes__empty" id="themes-empty" hidden>No themes in this style yet — <a href="designs.html">see the full catalogue</a>.</p>
+			</div>
+		</section>
+
+		<!-- WHY: numbers -->
+		<section class="section why" id="why">
+			<div class="container">
+				<div class="section-head section-head--light">
+					<p class="eyebrow eyebrow--light">Why Kemas</p>
+					<h2 class="h2">The numbers we’re <em>held to.</em></h2>
+				</div>
+				<div class="stats">
+					<div class="stat">
+						<div class="stat__num"><span data-count="70">70</span><small>%</small></div>
+						<h3>Less than full-custom ID</h3>
+						<p>Template-based design and bulk-bought materials. You pay for what you see, not for hours on a drawing board.</p>
+					</div>
+					<div class="stat">
+						<div class="stat__num"><span data-count="30">30</span><small>days</small></div>
+						<h3>Keys back, guaranteed</h3>
+						<p>30 working days from site handover. Miss it and we pay you RM 150 for every late day — in writing.</p>
+					</div>
+					<div class="stat">
+						<div class="stat__num"><span data-count="99.2" data-decimals="1">99.2</span><small>%</small></div>
+						<h3>Rental units tenanted</h3>
+						<p>Investor makeovers are designed around real tenant demand, then listed by our leasing partners.</p>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- PROCESS -->
+		<section class="section process" id="process">
+			<div class="container">
+				<div class="section-head">
+					<p class="eyebrow">How it works</p>
+					<h2 class="h2">From first chat to keys in <em>five steps.</em></h2>
+				</div>
+				<ol class="steps">
+					<li class="step">
+						<span class="step__day">Day −14</span>
+						<h3>Free consult</h3>
+						<p>Tell us about your unit. A designer visits, measures and learns how you’ll live — or who you’ll rent to.</p>
+					</li>
+					<li class="step">
+						<span class="step__day">Day −7</span>
+						<h3>Theme &amp; fixed quote</h3>
+						<p>Choose a theme, see it in 3D on your floor plan, and get one itemised price that won’t creep.</p>
+					</li>
+					<li class="step">
+						<span class="step__day">Day 0</span>
+						<h3>Sign &amp; finance</h3>
+						<p>Pay in instalments or with our partner financing — up to 84 months. Work starts on site handover.</p>
+					</li>
+					<li class="step">
+						<span class="step__day">Day 1–30</span>
+						<h3>The makeover</h3>
+						<p>Carpentry, electrical, paint, furniture and styling — with daily photo updates in your client portal.</p>
+					</li>
+					<li class="step">
+						<span class="step__day">Day 30</span>
+						<h3>Keys &amp; care</h3>
+						<p>Walk through, sign off, move in or list it. Your 12-month workmanship warranty starts here.</p>
+					</li>
+				</ol>
+			</div>
+		</section>
+
+		<!-- ESTIMATOR -->
+		<section class="section estimator" id="estimate">
+			<div class="container">
+				<div class="section-head">
+					<p class="eyebrow">Free cost estimate</p>
+					<h2 class="h2">Know your budget <em>before</em> you talk to anyone.</h2>
+					<p class="section-head__sub">Five quick questions. Your estimate updates as you go — no email needed to see it.</p>
+				</div>
+
+				<div class="est" id="estimator">
+					<form class="est__form" id="est-form" novalidate>
+						<div class="est__progress" aria-hidden="true">
+							<span class="est__progress-fill" id="est-progress"></span>
 						</div>
-						<div class="form-status" id="form-status"></div>
+						<p class="est__stepcount" id="est-stepcount" aria-live="polite">Step 1 of 5</p>
+
+						<!-- Step 1 -->
+						<fieldset class="est__step is-active" data-step="1">
+							<legend class="est__q">What’s the home for?</legend>
+							<div class="opts opts--2">
+								<label class="opt">
+									<input type="radio" name="purpose" value="own" checked>
+									<span class="opt__box">
+										<svg class="i opt__icon" aria-hidden="true"><use href="#i-home" /></svg>
+										<span class="opt__title">Own stay</span>
+										<span class="opt__desc">I’m moving in</span>
+									</span>
+								</label>
+								<label class="opt">
+									<input type="radio" name="purpose" value="rental">
+									<span class="opt__box">
+										<svg class="i opt__icon" aria-hidden="true"><use href="#i-key" /></svg>
+										<span class="opt__title">Rental investment</span>
+										<span class="opt__desc">I’ll rent it out</span>
+									</span>
+								</label>
+							</div>
+							<legend class="est__q est__q--sub">Property type</legend>
+							<div class="opts opts--5">
+								<label class="opt opt--compact"><input type="radio" name="type" value="condo" checked><span class="opt__box"><span class="opt__title">Condo</span></span></label>
+								<label class="opt opt--compact"><input type="radio" name="type" value="apartment"><span class="opt__box"><span class="opt__title">Apartment</span></span></label>
+								<label class="opt opt--compact"><input type="radio" name="type" value="terrace"><span class="opt__box"><span class="opt__title">Terrace</span></span></label>
+								<label class="opt opt--compact"><input type="radio" name="type" value="semid"><span class="opt__box"><span class="opt__title">Semi-D</span></span></label>
+								<label class="opt opt--compact"><input type="radio" name="type" value="bungalow"><span class="opt__box"><span class="opt__title">Bungalow</span></span></label>
+							</div>
+						</fieldset>
+
+						<!-- Step 2 -->
+						<fieldset class="est__step" data-step="2">
+							<legend class="est__q">How big is it?</legend>
+							<div class="range">
+								<div class="range__value"><output id="size-out" for="size">1,000</output> <span>sq ft</span></div>
+								<input type="range" id="size" name="size" min="400" max="4000" step="50" value="1000" aria-label="Built-up size in square feet">
+								<div class="range__scale" aria-hidden="true"><span>400</span><span>2,200</span><span>4,000+</span></div>
+							</div>
+							<legend class="est__q est__q--sub">Bedrooms</legend>
+							<div class="stepper" role="group" aria-label="Number of bedrooms">
+								<button type="button" class="stepper__btn" data-step-dir="-1" aria-label="Fewer bedrooms">−</button>
+								<output id="beds-out" class="stepper__val" aria-live="polite">3</output>
+								<input type="hidden" name="beds" id="beds" value="3">
+								<button type="button" class="stepper__btn" data-step-dir="1" aria-label="More bedrooms">+</button>
+							</div>
+						</fieldset>
+
+						<!-- Step 3 -->
+						<fieldset class="est__step" data-step="3">
+							<legend class="est__q">Which spaces are we doing?</legend>
+							<p class="est__hint">Select all that apply.</p>
+							<div class="opts opts--3">
+								<label class="opt opt--check"><input type="checkbox" name="areas" value="whole" checked><span class="opt__box"><span class="opt__title">Whole home</span><span class="opt__desc">Every room, styled</span></span></label>
+								<label class="opt opt--check"><input type="checkbox" name="areas" value="living"><span class="opt__box"><span class="opt__title">Living &amp; dining</span></span></label>
+								<label class="opt opt--check"><input type="checkbox" name="areas" value="bedrooms"><span class="opt__box"><span class="opt__title">Bedrooms</span></span></label>
+								<label class="opt opt--check"><input type="checkbox" name="areas" value="kitchen"><span class="opt__box"><span class="opt__title">Kitchen</span></span></label>
+								<label class="opt opt--check"><input type="checkbox" name="areas" value="bathrooms"><span class="opt__box"><span class="opt__title">Bathrooms</span></span></label>
+								<label class="opt opt--check"><input type="checkbox" name="areas" value="study"><span class="opt__box"><span class="opt__title">Study / WFH</span></span></label>
+							</div>
+							<p class="est__error" id="areas-error" role="alert" hidden>Pick at least one space.</p>
+						</fieldset>
+
+						<!-- Step 4 -->
+						<fieldset class="est__step" data-step="4">
+							<legend class="est__q">How far should we go?</legend>
+							<div class="opts opts--stack">
+								<label class="opt opt--row"><input type="radio" name="scope" value="furnish"><span class="opt__box"><span class="opt__title">Furnish &amp; style</span><span class="opt__desc">Furniture, lighting, curtains, décor. No hacking.</span><span class="opt__tag">~14 days</span></span></label>
+								<label class="opt opt--row"><input type="radio" name="scope" value="partial" checked><span class="opt__box"><span class="opt__title">Makeover</span><span class="opt__desc">Above, plus carpentry, feature walls, paint &amp; ceiling.</span><span class="opt__tag">~30 days</span></span></label>
+								<label class="opt opt--row"><input type="radio" name="scope" value="full"><span class="opt__box"><span class="opt__title">Full renovation</span><span class="opt__desc">Above, plus flooring, wet works, kitchen &amp; bathrooms.</span><span class="opt__tag">~45 days</span></span></label>
+							</div>
+						</fieldset>
+
+						<!-- Step 5 -->
+						<fieldset class="est__step" data-step="5">
+							<legend class="est__q">Which look are you drawn to?</legend>
+							<div class="opts opts--style">
+								<label class="opt opt--img"><input type="radio" name="style" value="minimal" checked><span class="opt__box"><img src="assets/img/theme-linen-sm.webp" alt="" loading="lazy" width="640" height="640"><span class="opt__title">Warm minimal</span></span></label>
+								<label class="opt opt--img"><input type="radio" name="style" value="modern"><span class="opt__box"><img src="assets/img/theme-skyline-sm.webp" alt="" loading="lazy" width="640" height="640"><span class="opt__title">Modern luxe</span></span></label>
+								<label class="opt opt--img"><input type="radio" name="style" value="industrial"><span class="opt__box"><img src="assets/img/theme-ember-sm.webp" alt="" loading="lazy" width="640" height="640"><span class="opt__title">Industrial</span></span></label>
+								<label class="opt opt--img"><input type="radio" name="style" value="eclectic"><span class="opt__box"><img src="assets/img/theme-boheme-sm.webp" alt="" loading="lazy" width="640" height="640"><span class="opt__title">Eclectic</span></span></label>
+							</div>
+						</fieldset>
+
+						<!-- Lead capture -->
+						<fieldset class="est__step est__step--lead" data-step="6">
+							<legend class="est__q">Lock in this estimate</legend>
+							<p class="est__hint">A designer will WhatsApp you within one working day with a detailed, itemised quote. No spam, no hard sell.</p>
+							<div class="field">
+								<label for="lead-name">Your name</label>
+								<input id="lead-name" name="name" type="text" autocomplete="name" required>
+								<span class="field__err">Please tell us your name.</span>
+							</div>
+							<div class="field">
+								<label for="lead-phone">Mobile number</label>
+								<input id="lead-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="012-345 6789" required pattern="^(\+?6?0)?1[0-9][\s-]?[0-9]{3,4}[\s-]?[0-9]{4}$">
+								<span class="field__err">Enter a Malaysian mobile number, e.g. 012-345 6789.</span>
+							</div>
+							<div class="field">
+								<label for="lead-area">Property location <span class="field__opt">(optional)</span></label>
+								<input id="lead-area" name="area" type="text" placeholder="e.g. Mont Kiara, KL">
+							</div>
+						</fieldset>
+
+						<div class="est__done" id="est-done" hidden tabindex="-1">
+							<div class="est__done-icon"><svg class="i" aria-hidden="true"><use href="#i-check" /></svg></div>
+							<h3 class="h3">Estimate locked in.</h3>
+							<p>Thanks, <span id="done-name">there</span>. A designer will WhatsApp you within one working day. Your reference is <strong id="done-ref">KS-0000</strong>.</p>
+							<button type="button" class="btn btn--ghost" id="est-restart">Start a new estimate</button>
+						</div>
+
+						<div class="est__nav" id="est-nav">
+							<button type="button" class="btn btn--ghost" id="est-back" disabled>Back</button>
+							<button type="button" class="btn btn--primary" id="est-next">Continue <svg class="i" aria-hidden="true"><use href="#i-arrow" /></svg></button>
+						</div>
 					</form>
+
+					<aside class="est__summary" aria-labelledby="est-sum-title">
+						<p class="est__sum-label" id="est-sum-title">Your live estimate</p>
+						<div class="est__total" aria-live="polite">
+							<span class="est__cur">RM</span><span id="est-low">0</span><span class="est__dash">–</span><span id="est-high">0</span>
+						</div>
+						<p class="est__monthly">or from <strong id="est-monthly">RM 0</strong>/month over 84 months*</p>
+						<dl class="est__facts">
+							<div><dt>Timeline</dt><dd id="est-days">30 working days</dd></div>
+							<div><dt>Scope</dt><dd id="est-scope">Makeover</dd></div>
+							<div><dt>Property</dt><dd id="est-prop">Condo · 1,000 sq ft</dd></div>
+							<div class="est__rent" id="est-rent-row" hidden><dt>Projected rent</dt><dd id="est-rent">RM 0</dd></div>
+						</dl>
+						<div class="est__bars" id="est-bars" aria-label="Cost breakdown"></div>
+						<p class="est__fine">*Indicative only, based on recent projects of similar size and scope. Your final quote is fixed after a site visit.</p>
+					</aside>
 				</div>
 			</div>
-		</div>
-	</section>
+		</section>
 
-	<footer>
-		<div class="mog-container">
-			<div class="footer-grid">
-				<div class="footer-col-main">
-					<img src="assets/images/footer_face.png" class="footer-face-placeholder" alt="Face of TMOG"
-						style="width: 150px; height: 150px; border-radius: 50%;">
-					<div class="footer-subgrid">
-						<div class="footer-item">
-							<div class="footer-title">Get A Cost Estimation</div>
-							<address>
-								<a href="#estimate">Cost Estimation</a>
-								<a href="#contact">Contact Us</a>
-							</address>
-						</div>
-						<div class="footer-item">
-							<div class="footer-title">Connect With Us</div>
-							<ul class="social-list">
-								<li><a href="#">FB</a></li>
-								<li><a href="#">IG</a></li>
-								<li><a href="#">YT</a></li>
-							</ul>
-						</div>
-					</div>
+		<!-- FINANCING -->
+		<section class="section financing" id="financing">
+			<div class="container financing__grid">
+				<div class="financing__copy">
+					<p class="eyebrow">Makeover financing</p>
+					<h2 class="h2">Move in now. <em>Pay monthly.</em></h2>
+					<p class="lead">Spread your makeover over up to 84 months with our partner banks and financiers. Approval in principle within 3 working days, and funds go straight to the project — never through your account.</p>
+					<ul class="ticks">
+						<li><svg class="i" aria-hidden="true"><use href="#i-check" /></svg> Rates from 4.99% p.a. flat</li>
+						<li><svg class="i" aria-hidden="true"><use href="#i-check" /></svg> Finance up to RM 200,000</li>
+						<li><svg class="i" aria-hidden="true"><use href="#i-check" /></svg> Bundle with your home loan for new purchases</li>
+					</ul>
 				</div>
 
-				<div class="footer-col-links">
-					<div class="footer-links-group">
-						<div class="footer-title">Product & Services</div>
-						<ul>
-							<li><a href="#designs">Our Designs</a></li>
-							<li><a href="#services">What We Offer</a></li>
-							<li><a href="#whyus">Why Us</a></li>
-							<li><a href="#care">The Makeover Care</a></li>
-							<li><a href="#warranty">Warranty & Maintenance</a></li>
-							<li><a href="#group">Group Deals</a></li>
-							<li><a href="#loan">Loan</a></li>
-							<li><a href="#club">Makeover Club</a></li>
-						</ul>
+				<div class="loan card" id="loan">
+					<div class="loan__field">
+						<div class="loan__row"><label for="loan-amt">Makeover amount</label><output id="loan-amt-out">RM 60,000</output></div>
+						<input type="range" id="loan-amt" min="10000" max="200000" step="5000" value="60000">
 					</div>
-					<div class="footer-links-group">
-						<div class="footer-title">About Us</div>
-						<ul>
-							<li><a href="about.html">Who We Are</a></li>
-							<li><a href="#careers">Careers</a></li>
-							<li><a href="#contact">Contact Us</a></li>
-						</ul>
+					<div class="loan__field">
+						<div class="loan__row"><span id="loan-tenure-label">Repayment period</span><output id="loan-ten-out">84 months</output></div>
+						<div class="tenure" role="radiogroup" aria-labelledby="loan-tenure-label">
+							<label><input type="radio" name="tenure" value="24"><span>2 yrs</span></label>
+							<label><input type="radio" name="tenure" value="36"><span>3 yrs</span></label>
+							<label><input type="radio" name="tenure" value="60"><span>5 yrs</span></label>
+							<label><input type="radio" name="tenure" value="84" checked><span>7 yrs</span></label>
+						</div>
 					</div>
-					<div class="footer-links-group">
-						<div class="footer-title">Group of Companies</div>
-						<ul>
-							<li><a href="#">CozyHomes</a></li>
-							<li><a href="#">Easyhome</a></li>
-							<li><a href="#">Groundwork</a></li>
-							<li><a href="#">Iherng Media</a></li>
-						</ul>
+					<div class="loan__result">
+						<span class="loan__label">Estimated monthly</span>
+						<div class="loan__monthly" aria-live="polite"><span>RM</span><strong id="loan-monthly">964</strong><span>/mo</span></div>
+						<dl class="loan__meta">
+							<div><dt>Total interest</dt><dd id="loan-interest">RM 20,958</dd></div>
+							<div><dt>Total payable</dt><dd id="loan-total">RM 80,958</dd></div>
+						</dl>
 					</div>
+					<a href="#contact" class="btn btn--primary btn--block" data-set-subject="financing">Check my eligibility</a>
+					<p class="loan__fine">Illustration at 4.99% p.a. flat. Actual rate depends on your credit profile and the financier’s approval.</p>
 				</div>
 			</div>
-			<hr>
-			<div class="footer-bottom">
-				<div class="copyright">Copyright &copy; The Makeover Guys Sdn Bhd (1125623-P) All rights reserved</div>
-				<div class="legal-links">
-					<a href="#">Term of service</a>
-					<a href="#">Privacy policy</a>
+		</section>
+
+		<!-- TESTIMONIALS -->
+		<section class="section reviews" id="reviews">
+			<div class="container">
+				<div class="section-head section-head--split">
+					<div>
+						<p class="eyebrow">Homeowners &amp; investors</p>
+						<h2 class="h2">Don’t take <em>our</em> word for it.</h2>
+					</div>
+					<div class="carousel-ctrl">
+						<button type="button" class="round-btn" data-carousel="prev" aria-label="Previous review"><svg class="i i--flip" aria-hidden="true"><use href="#i-arrow" /></svg></button>
+						<button type="button" class="round-btn" data-carousel="next" aria-label="Next review"><svg class="i" aria-hidden="true"><use href="#i-arrow" /></svg></button>
+					</div>
 				</div>
+
+				<div class="carousel" id="reviews-track" tabindex="0" aria-label="Reviews, scroll horizontally">
+					<figure class="review">
+						<div class="review__stars" aria-label="5 out of 5 stars"><svg class="i" aria-hidden="true"><use href="#i-star" /></svg><svg class="i" aria-hidden="true"><use href="#i-star" /></svg><svg class="i" aria-hidden="true"><use href="#i-star" /></svg><svg class="i" aria-hidden="true"><use href="#i-star" /></svg><svg class="i" aria-hidden="true"><use href="#i-star" /></svg></div>
+						<blockquote>“Tenanted eleven days after handover, at RM 600 above what the agent first quoted us bare. The tenant-profile report alone was worth it.”</blockquote>
+						<figcaption><span class="avatar" aria-hidden="true">AR</span><span><strong>Aisyah R.</strong><span>Investor · 2-bed condo, Cyberjaya</span></span></figcaption>
+					</figure>
+					<figure class="review">
+						<div class="review__stars" aria-label="5 out of 5 stars"><svg class="i" aria-hidden="true"><use href="#i-star" /></svg><svg class="i" aria-hidden="true"><use href="#i-star" /></svg><svg class="i" aria-hidden="true"><use href="#i-star" /></svg><svg class="i" aria-hidden="true"><use href="#i-star" /></svg><svg class="i" aria-hidden="true"><use href="#i-star" /></svg></div>
+						<blockquote>“We were quoted three months by two contractors. Kemas handed us the keys on day 29, and the final bill matched the quote to the ringgit.”</blockquote>
+						<figcaption><span class="avatar" aria-hidden="true">JL</span><span><strong>Jason &amp; Mei L.</strong><span>Own stay · Terrace, Puchong</span></span></figcaption>
+					</figure>
+					<figure class="review">
+						<div class="review__stars" aria-label="5 out of 5 stars"><svg class="i" aria-hidden="true"><use href="#i-star" /></svg><svg class="i" aria-hidden="true"><use href="#i-star" /></svg><svg class="i" aria-hidden="true"><use href="#i-star" /></svg><svg class="i" aria-hidden="true"><use href="#i-star" /></svg><svg class="i" aria-hidden="true"><use href="#i-star" /></svg></div>
+						<blockquote>“I live in Singapore and never visited the site once. Daily photos in the portal, a video walkthrough at handover. Completely painless.”</blockquote>
+						<figcaption><span class="avatar" aria-hidden="true">KT</span><span><strong>Kumar T.</strong><span>Investor · Studio, Johor Bahru</span></span></figcaption>
+					</figure>
+					<figure class="review">
+						<div class="review__stars" aria-label="4 out of 5 stars"><svg class="i" aria-hidden="true"><use href="#i-star" /></svg><svg class="i" aria-hidden="true"><use href="#i-star" /></svg><svg class="i" aria-hidden="true"><use href="#i-star" /></svg><svg class="i" aria-hidden="true"><use href="#i-star" /></svg><svg class="i i--dim" aria-hidden="true"><use href="#i-star" /></svg></div>
+						<blockquote>“One cabinet door arrived the wrong shade. They replaced it within a week under warranty, no arguments. That’s what sold me on them.”</blockquote>
+						<figcaption><span class="avatar" aria-hidden="true">NH</span><span><strong>Nurul H.</strong><span>Own stay · Apartment, Penang</span></span></figcaption>
+					</figure>
+				</div>
+			</div>
+		</section>
+
+		<!-- CARE & CLUB -->
+		<section class="section care" id="care">
+			<div class="container">
+				<div class="section-head">
+					<p class="eyebrow">After the keys</p>
+					<h2 class="h2">We don’t disappear <em>at handover.</em></h2>
+				</div>
+				<div class="care__grid">
+					<article class="care-card">
+						<svg class="i care-card__icon" aria-hidden="true"><use href="#i-shield" /></svg>
+						<h3>12-month warranty</h3>
+						<p>Workmanship on carpentry, electrical and fittings is covered for a full year. Report via WhatsApp; we’re on site within 5 working days.</p>
+					</article>
+					<article class="care-card">
+						<svg class="i care-card__icon" aria-hidden="true"><use href="#i-wrench" /></svg>
+						<h3>Kemas Care plans</h3>
+						<p>Optional yearly servicing for aircon, plumbing and touch-ups — ideal for rental units between tenancies.</p>
+					</article>
+					<article class="care-card care-card--accent">
+						<svg class="i care-card__icon" aria-hidden="true"><use href="#i-users" /></svg>
+						<h3>Kemas Club</h3>
+						<p>Refer a friend and get RM 1,000 in cash or credits for each signed project. Members also get early access to new themes and group-buy deals.</p>
+						<a href="#contact" class="link-arrow" data-set-subject="club">Join the club <svg class="i" aria-hidden="true"><use href="#i-arrow" /></svg></a>
+					</article>
+				</div>
+			</div>
+		</section>
+
+		<!-- FAQ -->
+		<section class="section faq" id="faq">
+			<div class="container faq__grid">
+				<div>
+					<p class="eyebrow">FAQ</p>
+					<h2 class="h2">Questions, <em>answered.</em></h2>
+					<p class="section-head__sub">Still unsure? <a href="https://wa.me/60123456789" target="_blank" rel="noopener">WhatsApp a designer</a> — real people, replies within the hour on working days.</p>
+				</div>
+				<div class="accordion">
+					<details>
+						<summary>How can you finish in 30 working days?</summary>
+						<p>Our themes are pre-designed and pre-costed, so there’s no months-long design phase. Materials are stocked in our warehouse, and the same in-house crews work every site. The 30 days counts from site handover, after your design is signed off.</p>
+					</details>
+					<details>
+						<summary>Can I customise a theme?</summary>
+						<p>Yes. Every theme is a starting point. Swap colours, finishes, furniture or layouts with your designer — your 3D render and quote update before you commit.</p>
+					</details>
+					<details>
+						<summary>Is the estimate the final price?</summary>
+						<p>The online estimate is a range based on similar recent projects. After a site visit, you get one itemised, fixed quote. If we missed something, that’s on us — not you.</p>
+					</details>
+					<details>
+						<summary>Do you work outside the Klang Valley?</summary>
+						<p>We cover Klang Valley, Penang, Johor Bahru, Ipoh, Melaka, Kota Kinabalu and Kuching, with in-house crews in each region.</p>
+					</details>
+					<details>
+						<summary>Can you help me rent the unit out?</summary>
+						<p>Yes. For investor makeovers, our leasing partners photograph, list and screen tenants for you. Ongoing property management is available as an add-on.</p>
+					</details>
+					<details>
+						<summary>What payment options do I have?</summary>
+						<p>Pay in stages (30% / 50% / 20%), use 0% instalment plans on selected credit cards, or finance up to 84 months through our partner financiers.</p>
+					</details>
+				</div>
+			</div>
+		</section>
+
+		<!-- CONTACT -->
+		<section class="section contact" id="contact">
+			<div class="container contact__grid">
+				<div class="contact__copy">
+					<p class="eyebrow eyebrow--light">Talk to a designer</p>
+					<h2 class="h2">Let’s make your place <em>feel like yours.</em></h2>
+					<ul class="contact__list">
+						<li><svg class="i" aria-hidden="true"><use href="#i-whatsapp" /></svg><div><strong>WhatsApp</strong><a href="https://wa.me/60123456789" target="_blank" rel="noopener">+60 12-345 6789</a></div></li>
+						<li><svg class="i" aria-hidden="true"><use href="#i-phone" /></svg><div><strong>Call</strong><a href="tel:+60312345678">03-1234 5678</a><span>Mon–Sat, 9am–7pm</span></div></li>
+						<li><svg class="i" aria-hidden="true"><use href="#i-mail" /></svg><div><strong>Email</strong><a href="mailto:hello@kemas.studio">hello@kemas.studio</a></div></li>
+						<li><svg class="i" aria-hidden="true"><use href="#i-pin" /></svg><div><strong>Experience centre</strong><span>Level 3, Jalan Kemajuan, 46200 Petaling Jaya</span></div></li>
+					</ul>
+				</div>
+
+				<form class="contact__form card" id="contact-form" novalidate>
+					<div class="field-row">
+						<div class="field">
+							<label for="c-name">Name</label>
+							<input id="c-name" name="name" type="text" autocomplete="name" required>
+							<span class="field__err">Please tell us your name.</span>
+						</div>
+						<div class="field">
+							<label for="c-phone">Mobile</label>
+							<input id="c-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" required pattern="^(\+?6?0)?1[0-9][\s-]?[0-9]{3,4}[\s-]?[0-9]{4}$" placeholder="012-345 6789">
+							<span class="field__err">Enter a valid Malaysian mobile number.</span>
+						</div>
+					</div>
+					<div class="field">
+						<label for="c-email">Email <span class="field__opt">(optional)</span></label>
+						<input id="c-email" name="email" type="email" autocomplete="email">
+						<span class="field__err">That email doesn’t look right.</span>
+					</div>
+					<div class="field">
+						<span class="field__label" id="c-topic-label">I’m interested in</span>
+						<div class="pills" role="radiogroup" aria-labelledby="c-topic-label">
+							<label><input type="radio" name="topic" value="quote" checked><span>A makeover quote</span></label>
+							<label><input type="radio" name="topic" value="financing"><span>Financing</span></label>
+							<label><input type="radio" name="topic" value="club"><span>Kemas Club</span></label>
+							<label><input type="radio" name="topic" value="careers"><span>Careers</span></label>
+							<label><input type="radio" name="topic" value="other"><span>Something else</span></label>
+						</div>
+					</div>
+					<div class="field">
+						<label for="c-msg">Tell us about your home <span class="field__opt">(optional)</span></label>
+						<textarea id="c-msg" name="message" rows="4" placeholder="e.g. 3-bed condo in Shah Alam, keys in March, want it rental-ready."></textarea>
+					</div>
+					<label class="check">
+						<input type="checkbox" name="consent" required>
+						<span>I agree to be contacted about my enquiry, per the <a href="#">privacy policy</a>.</span>
+					</label>
+					<span class="field__err field__err--consent" id="consent-err">Please tick to let us contact you.</span>
+					<button type="submit" class="btn btn--primary btn--block btn--lg">Send to a designer <svg class="i" aria-hidden="true"><use href="#i-arrow" /></svg></button>
+					<p class="form-status" id="contact-status" role="status" aria-live="polite"></p>
+				</form>
+			</div>
+		</section>
+
+	</main>
+
+	<footer class="site-footer">
+		<div class="container">
+			<div class="site-footer__top">
+				<div class="site-footer__brand">
+					<a href="index.html" class="brand brand--light" aria-label="Kemas Studio home">
+						<span class="brand__mark" aria-hidden="true"></span>
+						<span class="brand__name">Kemas<span>Studio</span></span>
+					</a>
+					<p>Design-and-build home makeovers for own stay and rental investment, across Malaysia.</p>
+					<ul class="social">
+						<li><a href="#" aria-label="Instagram"><svg class="i" aria-hidden="true"><use href="#i-instagram" /></svg></a></li>
+						<li><a href="#" aria-label="Facebook"><svg class="i" aria-hidden="true"><use href="#i-facebook" /></svg></a></li>
+						<li><a href="#" aria-label="TikTok"><svg class="i" aria-hidden="true"><use href="#i-tiktok" /></svg></a></li>
+						<li><a href="#" aria-label="YouTube"><svg class="i" aria-hidden="true"><use href="#i-youtube" /></svg></a></li>
+					</ul>
+				</div>
+				<nav class="site-footer__cols" aria-label="Footer">
+					<div>
+						<h3>Makeovers</h3>
+						<ul>
+							<li><a href="designs.html">Design themes</a></li>
+							<li><a href="index.html#paths">Own stay</a></li>
+							<li><a href="index.html#paths">Rental investment</a></li>
+							<li><a href="index.html#estimate">Cost estimate</a></li>
+							<li><a href="index.html#financing">Financing</a></li>
+						</ul>
+					</div>
+					<div>
+						<h3>After handover</h3>
+						<ul>
+							<li><a href="index.html#care">Warranty</a></li>
+							<li><a href="index.html#care">Kemas Care</a></li>
+							<li><a href="index.html#care">Kemas Club</a></li>
+							<li><a href="index.html#faq">FAQ</a></li>
+						</ul>
+					</div>
+					<div>
+						<h3>Company</h3>
+						<ul>
+							<li><a href="about.html">Our story</a></li>
+							<li><a href="about.html#careers">Careers</a></li>
+							<li><a href="index.html#contact">Contact</a></li>
+						</ul>
+					</div>
+				</nav>
+			</div>
+			<div class="site-footer__bottom">
+				<p>© <span data-year>2026</span> Kemas Studio Sdn Bhd. Demo site — figures are illustrative.</p>
+				<div><a href="#">Terms</a><a href="#">Privacy</a></div>
 			</div>
 		</div>
 	</footer>
 
+	<!-- Mobile sticky action bar -->
+	<div class="action-bar" id="action-bar">
+		<a href="https://wa.me/60123456789" class="btn btn--ghost" target="_blank" rel="noopener"><svg class="i" aria-hidden="true"><use href="#i-whatsapp" /></svg> WhatsApp</a>
+		<a href="#estimate" class="btn btn--primary">Free estimate</a>
+	</div>
+
+	<!-- Desktop WhatsApp float -->
+	<a href="https://wa.me/60123456789" class="wa-float" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp"><svg class="i" aria-hidden="true"><use href="#i-whatsapp" /></svg></a>
+
+	<script src="icons.js"></script>
 	<script src="main.js"></script>
 </body>
 

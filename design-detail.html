@@ -2,169 +2,243 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Design Details - The Makeover Guys</title>
-    <meta name="description" content="Explore our designs in detail." />
-    <link
-        href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="style.css" />
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Design theme — Kemas Studio</title>
+	<meta name="description" content="Explore a Kemas Studio design theme room by room — interactive floor plan, gallery, material palette and itemised starting price." />
+	<meta name="theme-color" content="#F5F1EA" />
+	<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml" />
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link
+		href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300..600&family=Instrument+Sans:wght@400..700&display=swap"
+		rel="stylesheet">
+	<link rel="stylesheet" href="style.css" />
 </head>
 
-<body class="detail--page">
+<body class="page-detail">
+	<a class="skip-link" href="#main">Skip to content</a>
 
-    <header>
-        <div class="mog-container header-wrapper">
-            <a href="index.html" class="logo">
-                <img src="assets/images/company_logo.png" alt="MOG LOGO" style="width: 140px; height: auto;">
-            </a>
+	<header class="site-header" id="site-header">
+		<div class="container site-header__inner">
+			<a href="index.html" class="brand" aria-label="Kemas Studio home">
+				<span class="brand__mark" aria-hidden="true"></span>
+				<span class="brand__name">Kemas<span>Studio</span></span>
+			</a>
 
-            <a href="javascript:;" class="mobile-menu--btn">
-                <span></span>
-                <span></span>
-                <span></span>
-            </a>
+			<nav class="nav" id="nav" aria-label="Primary">
+				<a href="designs.html" class="nav__link is-current" aria-current="page">Designs</a>
+				<a href="index.html#paths" class="nav__link">Services</a>
+				<a href="index.html#process" class="nav__link">How it works</a>
+				<a href="index.html#financing" class="nav__link">Financing</a>
+				<a href="index.html#care" class="nav__link">Care &amp; Club</a>
+				<a href="about.html" class="nav__link">About</a>
+				<a href="index.html#faq" class="nav__link">FAQ</a>
+				<div class="nav__mobile-cta">
+					<a href="index.html#estimate" class="btn btn--primary btn--block">Get my free estimate</a>
+					<a href="https://wa.me/60123456789" class="btn btn--ghost btn--block" target="_blank" rel="noopener"><svg class="i" aria-hidden="true"><use href="#i-whatsapp" /></svg> Chat on WhatsApp</a>
+				</div>
+			</nav>
 
-            <nav class="desktop-nav">
-                <a href="index.html#our-designs" class="nav-link">Our Designs</a>
-                <div class="nav--dropdown">
-                    <a href="index.html#our-services" class="nav-link nav--dropdown-btn">Services <i
-                            class="arrow-down"></i></a>
-                    <div class="nav--dropdown-content">
-                        <a href="index.html#our-services">What We Offer</a>
-                        <a href="index.html#club">Makeover Club</a>
-                        <a href="index.html#loan">Loan Assistance</a>
-                    </div>
-                </div>
-                <div class="nav--dropdown">
-                    <a href="javascript:;" class="nav-link nav--dropdown-btn">Insights <i class="arrow-down"></i></a>
-                    <div class="nav--dropdown-content">
-                        <a href="index.html#why-us">Why Choose Us</a>
-                        <a href="index.html#research">Property Research</a>
-                        <a href="index.html#tips">Property Tips</a>
-                        <a href="index.html#faq">FAQ</a>
-                    </div>
-                </div>
-                <!-- Active Page -->
-                <div class="nav--dropdown">
-                    <a href="javascript:;" class="nav-link nav--dropdown-btn">Company <i class="arrow-down"></i></a>
-                    <div class="nav--dropdown-content">
-                        <a href="about.html">Who We Are</a>
-                        <a href="index.html#careers">Careers</a>
-                        <a href="index.html#contact">Contact Us</a>
-                    </div>
-                </div>
-            </nav>
+			<div class="site-header__actions">
+				<a href="tel:+60312345678" class="site-header__phone"><svg class="i" aria-hidden="true"><use href="#i-phone" /></svg> 03-1234 5678</a>
+				<a href="index.html#estimate" class="btn btn--primary btn--sm">Free estimate</a>
+				<button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav" aria-label="Open menu">
+					<span></span><span></span>
+				</button>
+			</div>
+		</div>
+	</header>
 
-            <div class="header-cta">
-                <a href="#estimate" class="cta-button">Get Cost Estimate</a>
-            </div>
-        </div>
-    </header>
+	<main id="main">
+		<div class="container">
+			<nav class="crumbs" aria-label="Breadcrumb">
+				<a href="index.html">Home</a><span aria-hidden="true">/</span><a href="designs.html">Design themes</a><span aria-hidden="true">/</span><span id="dt-crumb" aria-current="page">Theme</span>
+			</nav>
+		</div>
 
-    <!-- Detail Hero -->
-    <section class="detail-hero" id="detail-hero">
-        <div class="overlay"></div>
-        <div class="mog-container">
-            <h1 id="project-title" class="title-text" style="color:#fff;">Loading...</h1>
-            <p id="project-desc" class="description-text" style="color:#eee;">Please wait while we load the design
-                details.</p>
-        </div>
-    </section>
+		<section class="dt-hero">
+			<div class="container">
+				<div class="dt-hero__grid">
+					<div>
+						<p class="eyebrow" id="dt-style">Theme</p>
+						<h1 class="display" id="dt-title">Theme</h1>
+						<p class="lead" id="dt-tagline" style="margin-top:14px"></p>
+					</div>
+					<div class="dt-hero__price">
+						<span>Starting from</span>
+						<strong id="dt-price">RM —</strong>
+					</div>
+				</div>
+				<div class="dt-hero__img">
+					<img id="dt-img" src="assets/img/theme-emerald.webp" alt="" width="1024" height="1024" fetchpriority="high">
+					<button type="button" class="dt-hero__view" id="dt-open-gallery"><svg class="i" aria-hidden="true"><use href="#i-expand" /></svg> View gallery</button>
+				</div>
+				<dl class="dt-stats">
+					<div><svg class="i" aria-hidden="true"><use href="#i-ruler" /></svg><span><dt>Sample unit</dt><dd id="dt-sqft">—</dd></span></div>
+					<div><svg class="i" aria-hidden="true"><use href="#i-home" /></svg><span><dt>Layout</dt><dd id="dt-beds">—</dd></span></div>
+					<div><svg class="i" aria-hidden="true"><use href="#i-clock" /></svg><span><dt>Delivered in</dt><dd id="dt-days">—</dd></span></div>
+					<div><svg class="i" aria-hidden="true"><use href="#i-palette" /></svg><span><dt>Style</dt><dd id="dt-stylestat">—</dd></span></div>
+				</dl>
+			</div>
+		</section>
 
-    <!-- Project Info Bar -->
-    <div class="project-stats-bar">
-        <div class="mog-container stats-grid">
-            <div class="stat-item">
-                <span class="label">Size</span>
-                <span class="value" id="project-size">- sqft</span>
-            </div>
-            <div class="stat-item">
-                <span class="label">Duration</span>
-                <span class="value" id="project-duration">- weeks</span>
-            </div>
-            <div class="stat-item">
-                <span class="label">Style</span>
-                <span class="value" id="project-style">-</span>
-            </div>
-            <div class="stat-item">
-                <span class="label">Est. Cost</span>
-                <span class="value" id="project-cost">-</span>
-            </div>
-        </div>
-    </div>
+		<div class="container dt-layout">
+			<div>
+				<section class="dt-block">
+					<h2>About this theme</h2>
+					<p class="dt-intro" id="dt-desc"></p>
+				</section>
 
-    <!-- Interactive Floorplan & Gallery -->
-    <section class="detail-content">
-        <div class="mog-container">
-            <div class="detail-split">
+				<section class="dt-block" aria-labelledby="plan-h">
+					<h2 id="plan-h">Walk the floor plan</h2>
+					<p class="dt-intro">Tap a room to see how the theme plays out in it.</p>
+					<div class="plan">
+						<div class="plan__map">
+							<img src="assets/img/floorplan-sm.webp" alt="Floor plan of a 3-bedroom sample unit" width="640" height="640">
+							<button type="button" class="hotspot" data-room="living" style="top:36%;left:28%" aria-label="Living room"><svg class="i" aria-hidden="true"><use href="#i-plus" /></svg><span class="hotspot__label" aria-hidden="true">Living room</span></button>
+							<button type="button" class="hotspot" data-room="dining" style="top:51%;left:29%" aria-label="Dining"><svg class="i" aria-hidden="true"><use href="#i-plus" /></svg><span class="hotspot__label" aria-hidden="true">Dining</span></button>
+							<button type="button" class="hotspot" data-room="kitchen" style="top:73%;left:34%" aria-label="Kitchen"><svg class="i" aria-hidden="true"><use href="#i-plus" /></svg><span class="hotspot__label" aria-hidden="true">Kitchen</span></button>
+							<button type="button" class="hotspot" data-room="master" style="top:36%;left:75%" aria-label="Master bedroom"><svg class="i" aria-hidden="true"><use href="#i-plus" /></svg><span class="hotspot__label" aria-hidden="true">Master bedroom</span></button>
+						</div>
+						<div>
+							<article class="plan__room" id="plan-room" aria-live="polite">
+								<img src="assets/img/theme-emerald-sm.webp" alt="" width="640" height="640">
+								<div class="plan__room-body"><h3>Living room</h3><p></p></div>
+							</article>
+							<div class="plan__rooms chips" id="plan-rooms" role="group" aria-label="Rooms">
+								<button type="button" class="chip-btn" data-room="living">Living</button>
+								<button type="button" class="chip-btn" data-room="dining">Dining</button>
+								<button type="button" class="chip-btn" data-room="kitchen">Kitchen</button>
+								<button type="button" class="chip-btn" data-room="master">Master bedroom</button>
+							</div>
+						</div>
+					</div>
+				</section>
 
-                <!-- Left: Floorplan -->
-                <div class="floorplan-wrapper">
-                    <h3>Interactive Floorplan</h3>
-                    <p>Click on a room to see more.</p>
-                    <div class="floorplan-container">
-                        <img src="assets/images/floorplan.png" alt="Floorplan" class="floorplan-img">
+				<section class="dt-block" aria-labelledby="gal-h">
+					<h2 id="gal-h">Gallery</h2>
+					<div class="gallery" id="dt-gallery"></div>
+				</section>
 
-                        <!-- Hotspots (Positions relative to image percentage) -->
-                        <button class="hotspot" style="top: 35%; left: 25%;" data-room="living">
-                            <span class="pulse"></span>
-                            <span class="tooltip">Living Room</span>
-                        </button>
+				<section class="dt-block" aria-labelledby="pal-h">
+					<h2 id="pal-h">Material palette</h2>
+					<p class="dt-intro">Samples of every finish are at our Petaling Jaya experience centre.</p>
+					<ul class="palette" id="dt-palette"></ul>
+				</section>
 
-                        <button class="hotspot" style="top: 25%; left: 75%;" data-room="bedroom">
-                            <span class="pulse"></span>
-                            <span class="tooltip">Master Bedroom</span>
-                        </button>
+				<section class="dt-block" aria-labelledby="inc-h">
+					<h2 id="inc-h">What’s included</h2>
+					<ul class="included">
+						<li><svg class="i" aria-hidden="true"><use href="#i-check" /></svg>Design consult, measurement &amp; 3D render</li>
+						<li><svg class="i" aria-hidden="true"><use href="#i-check" /></svg>Built-in carpentry with soft-close hardware</li>
+						<li><svg class="i" aria-hidden="true"><use href="#i-check" /></svg>Furniture, rugs, curtains &amp; bedding</li>
+						<li><svg class="i" aria-hidden="true"><use href="#i-check" /></svg>Feature lighting &amp; electrical points</li>
+						<li><svg class="i" aria-hidden="true"><use href="#i-check" /></svg>Full repaint &amp; plaster ceiling details</li>
+						<li><svg class="i" aria-hidden="true"><use href="#i-check" /></svg>Styling, deep clean &amp; handover photos</li>
+						<li><svg class="i" aria-hidden="true"><use href="#i-check" /></svg>Daily progress updates in your portal</li>
+						<li><svg class="i" aria-hidden="true"><use href="#i-check" /></svg>12-month workmanship warranty</li>
+					</ul>
+				</section>
+			</div>
 
-                        <button class="hotspot" style="top: 65%; left: 35%;" data-room="kitchen">
-                            <span class="pulse"></span>
-                            <span class="tooltip">Kitchen</span>
-                        </button>
+			<aside class="dt-aside" aria-labelledby="dt-aside-title">
+				<div class="card">
+					<h3 id="dt-aside-title">Get this look</h3>
+					<p>Sample price for the unit shown. Yours is fixed after a free site visit.</p>
+					<dl class="price-lines" id="dt-lines"></dl>
+					<a href="index.html#estimate" class="btn btn--primary btn--block">Estimate for my home</a>
+					<a href="https://wa.me/60123456789" class="btn btn--ghost btn--block" target="_blank" rel="noopener"><svg class="i" aria-hidden="true"><use href="#i-whatsapp" /></svg> Ask a designer</a>
+					<p class="dt-aside__note"><svg class="i" aria-hidden="true"><use href="#i-tag" /></svg><span>Or from <strong id="dt-monthly">RM —</strong>/month over 84 months with partner financing.</span></p>
+				</div>
+			</aside>
+		</div>
 
-                    </div>
-                    <!-- View All moved below -->
-                    <div style="text-align: center; margin-top: 15px;">
-                        <button class="view-all-btn" data-room="all" style="
-                            background: var(--primary-gold); 
-                            color: #fff; 
-                            border: none; 
-                            padding: 10px 25px; 
-                            border-radius: 4px; 
-                            font-weight: 700; 
-                            cursor: pointer;
-                            transition: transform 0.2s ease;">
-                            View All Areas
-                        </button>
-                    </div>
-                </div>
+		<section class="dt-more">
+			<div class="container">
+				<div class="section-head section-head--split" style="margin-bottom:0">
+					<h2 class="h2">More <em>themes</em></h2>
+					<a href="designs.html" class="link-arrow">All themes <svg class="i" aria-hidden="true"><use href="#i-arrow" /></svg></a>
+				</div>
+				<div class="theme-grid" id="dt-more"></div>
+			</div>
+		</section>
 
-                <!-- Right: Gallery -->
-                <div class="gallery-wrapper">
-                    <h3 id="gallery-title">Gallery: All Areas</h3>
-                    <div class="gallery-grid" id="gallery-grid">
-                        <!-- Dynamic Images Injected Here -->
-                    </div>
-                </div>
+	</main>
 
-            </div>
-        </div>
-    </section>
+	<footer class="site-footer">
+		<div class="container">
+			<div class="site-footer__top">
+				<div class="site-footer__brand">
+					<a href="index.html" class="brand brand--light" aria-label="Kemas Studio home">
+						<span class="brand__mark" aria-hidden="true"></span>
+						<span class="brand__name">Kemas<span>Studio</span></span>
+					</a>
+					<p>Design-and-build home makeovers for own stay and rental investment, across Malaysia.</p>
+					<ul class="social">
+						<li><a href="#" aria-label="Instagram"><svg class="i" aria-hidden="true"><use href="#i-instagram" /></svg></a></li>
+						<li><a href="#" aria-label="Facebook"><svg class="i" aria-hidden="true"><use href="#i-facebook" /></svg></a></li>
+						<li><a href="#" aria-label="TikTok"><svg class="i" aria-hidden="true"><use href="#i-tiktok" /></svg></a></li>
+						<li><a href="#" aria-label="YouTube"><svg class="i" aria-hidden="true"><use href="#i-youtube" /></svg></a></li>
+					</ul>
+				</div>
+				<nav class="site-footer__cols" aria-label="Footer">
+					<div>
+						<h3>Makeovers</h3>
+						<ul>
+							<li><a href="designs.html">Design themes</a></li>
+							<li><a href="index.html#paths">Own stay</a></li>
+							<li><a href="index.html#paths">Rental investment</a></li>
+							<li><a href="index.html#estimate">Cost estimate</a></li>
+							<li><a href="index.html#financing">Financing</a></li>
+						</ul>
+					</div>
+					<div>
+						<h3>After handover</h3>
+						<ul>
+							<li><a href="index.html#care">Warranty</a></li>
+							<li><a href="index.html#care">Kemas Care</a></li>
+							<li><a href="index.html#care">Kemas Club</a></li>
+							<li><a href="index.html#faq">FAQ</a></li>
+						</ul>
+					</div>
+					<div>
+						<h3>Company</h3>
+						<ul>
+							<li><a href="about.html">Our story</a></li>
+							<li><a href="about.html#careers">Careers</a></li>
+							<li><a href="index.html#contact">Contact</a></li>
+						</ul>
+					</div>
+				</nav>
+			</div>
+			<div class="site-footer__bottom">
+				<p>© <span data-year>2026</span> Kemas Studio Sdn Bhd. Demo site — figures are illustrative.</p>
+				<div><a href="#">Terms</a><a href="#">Privacy</a></div>
+			</div>
+		</div>
+	</footer>
 
-    <footer>
-        <div class="mog-container">
-            <div class="footer-bottom">
-                <div class="copyright">Copyright &copy; The Makeover Guys Sdn Bhd (1125623-P) All rights reserved</div>
-            </div>
-        </div>
-    </footer>
+	<!-- Mobile sticky action bar -->
+	<div class="action-bar" id="action-bar">
+		<a href="https://wa.me/60123456789" class="btn btn--ghost" target="_blank" rel="noopener"><svg class="i" aria-hidden="true"><use href="#i-whatsapp" /></svg> WhatsApp</a>
+		<a href="index.html#estimate" class="btn btn--primary">Free estimate</a>
+	</div>
 
-    <script src="main.js"></script>
-    <script>
-        // Inline script for simple detail logic or move to main.js if complex
-        // We will move the logic to main.js to keep it clean, but this page relies on main.js being updated.
-    </script>
+	<!-- Desktop WhatsApp float -->
+	<a href="https://wa.me/60123456789" class="wa-float" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp"><svg class="i" aria-hidden="true"><use href="#i-whatsapp" /></svg></a>
+
+	
+	<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Photo gallery" hidden>
+		<button type="button" class="round-btn lightbox__close" aria-label="Close gallery"><svg class="i" aria-hidden="true"><use href="#i-close" /></svg></button>
+		<button type="button" class="round-btn" data-lb="prev" aria-label="Previous photo"><svg class="i i--flip" aria-hidden="true"><use href="#i-arrow" /></svg></button>
+		<figure><img src="" alt=""><figcaption></figcaption></figure>
+		<button type="button" class="round-btn" data-lb="next" aria-label="Next photo"><svg class="i" aria-hidden="true"><use href="#i-arrow" /></svg></button>
+	</div>
+
+	
+<script src="icons.js"></script>
+	<script src="main.js"></script>
 </body>
 
 </html>
