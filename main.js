@@ -218,6 +218,8 @@ function initPromo() {
         const d = Math.floor(ms / 864e5);
         const h = Math.floor((ms % 864e5) / 36e5);
         const m = Math.floor((ms % 36e5) / 6e4);
+        // Only count down in the final week; before that, a plain date is more honest.
+        if (d >= 7) return;
         countEl.textContent = `Ends in ${d}d ${h}h ${String(m).padStart(2, '0')}m`;
     };
     tick();
@@ -319,7 +321,7 @@ function syncStyleCta(grid, filter, shown) {
     if (!cta) {
         cta = document.createElement('a');
         cta.className = 'theme-card theme-card--cta';
-        cta.href = 'index.html#contact';
+        cta.href = grid.closest('.page-home') || document.body.classList.contains('page-home') ? '#contact' : 'index.html#contact';
         cta.innerHTML = `<span class="eyebrow">Not quite it?</span><h3>We’ll adapt any theme to your taste.</h3><p>Tell a designer what you love — we’ll shortlist and tailor three looks for your unit, free.</p><span class="link-arrow">Talk to a designer <svg class="i" aria-hidden="true"><use href="#i-arrow" /></svg></span>`;
         grid.appendChild(cta);
     }
@@ -353,9 +355,9 @@ function initThemeFilter() {
 const PRICING = {
     // RM per sq ft, [low, high]
     scope: {
-        furnish: { label: 'Furnish & style', rate: [32, 46], days: '14–18 working days' },
-        partial: { label: 'Makeover', rate: [48, 68], days: '30 working days' },
-        full: { label: 'Full renovation', rate: [85, 120], days: '40–45 working days' }
+        furnish: { label: 'Furnish & style', rate: [32, 46], days: 14 },
+        partial: { label: 'Makeover', rate: [48, 68], days: 30 },
+        full: { label: 'Full renovation', rate: [85, 120], days: 40 }
     },
     type: {
         condo: { label: 'Condo', mult: 1 },
@@ -376,6 +378,11 @@ const PRICING = {
     rentPerSqft: { condo: 2.6, apartment: 2.1, terrace: 1.7, semid: 1.8, bungalow: 1.9 }
 };
 const FLAT_RATE = 0.0499;
+const LOAN_CAP = 200000;
+// Working days grow by 5 for every 500 sq ft above 1,500 sq ft.
+const workingDays = (scope, size) => scope.days + Math.max(0, Math.ceil((size - 1500) / 500)) * 5;
+// Malaysian mobile: optional +60/60/0 prefix, then 1x and 7–8 digits; spaces, dashes and brackets ignored.
+const isMyMobile = (v) => /^(\+?60|0)?1\d{8,9}$/.test(v.replace(/[\s\-().]/g, ''));
 const monthlyFlat = (principal, months) => (principal * (1 + FLAT_RATE * (months / 12))) / months;
 // Effective annual rate of a flat-rate loan: solve for the monthly rate whose annuity matches the instalment.
 const effectiveRate = (months) => {
@@ -448,6 +455,8 @@ function initEstimator() {
     };
 
     const maxBeds = (size) => Math.min(6, Math.max(1, Math.round(size / 300)));
+    const typicalBeds = (size) => (size < 600 ? 1 : size < 900 ? 2 : size < 1400 ? 3 : size < 2200 ? 4 : size < 3000 ? 5 : 6);
+    let bedsTouched = false;
     const clampBeds = () => {
         const max = maxBeds(parseInt(sizeInput.value, 10));
         let v = parseInt(bedsInput.value, 10);
@@ -460,6 +469,8 @@ function initEstimator() {
     };
 
     let latest = null;
+    let touched = false;
+    const summary = $('.est__summary', root);
     const render = () => {
         const s = read();
         const noAreas = !s.areas.length;
@@ -468,6 +479,7 @@ function initEstimator() {
             // Don't show a price for nothing.
             $('#est-low').textContent = '—'; $('#est-high').textContent = '—';
             $('#est-monthly').textContent = 'RM —';
+            $('#est-sum-title').textContent = 'Your live estimate';
             $('#est-bar-val').textContent = 'Pick a space';
             lastLow = 0; lastHigh = 0; latest = null;
             return;
@@ -479,8 +491,14 @@ function initEstimator() {
         animateTo($('#est-high'), lastHigh, high);
         lastLow = low; lastHigh = high;
 
-        $('#est-monthly').textContent = `RM ${fmt(monthlyFlat(low, 84))}`;
-        $('#est-days').textContent = scope.days;
+        const monthlyEl = $('#est-monthly').parentElement;
+        if (low > LOAN_CAP) {
+            monthlyEl.innerHTML = `Financing available up to <strong id="est-monthly">RM ${fmt(LOAN_CAP)}</strong> of this`;
+        } else {
+            monthlyEl.innerHTML = `or from <strong id="est-monthly">RM ${fmt(monthlyFlat(low, 84))}</strong>/month over 84 months*`;
+        }
+        $('#est-days').textContent = `${workingDays(scope, s.size)} working days`;
+        $('#est-sum-title').textContent = touched ? 'Your live estimate' : 'Example · 1,000 sq ft condo';
         $('#est-scope').textContent = scope.label;
         $('#est-prop').textContent = `${PRICING.type[s.type].label} · ${fmt(s.size)} sq ft · ${s.beds} bed`;
 
@@ -553,7 +571,7 @@ function initEstimator() {
             const range = `RM ${fmt(latest.low)} – ${fmt(latest.high)}`;
             $('#done-range').textContent = range;
             $('#done-scope').textContent = latest.scope.label;
-            $('#done-days').textContent = latest.scope.days;
+            $('#done-days').textContent = `${workingDays(latest.scope, latest.s.size)} working days`;
             const msg = `Hi Kemas! My estimate (${$('#done-ref').textContent}): ${range}, ${latest.scope.label}, ${PRICING.type[latest.s.type].label} ${fmt(latest.s.size)} sq ft. ${shareUrl()}`;
             $('#done-wa').href = `https://wa.me/60123456789?text=${encodeURIComponent(msg)}`;
         }
@@ -571,6 +589,7 @@ function initEstimator() {
     $('#est-restart').addEventListener('click', () => {
         form.reset();
         $('#beds-out').textContent = bedsInput.value = '3';
+        bedsTouched = false;
         $('#size-out').textContent = fmt(sizeInput.value);
         updateFill(sizeInput);
         clampBeds();
@@ -592,6 +611,7 @@ function initEstimator() {
             }
             $('#areas-error').hidden = true;
         }
+        touched = true;
         render();
         root.classList.remove('is-pulse');
         void root.offsetWidth;
@@ -600,12 +620,17 @@ function initEstimator() {
 
     sizeInput.addEventListener('input', () => {
         $('#size-out').textContent = fmt(sizeInput.value) + (sizeInput.value === sizeInput.max ? '+' : '');
+        sizeInput.setAttribute('aria-valuetext', `${fmt(sizeInput.value)} square feet`);
         updateFill(sizeInput);
+        // Follow the size with a typical bedroom count until the user sets one themselves.
+        touched = true;
+        if (!bedsTouched) bedsInput.value = typicalBeds(parseInt(sizeInput.value, 10));
         clampBeds();
         render();
     });
 
     $$('.stepper__btn', form).forEach((b) => b.addEventListener('click', () => {
+        bedsTouched = true;
         bedsInput.value = Math.max(1, parseInt(bedsInput.value, 10) + parseInt(b.dataset.stepDir, 10));
         clampBeds();
         render();
@@ -633,8 +658,21 @@ function initEstimator() {
         return url.toString();
     };
     const restore = () => {
-        const code = new URLSearchParams(location.search).get('est');
+        const params = new URLSearchParams(location.search);
+        const code = params.get('est');
         if (!code) return;
+        touched = true;
+        bedsTouched = true;
+        const fromTheme = THEMES.find((t) => t.slug === params.get('theme'));
+        const banner = $('#est-prefill');
+        banner.textContent = fromTheme
+            ? `Pre-filled for ${fromTheme.name}. Adjust anything that doesn’t match your home.`
+            : 'You’re viewing a shared estimate. Change any answer to make it yours.';
+        banner.hidden = false;
+        if (location.hash === '#estimate') {
+            // On mobile the questions come first; land on the number instead.
+            setTimeout(() => (window.innerWidth <= 980 ? summary : root).scrollIntoView({ block: 'start' }), 100);
+        }
         const [purpose, type, size, beds, areas, scope, style] = code.split('.');
         const pick = (name, val) => { const el = $(`input[name="${name}"][value="${val}"]`, form); if (el) el.checked = true; };
         pick('purpose', purpose); pick('type', type); pick('scope', scope); pick('style', style);
@@ -662,7 +700,6 @@ function initEstimator() {
 
     // Mobile: keep the live number visible while answering questions.
     const bar = $('#est-bar');
-    const summary = $('.est__summary', root);
     if (bar && 'IntersectionObserver' in window) {
         let formIn = false;
         let summaryIn = false;
@@ -696,7 +733,7 @@ function validateFields(fields) {
         const val = input.value.trim();
         let ok = input.checkValidity();
         if (input.required && !val) ok = false;
-        if (input.type === 'tel' && val) ok = new RegExp(`^(?:${input.pattern})$`).test(val);
+        if (input.type === 'tel' && val) ok = isMyMobile(val);
         field.classList.toggle('is-invalid', !ok);
         input.setAttribute('aria-invalid', String(!ok));
         if (!ok && !firstBad) firstBad = input;
@@ -725,6 +762,7 @@ function initLoan() {
         const totalPay = monthly * months;
         amt.style.setProperty('--fill', `${((p - amt.min) / (amt.max - amt.min)) * 100}%`);
         $('#loan-amt-out').textContent = `RM ${fmt(p)}`;
+        amt.setAttribute('aria-valuetext', `RM ${fmt(p)}`);
         $('#loan-ten-out').textContent = `${months} months`;
         $('#loan-monthly').textContent = fmt(monthly);
         $('#loan-interest').textContent = `RM ${fmt(totalPay - p)}`;
@@ -790,7 +828,7 @@ function initContactForm() {
             form.reset();
             btn.disabled = false;
             btn.firstChild.textContent = 'Send to a designer ';
-            status.textContent = 'Thanks — a designer will reach out within one working day.';
+            status.textContent = 'Thanks — a designer will WhatsApp you within the hour (Mon–Sat, 9am–7pm).';
             status.classList.add('is-ok');
         }, 900);
     });
@@ -895,22 +933,37 @@ function initDetailPage() {
 
     // Price lines scale from the theme's base price.
     const p = theme.priceFrom;
-    const lines = [['Design & 3D render', 0], ['Carpentry & built-ins', 0.38], ['Furniture & soft furnishings', 0.34], ['Lighting & electrical', 0.14], ['Paint, ceiling & styling', 0.14]];
-    $('#dt-lines').innerHTML = lines.map(([n, s]) => `<div><dt>${n}</dt><dd>${s ? `RM ${fmt(Math.round(p * s / 100) * 100)}` : 'Included'}</dd></div>`).join('')
+    const shares = [['Carpentry & built-ins', 0.37], ['Furniture & soft furnishings', 0.33], ['Lighting & electrical', 0.13], ['Paint, ceiling & styling', 0.17]];
+    // Round each line to RM 100 and give the remainder to the last line, so the lines always sum to the total.
+    let allocated = 0;
+    const amounts = shares.map(([, share], i) => {
+        const v = i === shares.length - 1 ? p - allocated : Math.round((p * share) / 100) * 100;
+        allocated += v;
+        return v;
+    });
+    $('#dt-lines').innerHTML = `<div><dt>Design & 3D render</dt><dd>Included</dd></div>`
+        + shares.map(([n], i) => `<div><dt>${n}</dt><dd>RM ${fmt(amounts[i])}</dd></div>`).join('')
         + `<div class="total"><dt>From</dt><dd>RM ${fmt(p)}</dd></div>`;
     $('#dt-monthly').textContent = `RM ${fmt(monthlyFlat(p, 84))}`;
     $('#dt-aside-title').textContent = `Get the ${theme.name} look`;
+    $('#dt-estimate').href = `index.html?est=own.condo.${theme.sqft}.${Math.min(6, Math.max(1, Math.round(theme.sqft / 380)))}.whole.partial.${theme.style}&theme=${theme.slug}#estimate`;
+    $('#dt-wa').href = `https://wa.me/60123456789?text=${encodeURIComponent(`Hi Kemas! I'm interested in the ${theme.name} theme (from RM ${fmt(theme.priceFrom)}). Could a designer advise on my unit?`)}`;
 
     // Floor plan: the photographed room shows its photo; the rest show the theme's finish spec.
     const coverRoom = COVER_ROOM[theme.slug] || 'living';
     const roomCard = $('#plan-room');
     const showRoom = (key) => {
-        $$('.hotspot').forEach((h) => { const on = h.dataset.room === key; h.classList.toggle('is-active', on); h.setAttribute('aria-pressed', String(on)); });
+        $$('.hotspot').forEach((h) => {
+            const on = h.dataset.room === key;
+            h.classList.toggle('is-active', on);
+            h.setAttribute('aria-pressed', String(on));
+            $('use', h).setAttribute('href', on ? '#i-check' : '#i-plus');
+        });
         $$('#plan-rooms .chip-btn').forEach((c) => { const on = c.dataset.room === key; c.classList.toggle('is-active', on); c.setAttribute('aria-pressed', String(on)); });
         if (key === coverRoom) {
             roomCard.innerHTML = `
                 <img src="assets/img/${theme.img}-sm.webp" alt="${ROOMS[key]} in the ${theme.name} theme" width="640" height="640">
-                <div class="plan__room-body"><span class="plan__room-tag">As photographed</span><h3>${ROOMS[key]}</h3><p>${theme.tagline}. ${theme.shots.join(', ')}.</p></div>`;
+                <div class="plan__room-body"><span class="plan__room-tag">As photographed</span><h3>${ROOMS[key]}</h3><p>${theme.desc.split('. ')[0]}.</p></div>`;
         } else {
             roomCard.innerHTML = `
                 <div class="plan__board" aria-hidden="true">${theme.palette.map(([n, hex]) => `<span style="background:${hex}"><em>${n}</em></span>`).join('')}</div>
