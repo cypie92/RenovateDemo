@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Design themes — Kemas Studio</title>
+	<meta name="description" content="Browse Kemas Studio's design themes — warm minimal, modern luxe, industrial and eclectic — each fitted to your floor plan and delivered in 30 working days." />
+	<meta name="theme-color" content="#F5F1EA" />
+	<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml" />
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link
+		href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300..600&family=Instrument+Sans:wght@400..700&display=swap"
+		rel="stylesheet">
+	<link rel="stylesheet" href="style.css" />
+</head>
+
+<body class="page-catalogue">
+	<a class="skip-link" href="#main">Skip to content</a>
+
+	<header class="site-header" id="site-header">
+		<div class="container site-header__inner">
+			<a href="index.html" class="brand" aria-label="Kemas Studio home">
+				<span class="brand__mark" aria-hidden="true"></span>
+				<span class="brand__name">Kemas<span>Studio</span></span>
+			</a>
+
+			<nav class="nav" id="nav" aria-label="Primary">
+				<a href="designs.html" class="nav__link is-current" aria-current="page">Designs</a>
+				<a href="index.html#paths" class="nav__link">Services</a>
+				<a href="index.html#process" class="nav__link">How it works</a>
+				<a href="index.html#financing" class="nav__link">Financing</a>
+				<a href="index.html#care" class="nav__link">Care &amp; Club</a>
+				<a href="about.html" class="nav__link">About</a>
+				<a href="index.html#faq" class="nav__link">FAQ</a>
+				<div class="nav__mobile-cta">
+					<a href="index.html#estimate" class="btn btn--primary btn--block">Get my free estimate</a>
+					<a href="https://wa.me/60123456789" class="btn btn--ghost btn--block" target="_blank" rel="noopener"><svg class="i" aria-hidden="true"><use href="#i-whatsapp" /></svg> Chat on WhatsApp</a>
+				</div>
+			</nav>
+
+			<div class="site-header__actions">
+				<a href="tel:+60312345678" class="site-header__phone"><svg class="i" aria-hidden="true"><use href="#i-phone" /></svg> 03-1234 5678</a>
+				<a href="index.html#estimate" class="btn btn--primary btn--sm">Free estimate</a>
+				<button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav" aria-label="Open menu">
+					<span></span><span></span>
+				</button>
+			</div>
+		</div>
+	</header>
+
+	<main id="main">
+		<section class="page-hero">
+			<div class="container">
+				<p class="eyebrow">Design themes</p>
+				<h1 class="display">Find the look. <em>We’ll make it fit.</em></h1>
+				<p class="lead">Every theme is fully designed, costed and sourced — so you skip months of back-and-forth. Pick a starting point, then tailor colours, finishes and layout with your designer.</p>
+			</div>
+		</section>
+
+		<section class="catalogue">
+			<div class="container">
+				<div class="catalogue-bar">
+					<div class="chips" role="group" aria-label="Filter themes by style">
+						<button class="chip-btn is-active" type="button" data-filter="all" aria-pressed="true">All styles</button>
+						<button class="chip-btn" type="button" data-filter="minimal" aria-pressed="false">Warm minimal</button>
+						<button class="chip-btn" type="button" data-filter="modern" aria-pressed="false">Modern luxe</button>
+						<button class="chip-btn" type="button" data-filter="industrial" aria-pressed="false">Industrial</button>
+						<button class="chip-btn" type="button" data-filter="eclectic" aria-pressed="false">Eclectic</button>
+					</div>
+					<label class="select-wrap">Sort by
+						<select id="catalogue-sort">
+							<option value="popular">Most popular</option>
+							<option value="price-asc">Price: low to high</option>
+							<option value="price-desc">Price: high to low</option>
+						</select>
+					</label>
+				</div>
+				<p class="notice" id="catalogue-missing" role="status" hidden>We couldn’t find that theme — it may have been retired. Here’s everything we currently offer.</p>
+				<p class="catalogue-count" id="catalogue-count" aria-live="polite"></p>
+				<div class="theme-grid" id="catalogue-grid"></div>
+
+				<div class="cta-band">
+					<h2 class="h2">Can’t decide? <em>Tell us how you live</em> and we’ll shortlist three.</h2>
+					<div class="cta-band__side">
+						<div class="cta-band__stack" aria-hidden="true"><img src="assets/img/theme-linen-sm.webp" alt=""><img src="assets/img/theme-ember-sm.webp" alt=""><img src="assets/img/theme-emerald-sm.webp" alt=""></div>
+						<a href="index.html#estimate" class="btn btn--lg">Start my free estimate <svg class="i" aria-hidden="true"><use href="#i-arrow" /></svg></a>
+					</div>
+				</div>
+			</div>
+		</section>
+		<div class="section" style="padding-top:0"></div>
+	</main>
+
+	<footer class="site-footer">
+		<div class="container">
+			<div class="site-footer__top">
+				<div class="site-footer__brand">
+					<a href="index.html" class="brand brand--light" aria-label="Kemas Studio home">
+						<span class="brand__mark" aria-hidden="true"></span>
+						<span class="brand__name">Kemas<span>Studio</span></span>
+					</a>
+					<p>Design-and-build home makeovers for own stay and rental investment, across Malaysia.</p>
+					<ul class="social">
+						<li><a href="#" aria-label="Instagram"><svg class="i" aria-hidden="true"><use href="#i-instagram" /></svg></a></li>
+						<li><a href="#" aria-label="Facebook"><svg class="i" aria-hidden="true"><use href="#i-facebook" /></svg></a></li>
+						<li><a href="#" aria-label="TikTok"><svg class="i" aria-hidden="true"><use href="#i-tiktok" /></svg></a></li>
+						<li><a href="#" aria-label="YouTube"><svg class="i" aria-hidden="true"><use href="#i-youtube" /></svg></a></li>
+					</ul>
+				</div>
+				<nav class="site-footer__cols" aria-label="Footer">
+					<div>
+						<h3>Makeovers</h3>
+						<ul>
+							<li><a href="designs.html">Design themes</a></li>
+							<li><a href="index.html?path=own#paths">Own stay</a></li>
+							<li><a href="index.html?path=invest#paths">Rental investment</a></li>
+							<li><a href="index.html#estimate">Cost estimate</a></li>
+							<li><a href="index.html#financing">Financing</a></li>
+						</ul>
+					</div>
+					<div>
+						<h3>After handover</h3>
+						<ul>
+							<li><a href="index.html#care">Warranty</a></li>
+							<li><a href="index.html#care">Kemas Care</a></li>
+							<li><a href="index.html#care">Kemas Club</a></li>
+							<li><a href="index.html#faq">FAQ</a></li>
+						</ul>
+					</div>
+					<div>
+						<h3>Company</h3>
+						<ul>
+							<li><a href="about.html">Our story</a></li>
+							<li><a href="about.html#careers">Careers</a></li>
+							<li><a href="index.html#contact">Contact</a></li>
+						</ul>
+					</div>
+				</nav>
+			</div>
+			<div class="site-footer__bottom">
+				<p>© <span data-year>2026</span> Kemas Studio Sdn Bhd. Demo site — figures are illustrative.</p>
+				<div><a href="legal.html#terms">Terms</a><a href="legal.html#privacy">Privacy</a></div>
+			</div>
+		</div>
+	</footer>
+
+	<!-- Mobile sticky action bar -->
+	<div class="action-bar" id="action-bar">
+		<a href="https://wa.me/60123456789" class="btn btn--ghost" target="_blank" rel="noopener"><svg class="i" aria-hidden="true"><use href="#i-whatsapp" /></svg> WhatsApp</a>
+		<a href="index.html#estimate" class="btn btn--primary">Free estimate</a>
+	</div>
+
+	<!-- Desktop WhatsApp float -->
+	<a href="https://wa.me/60123456789" class="wa-float" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp"><svg class="i" aria-hidden="true"><use href="#i-whatsapp" /></svg></a>
+
+	<script src="icons.js"></script>
+	<script src="main.js"></script>
+</body>
+
+</html>
