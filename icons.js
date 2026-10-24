@@ -21,6 +21,8 @@
         tag: `<path ${stroke} d="M3 12V4a1 1 0 011-1h8l9 9-9 9z"/><circle fill="currentColor" cx="7.5" cy="7.5" r="1.3"/>`,
         link: `<path ${stroke} d="M10 14a4.5 4.5 0 006.4 0l3-3a4.5 4.5 0 00-6.4-6.4l-1 1M14 10a4.5 4.5 0 00-6.4 0l-3 3a4.5 4.5 0 006.4 6.4l1-1"/>`,
         expand: `<path ${stroke} d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/>`,
+        upload: `<path ${stroke} d="M12 15V4M7.5 8.5L12 4l4.5 4.5M4 15v3a2 2 0 002 2h12a2 2 0 002-2v-3"/>`,
+        grid: `<rect ${stroke} x="4" y="4" width="6.5" height="6.5" rx="1.5"/><rect ${stroke} x="13.5" y="4" width="6.5" height="6.5" rx="1.5"/><rect ${stroke} x="4" y="13.5" width="6.5" height="6.5" rx="1.5"/><rect ${stroke} x="13.5" y="13.5" width="6.5" height="6.5" rx="1.5"/>`,
         whatsapp: `<path fill="currentColor" d="M12 2a10 10 0 00-8.6 15.1L2 22l5-1.3A10 10 0 1012 2zm0 18.2a8.2 8.2 0 01-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1112 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 01-3.3-2.9c-.3-.4.3-.4.7-1.3a.5.5 0 000-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 00-.7.3 3 3 0 00-.9 2.2 5.2 5.2 0 001.1 2.7 11.8 11.8 0 004.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 001.7-1.2 2.2 2.2 0 00.2-1.2c-.1-.1-.3-.2-.5-.3z"/>`,
         instagram: `<rect ${stroke} x="3" y="3" width="18" height="18" rx="5"/><circle ${stroke} cx="12" cy="12" r="4"/><circle fill="currentColor" cx="17.3" cy="6.7" r="1.1"/>`,
         facebook: `<path ${stroke} d="M14 8h3V4h-3a4 4 0 00-4 4v3H7v4h3v6h4v-6h3l1-4h-4V8z"/>`,

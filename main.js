@@ -134,6 +134,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initCarousel();
     initContactForm();
     initActionBar();
+    initFaqSchema();
     initCatalogue();
     initDetailPage();
     $$('[data-year]').forEach((el) => { el.textContent = new Date().getFullYear(); });
@@ -196,6 +197,46 @@ function syncThemePrices() {
     const ex = $('#example-text');
     const linen = bySlug['linen-morning'];
     if (ex && linen) ex.innerHTML = `RM ${fmt(linen.priceFrom)} over 7 years ≈ <b>RM ${fmt(monthlyFlat(linen.priceFrom, 84))}/month</b> at 4.99% p.a. flat.`;
+    // Payment schedule worked example: 30/50/20, with the remainder on the last stage so it always sums.
+    const payEx = $('#pay-example');
+    if (payEx && linen) {
+        payEx.textContent = `RM ${fmt(linen.priceFrom)}`;
+        const amts = $$('.pay__amt');
+        let paid = 0;
+        amts.forEach((el, i) => {
+            const v = i === amts.length - 1 ? linen.priceFrom - paid : Math.round((linen.priceFrom * PAY_STAGES[i]) / 100) * 100;
+            paid += v;
+            el.textContent = `RM ${fmt(v)}`;
+        });
+    }
+}
+const PAY_STAGES = [0.3, 0.5, 0.2];
+
+// =========================================
+// Structured data (schema.org JSON-LD)
+// =========================================
+// Placeholder domain until the site goes live; the OG tags in each page's <head> use the same one.
+const SITE = 'https://kemas.studio/';
+const addJsonLd = (data) => {
+    const s = document.createElement('script');
+    s.type = 'application/ld+json';
+    s.textContent = JSON.stringify(data);
+    document.head.appendChild(s);
+};
+
+// Built from the FAQ accordion so the markup and the visible answers can never disagree.
+function initFaqSchema() {
+    const items = $$('.faq .accordion details');
+    if (!items.length) return;
+    addJsonLd({
+        '@context': 'https://schema.org',
+        '@type': 'FAQPage',
+        mainEntity: items.map((d) => ({
+            '@type': 'Question',
+            name: $('summary', d).textContent.trim(),
+            acceptedAnswer: { '@type': 'Answer', text: $('p', d).textContent.trim() }
+        }))
+    });
 }
 
 // =========================================
@@ -694,7 +735,9 @@ function initEstimator() {
                 </a>`).join('');
             $('#done-scope').textContent = latest.scope.label;
             $('#done-days').textContent = `${calc(latest.s).days} working days`;
-            const msg = `Hi Kemas! My estimate (${$('#done-ref').textContent}): ${range}, ${latest.scope.label}, ${PRICING.type[latest.s.type].label} ${fmt(latest.s.size)} sq ft. ${shareUrl()}`;
+            const keys = $('#lead-keys');
+            const keysNote = keys.value ? ` Keys: ${keys.selectedOptions[0].text.toLowerCase()}.` : '';
+            const msg = `Hi Kemas! My estimate (${$('#done-ref').textContent}): ${range}, ${latest.scope.label}, ${PRICING.type[latest.s.type].label} ${fmt(latest.s.size)} sq ft.${keysNote} ${shareUrl()}`;
             $('#done-wa').href = `https://wa.me/60123456789?text=${encodeURIComponent(msg)}`;
         }
         steps.forEach((st) => st.classList.remove('is-active'));
@@ -872,8 +915,9 @@ function initEstimator() {
 function validateFields(fields) {
     let firstBad = null;
     fields.forEach((field) => {
-        const input = $('input, textarea', field);
-        if (!input) return;
+        const input = $('input, textarea, select', field);
+        // :disabled also covers controls inside a disabled fieldset.
+        if (!input || input.matches(':disabled')) return;
         const val = input.value.trim();
         let ok = input.checkValidity();
         if (input.required && !val) ok = false;
@@ -883,7 +927,7 @@ function validateFields(fields) {
         if (!ok && !firstBad) firstBad = input;
         if (!input.dataset.bound) {
             input.dataset.bound = '1';
-            input.addEventListener('input', () => {
+            input.addEventListener(input.tagName === 'SELECT' ? 'change' : 'input', () => {
                 if (field.classList.contains('is-invalid')) validateFields([field]);
             });
         }
@@ -948,11 +992,30 @@ function initContactForm() {
     const consent = $('input[name="consent"]', form);
     const consentErr = $('#consent-err');
 
+    // Project questions (keys, budget, floor plan) only apply to quote and financing enquiries.
+    const qualify = $('#c-qualify');
+    const syncQualify = () => {
+        const topic = $('input[name="topic"]:checked', form).value;
+        qualify.disabled = !['quote', 'financing'].includes(topic);
+    };
+    $$('input[name="topic"]', form).forEach((r) => r.addEventListener('change', syncQualify));
+
     // CTAs elsewhere preselect the topic.
     $$('[data-set-subject]').forEach((a) => a.addEventListener('click', () => {
         const r = $(`input[name="topic"][value="${a.dataset.setSubject}"]`, form);
-        if (r) r.checked = true;
+        if (r) { r.checked = true; syncQualify(); }
     }));
+
+    // Floor plan: show the chosen file's name and reject anything over 10 MB.
+    const plan = $('#c-plan');
+    const planName = $('#c-plan-name');
+    plan.addEventListener('change', () => {
+        const f = plan.files[0];
+        plan.setCustomValidity(f && f.size > 10 * 1024 * 1024 ? 'too-big' : '');
+        planName.textContent = f ? f.name : 'Add a photo or PDF';
+        planName.closest('.file').classList.toggle('has-file', !!f);
+        validateFields([plan.closest('.field')]);
+    });
 
     consent.addEventListener('change', () => consentErr.classList.toggle('is-shown', !consent.checked && consentErr.classList.contains('is-shown')));
 
@@ -971,13 +1034,21 @@ function initContactForm() {
         const first = $('#c-name').value.trim().split(' ')[0];
         setTimeout(() => {
             const ref = `KS-${Math.floor(1000 + Math.random() * 9000)}`;
+            const keys = $('#c-keys');
+            const budget = $('input[name="budget"]:checked', form);
+            const details = qualify.disabled ? '' : [
+                keys.value && `Keys: ${keys.selectedOptions[0].text.toLowerCase()}`,
+                budget && `budget ${budget.value}`,
+                plan.files[0] && 'I have a floor plan to share'
+            ].filter(Boolean).join(', ');
+            const waText = `Hi Kemas, following up on enquiry ${ref}.${details ? ` ${details}.` : ''}`;
             form.classList.add('is-sent');
             form.insertAdjacentHTML('beforeend', `
                 <div class="sent" tabindex="-1">
                     <div class="est__done-icon"><svg class="i" aria-hidden="true"><use href="#i-check" /></svg></div>
                     <h3 class="h3">Message received.</h3>
                     <p>Thanks, ${first.replace(/[<>&"]/g, '')}. A designer will WhatsApp you within the hour (Mon–Sat, 9am–7pm). Your reference is <strong>${ref}</strong>.</p>
-                    <a class="btn btn--dark" href="https://wa.me/60123456789?text=${encodeURIComponent(`Hi Kemas, following up on enquiry ${ref}.`)}" target="_blank" rel="noopener"><svg class="i" aria-hidden="true"><use href="#i-whatsapp" /></svg> Chat now instead</a>
+                    <a class="btn btn--dark" href="https://wa.me/60123456789?text=${encodeURIComponent(waText)}" target="_blank" rel="noopener"><svg class="i" aria-hidden="true"><use href="#i-whatsapp" /></svg> Chat now instead</a>
                 </div>`);
             $('.sent', form).focus();
         }, 900);
@@ -1093,7 +1164,28 @@ function initDetailPage() {
     $$('a[href="index.html#estimate"]').forEach((a) => { a.href = estHref; });
     $('#dt-estimate').href = estHref;
     $('#dt-sample').innerHTML = `Sample unit: ${fmt(theme.sqft)} sq ft, ${theme.beds}-bed condo, whole-home makeover.<br><strong>${kRM(theme.priceFrom)} – ${kRM(theme.priceTo).replace('RM ', '')}</strong> depending on finishes.`;
-    $('#dt-wa').href = `https://wa.me/60123456789?text=${encodeURIComponent(`Hi Kemas! I'm interested in the ${theme.name} theme (from RM ${fmt(theme.priceFrom)}). Could a designer advise on my unit?`)}`;
+    const waTheme = `https://wa.me/60123456789?text=${encodeURIComponent(`Hi Kemas! I'm interested in the ${theme.name} theme (from RM ${fmt(theme.priceFrom)}). Could a designer advise on my unit?`)}`;
+    $$('#dt-wa, #action-bar [data-wa], .wa-float').forEach((a) => { a.href = waTheme; });
+
+    const pageUrl = `${SITE}design-detail.html?theme=${theme.slug}`;
+    document.head.insertAdjacentHTML('beforeend', `<link rel="canonical" href="${pageUrl}">`);
+    addJsonLd({
+        '@context': 'https://schema.org',
+        '@type': 'Product',
+        name: `${theme.name} home makeover`,
+        description: theme.desc,
+        image: `${SITE}assets/img/${theme.img}.webp`,
+        url: pageUrl,
+        category: theme.styleLabel,
+        brand: { '@type': 'Brand', name: 'Kemas Studio' },
+        offers: {
+            '@type': 'AggregateOffer',
+            priceCurrency: 'MYR',
+            lowPrice: theme.priceFrom,
+            highPrice: theme.priceTo,
+            seller: { '@id': `${SITE}#business` }
+        }
+    });
 
     // Floor plan: rooms with a photo show it; any without fall back to the theme's finish spec.
     const coverRoom = COVER_ROOM[theme.slug] || 'living';

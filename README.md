@@ -6,7 +6,7 @@ A static marketing site for a design-and-build home makeover studio in Malaysia.
 
 | Page | What it does |
 | --- | --- |
-| `index.html` | Hero with live theme preview, own-stay/investor tabs, filterable theme grid, guarantees, 5-step process, live cost estimator with lead capture, financing calculator, reviews carousel, care & club, FAQ, contact form |
+| `index.html` | Hero with live theme preview, own-stay/investor tabs, filterable theme grid, guarantees, Kemas-vs-contractor comparison, 5-step process, live cost estimator with lead capture, milestone payment schedule, financing calculator, reviews carousel, care & club, FAQ, contact form with qualifying questions and eligibility |
 | `designs.html` | Full theme catalogue with style filter (kept in the URL) and sorting |
 | `design-detail.html?theme=<slug>` | Theme detail: interactive floor-plan hotspots, gallery and lightbox, material palette, itemised starting price, monthly instalment |
 | `about.html` | Story timeline, written promises, regions, careers |
