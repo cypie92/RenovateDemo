@@ -16,6 +16,7 @@ const THEMES = [
         palette: [['Forest velvet', '#2E5141'], ['Calacatta', '#ECE8E1'], ['Smoked oak', '#6B4A33'], ['Brass', '#B8954A']],
         shots: ['Velvet lounge', 'Fluted timber & art', 'Marble centre table'],
         finishes: { dining: 'Marble-top table, emerald dining chairs, brass pendant.', kitchen: 'Smoked oak cabinetry, Calacatta quartz, brushed brass handles.', master: 'Fluted timber headboard wall, green velvet bench, warm cove lighting.' },
+        rooms: { dining: 'emerald-dining', kitchen: 'emerald-kitchen', master: 'emerald-master' },
         badge: 'Investor favourite'
     },
     {
@@ -25,6 +26,7 @@ const THEMES = [
         palette: [['Oat linen', '#E6DCCB'], ['White oak', '#C9A97E'], ['Chalk', '#F4F1EA'], ['Sage', '#A3AE95']],
         shots: ['Built-in oak shelving', 'Linen lounge', 'Round oak table'],
         finishes: { dining: 'Round white-oak table, woven chairs, paper lantern pendant.', kitchen: 'Chalk-white shaker doors, oak open shelves, sage tile splashback.', master: 'Linen upholstered bed, oak side tables, sheer + blackout curtains.' },
+        rooms: { dining: 'linen-dining', kitchen: 'linen-kitchen', master: 'linen-master' },
         badge: 'Most booked'
     },
     {
@@ -33,7 +35,8 @@ const THEMES = [
         desc: 'Tan leather, charcoal limewash and black steel track lighting. A loft feel for compact units that rents especially well to young professionals near city centres.',
         palette: [['Cognac leather', '#8A5232'], ['Charcoal', '#2F2F2D'], ['Raw steel', '#5A5D5F'], ['Walnut', '#5B3E2B']],
         shots: ['Steel shelving & art', 'Industrial pendants', 'Leather & reclaimed timber'],
-        finishes: { dining: 'Reclaimed timber table, black steel chairs, cage pendant.', kitchen: 'Charcoal matte cabinets, concrete-look quartz, black steel open shelving.', master: 'Leather headboard, limewash feature wall, swing-arm wall lamps.' }
+        finishes: { dining: 'Reclaimed timber table, black steel chairs, cage pendant.', kitchen: 'Charcoal matte cabinets, concrete-look quartz, black steel open shelving.', master: 'Leather headboard, limewash feature wall, swing-arm wall lamps.' },
+        rooms: { dining: 'ember-dining', kitchen: 'ember-kitchen', master: 'ember-master' }
     },
     {
         slug: 'salon-boheme', name: 'Salon Bohème', style: 'eclectic', styleLabel: 'Eclectic',
@@ -41,7 +44,8 @@ const THEMES = [
         desc: 'Teal velvet, layered rugs and a floor-to-ceiling gallery wall. For people who want a home that looks collected over years, delivered in thirty days.',
         palette: [['Teal', '#22566A'], ['Terracotta', '#B4583A'], ['Mustard', '#C9A13B'], ['Ivory', '#F1EBDD']],
         shots: ['Gallery wall', 'Textiles & art', 'Layered rugs'],
-        finishes: { dining: 'Mismatched vintage chairs, terracotta table runner, rattan pendant.', kitchen: 'Teal lower cabinets, patterned encaustic tiles, brass rail.', master: 'Mustard velvet headboard, kilim rug, framed print series.' }
+        finishes: { dining: 'Mismatched vintage chairs, terracotta table runner, rattan pendant.', kitchen: 'Teal lower cabinets, patterned encaustic tiles, brass rail.', master: 'Mustard velvet headboard, kilim rug, framed print series.' },
+        rooms: { dining: 'boheme-dining', kitchen: 'boheme-kitchen', master: 'boheme-master' }
     },
     {
         slug: 'soft-arc', name: 'Soft Arc', style: 'minimal', styleLabel: 'Warm minimal',
@@ -50,6 +54,7 @@ const THEMES = [
         palette: [['Mist', '#DCD8D2'], ['Honey oak', '#C08A55'], ['Bone', '#F3EFE8'], ['Graphite', '#4A4B4D']],
         shots: ['Curved lounge', 'Media wall', 'Cove lighting'],
         finishes: { dining: 'Pill-shaped table, boucle chairs, linear LED pendant.', kitchen: 'Handleless bone-white cabinets, honey-oak island cladding.', master: 'Curved upholstered bed, cove-lit ceiling, mist-grey wardrobe.' },
+        rooms: { dining: 'softarc-dining', kitchen: 'softarc-kitchen', master: 'softarc-master' },
         badge: 'Best value'
     },
     {
@@ -58,7 +63,8 @@ const THEMES = [
         desc: 'Walnut panelling, stacked stone and layered ambient lighting built for high-floor units with a view. Hotel-suite polish for penthouses and dual-key homes.',
         palette: [['Walnut', '#5A3B28'], ['Travertine', '#CDBFA8'], ['Bronze', '#8C6A45'], ['Ink', '#1E1F1D']],
         shots: ['Stacked-stone feature wall', 'Curved sofa & view', 'Travertine table'],
-        finishes: { dining: 'Travertine table, walnut chairs, bronze chandelier.', kitchen: 'Walnut veneer cabinets, travertine island, bronze fittings.', master: 'Walnut panelled bed wall, bronze sconces, motorised curtains.' }
+        finishes: { dining: 'Travertine table, walnut chairs, bronze chandelier.', kitchen: 'Walnut veneer cabinets, travertine island, bronze fittings.', master: 'Walnut panelled bed wall, bronze sconces, motorised curtains.' },
+        rooms: { dining: 'skyline-dining', kitchen: 'skyline-kitchen', master: 'skyline-master' }
     },
     {
         slug: 'ivory-arch', name: 'Ivory Arch', style: 'minimal', styleLabel: 'Warm minimal',
@@ -66,7 +72,8 @@ const THEMES = [
         desc: 'Limewashed walls, arched windows and a low, curved sofa with rust cushions. Mediterranean warmth that suits landed homes and low-density condos.',
         palette: [['Plaster', '#EDE6DA'], ['Rust', '#A4532F'], ['Ash', '#B9A890'], ['Clay', '#C98F6B']],
         shots: ['Curved sofa', 'Arched window & art', 'Low oak table'],
-        finishes: { dining: 'Limewashed trestle table, ash chairs, plaster pendant.', kitchen: 'Plaster-finish hood, ash cabinetry, terracotta floor tiles.', master: 'Arched headboard niche, rust linen bedding, limewash walls.' }
+        finishes: { dining: 'Limewashed trestle table, ash chairs, plaster pendant.', kitchen: 'Plaster-finish hood, ash cabinetry, terracotta floor tiles.', master: 'Arched headboard niche, rust linen bedding, limewash walls.' },
+        rooms: { dining: 'ivory-dining', kitchen: 'ivory-kitchen', master: 'ivory-master' }
     },
     {
         slug: 'marble-pantry', name: 'Marble Pantry', style: 'modern', styleLabel: 'Modern luxe',
@@ -74,7 +81,8 @@ const THEMES = [
         desc: 'A kitchen-first theme: waterfall marble island, walnut open shelving and brass pendants. Ideal if you cook, and want the kitchen to be the heart of the home.',
         palette: [['Carrara', '#EEECE8'], ['Walnut', '#6C4A32'], ['Brass', '#B48D4C'], ['Fog', '#D7D6D2']],
         shots: ['Walnut shelving', 'Waterfall island', 'Built-in ovens'],
-        finishes: { living: 'Fog-grey sofa, walnut media console, brass floor lamp.', dining: 'Island seating for four plus a walnut dining nook.', master: 'Fog-grey upholstered bed, walnut side tables, brass reading lights.' }
+        finishes: { living: 'Fog-grey sofa, walnut media console, brass floor lamp.', dining: 'Island seating for four plus a walnut dining nook.', master: 'Fog-grey upholstered bed, walnut side tables, brass reading lights.' },
+        rooms: { living: 'marble-living', dining: 'marble-dining', master: 'marble-master' }
     },
     {
         slug: 'clay-cotton', name: 'Clay & Cotton', style: 'eclectic', styleLabel: 'Eclectic',
@@ -82,11 +90,12 @@ const THEMES = [
         desc: 'Chunky knits, terracotta cushions and soft, low lighting — a bedroom-led theme for slow mornings and long weekends.',
         palette: [['Cotton', '#F1ECE3'], ['Terracotta', '#B5603E'], ['Teak', '#7A5236'], ['Stone', '#A79C8C']],
         shots: ['Layered bedding', 'Reading corner', 'Teak bedside'],
-        finishes: { living: 'Stone-coloured modular sofa, teak coffee table, knit throws.', dining: 'Teak table, cotton-slipcover chairs, clay pendant.', kitchen: 'Cotton-white cabinets, teak worktop, terracotta splashback.' }
+        finishes: { living: 'Stone-coloured modular sofa, teak coffee table, knit throws.', dining: 'Teak table, cotton-slipcover chairs, clay pendant.', kitchen: 'Cotton-white cabinets, teak worktop, terracotta splashback.' },
+        rooms: { living: 'clay-living', dining: 'clay-dining', kitchen: 'clay-kitchen' }
     }
 ];
 
-// The room each theme's cover photo shows; other rooms are described by finish spec.
+// The room each theme's cover photo shows; other rooms' photos are in `theme.rooms`.
 const COVER_ROOM = { 'marble-pantry': 'kitchen', 'clay-cotton': 'master' };
 
 const ROOMS = {
@@ -1086,9 +1095,10 @@ function initDetailPage() {
     $('#dt-sample').innerHTML = `Sample unit: ${fmt(theme.sqft)} sq ft, ${theme.beds}-bed condo, whole-home makeover.<br><strong>${kRM(theme.priceFrom)} – ${kRM(theme.priceTo).replace('RM ', '')}</strong> depending on finishes.`;
     $('#dt-wa').href = `https://wa.me/60123456789?text=${encodeURIComponent(`Hi Kemas! I'm interested in the ${theme.name} theme (from RM ${fmt(theme.priceFrom)}). Could a designer advise on my unit?`)}`;
 
-    // Floor plan: the photographed room shows its photo; the rest show the theme's finish spec.
+    // Floor plan: rooms with a photo show it; any without fall back to the theme's finish spec.
     const coverRoom = COVER_ROOM[theme.slug] || 'living';
     const roomTexture = { living: 1, dining: 3, kitchen: 2, master: 1 };
+    const roomPhotos = { ...theme.rooms, [coverRoom]: theme.img };
     const roomCard = $('#plan-room');
     const showRoom = (key) => {
         $$('.hotspot').forEach((h) => {
@@ -1098,10 +1108,11 @@ function initDetailPage() {
             $('use', h).setAttribute('href', on ? '#i-check' : '#i-plus');
         });
         $$('#plan-rooms .chip-btn').forEach((c) => { const on = c.dataset.room === key; c.classList.toggle('is-active', on); c.setAttribute('aria-pressed', String(on)); });
-        if (key === coverRoom) {
+        if (roomPhotos[key]) {
+            const text = key === coverRoom ? `${theme.desc.split('. ')[0].replace(/\.$/, '')}.` : theme.finishes[key];
             roomCard.innerHTML = `
-                <img src="assets/img/${theme.img}-sm.webp" alt="${ROOMS[key]} in the ${theme.name} theme" width="640" height="640">
-                <div class="plan__room-body"><span class="plan__room-tag">As photographed</span><h3>${ROOMS[key]}</h3><p>${theme.desc.split('. ')[0].replace(/\.$/, '')}.</p></div>`;
+                <img src="assets/img/${roomPhotos[key]}-sm.webp" alt="${ROOMS[key]} in the ${theme.name} theme" width="640" height="640">
+                <div class="plan__room-body"><span class="plan__room-tag">As photographed</span><h3>${ROOMS[key]}</h3><p>${text}</p></div>`;
         } else {
             roomCard.innerHTML = `
                 <div class="plan__board" aria-hidden="true">
@@ -1117,10 +1128,11 @@ function initDetailPage() {
     $$('.hotspot, #plan-rooms .chip-btn').forEach((h) => h.addEventListener('click', () => showRoom(h.dataset.room)));
     showRoom(coverRoom);
 
-    // One honest photo per theme: the hero opens it full-screen.
-    // The photographed room plus close-ups of it, labelled as such.
+    // The hero opens the cover full-screen; close-ups of it come next (their strip buttons index into this order),
+    // then the other rooms.
     const shots = [{ img: theme.img, cap: `${theme.name} · ${ROOMS[coverRoom]}` }]
-        .concat(theme.shots.map((cap, i) => ({ img: `${theme.img}-d${i + 1}`, cap: `Detail · ${cap}` })));
+        .concat(theme.shots.map((cap, i) => ({ img: `${theme.img}-d${i + 1}`, cap: `Detail · ${cap}` })))
+        .concat(Object.keys(ROOMS).filter((k) => k !== coverRoom && roomPhotos[k]).map((k) => ({ img: roomPhotos[k], cap: `${theme.name} · ${ROOMS[k]}` })));
     $('#dt-details').innerHTML = theme.shots.map((cap, i) => `
         <button type="button" data-i="${i + 1}" aria-label="Open detail: ${cap}">
             <img src="assets/img/${theme.img}-d${i + 1}.webp" alt="" loading="lazy" width="640" height="640"><span>${cap}</span>

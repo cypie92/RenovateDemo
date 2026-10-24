@@ -16,6 +16,8 @@ The gaps came out of six rounds of design review. Each gap was covered with an h
 
 ## 1. Room photos for every theme — highest impact
 
+> **Done (2026-10-24), with AI renders.** All 27 missing rooms were generated in Gemini (2048px, Malaysian settings, no fireplaces) and saved as `<theme>-<room>.webp` / `-sm.webp` (e.g. `emerald-dining`). They're wired up via `rooms` in `THEMES`; `showRoom()` shows a photo whenever one exists, and the lightbox now also includes them. Swap the files for real photography later under the same names. The notes below describe the original gap.
+
 - **Where:** `design-detail.html?theme=<slug>`, in the "Room by room" section (floor-plan hotspots) and the hero's "View photos" lightbox.
 - **Now:** each theme has **one** photo, its cover. Only that room shows "As photographed". Dining, Kitchen and Master bedroom show a finish spec: a crop of the cover photo, captioned "Materials as seen in the living room", plus the palette strip.
 - **Code:** in `main.js`, `initDetailPage()` → `showRoom()`. See also `COVER_ROOM`, `roomTexture` and `theme.finishes`.
