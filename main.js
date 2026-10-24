@@ -1105,7 +1105,7 @@ function initDetailPage() {
         } else {
             roomCard.innerHTML = `
                 <div class="plan__board" aria-hidden="true">
-                    <span class="plan__texture" style="background-image:url('assets/img/${theme.img}-d${roomTexture[key]}.webp')"></span>
+                    <span class="plan__texture" style="background-image:url('assets/img/${theme.img}-d${roomTexture[key]}.webp')"><em>Materials as seen in the ${ROOMS[coverRoom].toLowerCase()}</em></span>
                     ${theme.palette.map(([n, hex]) => `<span style="background:${hex}"><em>${n}</em></span>`).join('')}
                 </div>
                 <div class="plan__room-body"><span class="plan__room-tag">Finish spec · materials from this theme</span><h3>${ROOMS[key]}</h3><p>${theme.finishes[key]}</p><p class="plan__room-note">You’ll see this room in 3D, on your own floor plan, before you sign.</p></div>`;
