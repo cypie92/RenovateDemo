@@ -118,6 +118,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initReveal();
     initCounters();
     initPaths();
+    initJourney();
     initThemeFilter();
     initEstimator();
     initLoan();
@@ -249,7 +250,7 @@ function initPromo() {
 // Scroll reveal
 // =========================================
 function initReveal() {
-    const targets = $$('.section-head, .path.is-active, .theme-grid, .stats, .steps, .est, .financing__grid, .carousel, .care__grid, .accordion, .contact__grid, .timeline__item, .values, .dt-block, .cta-band');
+    const targets = $$('.section-head, .path.is-active, .theme-grid, .stats, .journey, .est, .financing__grid, .carousel, .care__grid, .accordion, .contact__grid, .timeline__item, .values, .dt-block, .cta-band');
     if (prefersReducedMotion || !('IntersectionObserver' in window)) return;
     const io = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
@@ -290,6 +291,46 @@ function initCounters() {
         entries.forEach((e) => { if (e.isIntersecting) { run(e.target); io.unobserve(e.target); } });
     }, { threshold: 0.5 });
     nums.forEach((n) => io.observe(n));
+}
+
+// =========================================
+// Day 0 → 30 journey: the step nearest the middle of the screen drives the sticky photo and day counter
+// =========================================
+function initJourney() {
+    const steps = $$('.jstep');
+    if (!steps.length || !('IntersectionObserver' in window)) return;
+    const imgs = $$('.journey__frame > [data-i]');
+    const dayEl = $('#journey-day');
+    const fill = $('#journey-fill');
+    let shownDay = parseInt(steps[0].dataset.day, 10);
+    let raf = 0;
+    const countTo = (to) => {
+        cancelAnimationFrame(raf);
+        if (prefersReducedMotion) { shownDay = to; dayEl.textContent = String(to).replace('-', '−'); return; }
+        const from = shownDay;
+        const start = performance.now();
+        const tick = (now) => {
+            const p = Math.min((now - start) / 600, 1);
+            shownDay = Math.round(from + (to - from) * (1 - Math.pow(1 - p, 3)));
+            dayEl.textContent = String(shownDay).replace('-', '−');
+            if (p < 1) raf = requestAnimationFrame(tick);
+        };
+        raf = requestAnimationFrame(tick);
+    };
+    const activate = (i) => {
+        steps.forEach((st, k) => st.classList.toggle('is-active', k === i));
+        imgs.forEach((im, k) => im.classList.toggle('is-active', k === i));
+        const day = parseInt(steps[i].dataset.day, 10);
+        countTo(day);
+        fill.style.width = `${Math.max(0, ((day + 14) / 44) * 100)}%`;
+    };
+    const io = new IntersectionObserver((entries) => {
+        entries.forEach((e) => { if (e.isIntersecting) activate(parseInt(e.target.dataset.i, 10)); });
+    }, { rootMargin: '-45% 0px -45% 0px' });
+    steps.forEach((st) => io.observe(st));
+    // The frame's images are lazy; load them up front so crossfades never flash empty.
+    imgs.forEach((im) => { if (im.tagName === 'IMG') im.loading = 'eager'; });
+    activate(0);
 }
 
 // =========================================
