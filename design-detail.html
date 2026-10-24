@@ -76,7 +76,7 @@
 				</div>
 				<dl class="dt-stats">
 					<div><svg class="i" aria-hidden="true"><use href="#i-ruler" /></svg><span><dt>Sample unit</dt><dd id="dt-sqft">—</dd></span></div>
-					<div><svg class="i" aria-hidden="true"><use href="#i-home" /></svg><span><dt>Layout</dt><dd id="dt-beds">—</dd></span></div>
+					<div><svg class="i" aria-hidden="true"><use href="#i-users" /></svg><span><dt>Best for</dt><dd id="dt-best">—</dd></span></div>
 					<div><svg class="i" aria-hidden="true"><use href="#i-clock" /></svg><span><dt>Delivered in</dt><dd id="dt-days">—</dd></span></div>
 					<div><svg class="i" aria-hidden="true"><use href="#i-palette" /></svg><span><dt>Style</dt><dd id="dt-stylestat">—</dd></span></div>
 				</dl>
@@ -92,20 +92,17 @@
 
 				<section class="dt-block" aria-labelledby="plan-h">
 					<h2 id="plan-h">Walk the floor plan</h2>
-					<p class="dt-intro">Tap a room to see how the theme plays out in it.</p>
+					<p class="dt-intro">Shown on our 3-bedroom sample plan. Tap a room to see how the theme carries through — we fit every theme to your own layout.</p>
 					<div class="plan">
 						<div class="plan__map">
-							<img src="assets/img/floorplan-sm.webp" alt="Floor plan of a 3-bedroom sample unit" width="640" height="640">
-							<button type="button" class="hotspot" data-room="living" style="top:36%;left:28%" aria-label="Living room"><svg class="i" aria-hidden="true"><use href="#i-plus" /></svg><span class="hotspot__label" aria-hidden="true">Living room</span></button>
-							<button type="button" class="hotspot" data-room="dining" style="top:51%;left:29%" aria-label="Dining"><svg class="i" aria-hidden="true"><use href="#i-plus" /></svg><span class="hotspot__label" aria-hidden="true">Dining</span></button>
+							<img src="assets/img/floorplan-sm.webp" alt="Floor plan of the 3-bedroom sample unit: living and dining, kitchen, master bedroom and two further bedrooms" width="640" height="640">
+							<button type="button" class="hotspot" data-room="living" style="top:31%;left:27%" aria-label="Living room"><svg class="i" aria-hidden="true"><use href="#i-plus" /></svg><span class="hotspot__label" aria-hidden="true">Living room</span></button>
+							<button type="button" class="hotspot" data-room="dining" style="top:55%;left:24%" aria-label="Dining"><svg class="i" aria-hidden="true"><use href="#i-plus" /></svg><span class="hotspot__label" aria-hidden="true">Dining</span></button>
 							<button type="button" class="hotspot" data-room="kitchen" style="top:73%;left:34%" aria-label="Kitchen"><svg class="i" aria-hidden="true"><use href="#i-plus" /></svg><span class="hotspot__label" aria-hidden="true">Kitchen</span></button>
 							<button type="button" class="hotspot" data-room="master" style="top:36%;left:75%" aria-label="Master bedroom"><svg class="i" aria-hidden="true"><use href="#i-plus" /></svg><span class="hotspot__label" aria-hidden="true">Master bedroom</span></button>
 						</div>
 						<div>
-							<article class="plan__room" id="plan-room" aria-live="polite">
-								<img src="assets/img/theme-emerald-sm.webp" alt="" width="640" height="640">
-								<div class="plan__room-body"><h3>Living room</h3><p></p></div>
-							</article>
+							<article class="plan__room" id="plan-room" aria-live="polite"></article>
 							<div class="plan__rooms chips" id="plan-rooms" role="group" aria-label="Rooms">
 								<button type="button" class="chip-btn" data-room="living">Living</button>
 								<button type="button" class="chip-btn" data-room="dining">Dining</button>

@@ -279,6 +279,7 @@
 						<p>Investor makeovers are designed around real tenant demand, then listed by our leasing partners.</p>
 					</div>
 				</div>
+				<p class="why__note">Based on Kemas project records, Jan 2024 – Sep 2026. “Less than full-custom ID” compares our theme pricing against three independent full-custom quotes per project.</p>
 			</div>
 		</section>
 
@@ -290,27 +291,27 @@
 					<h2 class="h2">From first chat to keys in <em>five steps.</em></h2>
 				</div>
 				<ol class="steps">
-					<li class="step">
+					<li class="step" style="--i:1">
 						<span class="step__day">Day −14</span>
 						<h3>Free consult</h3>
 						<p>Tell us about your unit. A designer visits, measures and learns how you’ll live — or who you’ll rent to.</p>
 					</li>
-					<li class="step">
+					<li class="step" style="--i:2">
 						<span class="step__day">Day −7</span>
 						<h3>Theme &amp; fixed quote</h3>
 						<p>Choose a theme, see it in 3D on your floor plan, and get one itemised price that won’t creep.</p>
 					</li>
-					<li class="step">
+					<li class="step" style="--i:3">
 						<span class="step__day">Day 0</span>
 						<h3>Sign &amp; finance</h3>
 						<p>Pay in instalments or with our partner financing — up to 84 months. Work starts on site handover.</p>
 					</li>
-					<li class="step">
+					<li class="step" style="--i:4">
 						<span class="step__day">Day 1–30</span>
 						<h3>The makeover</h3>
 						<p>Carpentry, electrical, paint, furniture and styling — with daily photo updates in your client portal.</p>
 					</li>
-					<li class="step">
+					<li class="step" style="--i:5">
 						<span class="step__day">Day 30</span>
 						<h3>Keys &amp; care</h3>
 						<p>Walk through, sign off, move in or list it. Your 12-month workmanship warranty starts here.</p>
@@ -336,7 +337,8 @@
 						<p class="est__stepcount" id="est-stepcount" aria-live="polite">Step 1 of 5</p>
 
 						<!-- Step 1 -->
-						<fieldset class="est__step is-active" data-step="1">
+						<div class="est__step is-active" data-step="1">
+							<fieldset>
 							<legend class="est__q">What’s the home for?</legend>
 							<div class="opts opts--2">
 								<label class="opt">
@@ -356,6 +358,8 @@
 									</span>
 								</label>
 							</div>
+							</fieldset>
+							<fieldset>
 							<legend class="est__q est__q--sub">Property type</legend>
 							<div class="opts opts--5">
 								<label class="opt opt--compact"><input type="radio" name="type" value="condo" checked><span class="opt__box"><span class="opt__title">Condo</span></span></label>
@@ -364,7 +368,8 @@
 								<label class="opt opt--compact"><input type="radio" name="type" value="semid"><span class="opt__box"><span class="opt__title">Semi-D</span></span></label>
 								<label class="opt opt--compact"><input type="radio" name="type" value="bungalow"><span class="opt__box"><span class="opt__title">Bungalow</span></span></label>
 							</div>
-						</fieldset>
+							</fieldset>
+						</div>
 
 						<!-- Step 2 -->
 						<fieldset class="est__step" data-step="2">
@@ -374,13 +379,14 @@
 								<input type="range" id="size" name="size" min="400" max="4000" step="50" value="1000" aria-label="Built-up size in square feet">
 								<div class="range__scale" aria-hidden="true"><span>400</span><span>2,200</span><span>4,000+</span></div>
 							</div>
-							<legend class="est__q est__q--sub">Bedrooms</legend>
-							<div class="stepper" role="group" aria-label="Number of bedrooms">
+							<p class="est__q est__q--sub" id="beds-label">Bedrooms</p>
+							<div class="stepper" role="group" aria-labelledby="beds-label">
 								<button type="button" class="stepper__btn" data-step-dir="-1" aria-label="Fewer bedrooms">−</button>
 								<output id="beds-out" class="stepper__val" aria-live="polite">3</output>
 								<input type="hidden" name="beds" id="beds" value="3">
 								<button type="button" class="stepper__btn" data-step-dir="1" aria-label="More bedrooms">+</button>
 							</div>
+							<p class="est__hint est__hint--after" id="beds-hint" aria-live="polite"></p>
 						</fieldset>
 
 						<!-- Step 3 -->
@@ -430,7 +436,7 @@
 							</div>
 							<div class="field">
 								<label for="lead-phone">Mobile number</label>
-								<input id="lead-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="012-345 6789" required pattern="^(\+?6?0)?1[0-9][\s-]?[0-9]{3,4}[\s-]?[0-9]{4}$">
+								<input id="lead-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="012-345 6789" required pattern="(\+?6?0)?1[0-9][\s\-]?[0-9]{3,4}[\s\-]?[0-9]{4}">
 								<span class="field__err">Enter a Malaysian mobile number, e.g. 012-345 6789.</span>
 							</div>
 							<div class="field">
@@ -442,8 +448,17 @@
 						<div class="est__done" id="est-done" hidden tabindex="-1">
 							<div class="est__done-icon"><svg class="i" aria-hidden="true"><use href="#i-check" /></svg></div>
 							<h3 class="h3">Estimate locked in.</h3>
-							<p>Thanks, <span id="done-name">there</span>. A designer will WhatsApp you within one working day. Your reference is <strong id="done-ref">KS-0000</strong>.</p>
-							<button type="button" class="btn btn--ghost" id="est-restart">Start a new estimate</button>
+							<p>Thanks, <span id="done-name">there</span>. A designer will WhatsApp you within one working day with an itemised quote. Your reference is <strong id="done-ref">KS-0000</strong>.</p>
+							<dl class="est__done-sum">
+								<div><dt>Estimate</dt><dd id="done-range">RM —</dd></div>
+								<div><dt>Scope</dt><dd id="done-scope">—</dd></div>
+								<div><dt>Timeline</dt><dd id="done-days">—</dd></div>
+							</dl>
+							<div class="est__done-actions">
+								<a class="btn btn--dark" id="done-wa" href="https://wa.me/60123456789" target="_blank" rel="noopener"><svg class="i" aria-hidden="true"><use href="#i-whatsapp" /></svg> Send it to me on WhatsApp</a>
+								<button type="button" class="btn btn--ghost" data-share-estimate>Copy share link</button>
+							</div>
+							<button type="button" class="link-btn" id="est-restart">Start a new estimate</button>
 						</div>
 
 						<div class="est__nav" id="est-nav">
@@ -466,10 +481,16 @@
 						</dl>
 						<div class="est__bars" id="est-bars" aria-label="Cost breakdown"></div>
 						<p class="est__fine">*Indicative only, based on recent projects of similar size and scope. Your final quote is fixed after a site visit.</p>
+						<button type="button" class="est__share" data-share-estimate><svg class="i" aria-hidden="true"><use href="#i-link" /></svg> <span>Copy link to this estimate</span></button>
 					</aside>
 				</div>
 			</div>
 		</section>
+
+		<div class="est-bar" id="est-bar" aria-hidden="true">
+			<div><small>Live estimate</small><strong id="est-bar-val">RM —</strong></div>
+			<button type="button" class="btn btn--sm btn--light" id="est-bar-btn" tabindex="-1">Breakdown</button>
+		</div>
 
 		<!-- FINANCING -->
 		<section class="section financing" id="financing">
@@ -479,7 +500,7 @@
 					<h2 class="h2">Move in now. <em>Pay monthly.</em></h2>
 					<p class="lead">Spread your makeover over up to 84 months with our partner banks and financiers. Approval in principle within 3 working days, and funds go straight to the project — never through your account.</p>
 					<ul class="ticks">
-						<li><svg class="i" aria-hidden="true"><use href="#i-check" /></svg> Rates from 4.99% p.a. flat</li>
+						<li><svg class="i" aria-hidden="true"><use href="#i-check" /></svg> Rates from 4.99% p.a. flat (about 9% p.a. effective)</li>
 						<li><svg class="i" aria-hidden="true"><use href="#i-check" /></svg> Finance up to RM 200,000</li>
 						<li><svg class="i" aria-hidden="true"><use href="#i-check" /></svg> Bundle with your home loan for new purchases</li>
 					</ul>
@@ -505,10 +526,11 @@
 						<dl class="loan__meta">
 							<div><dt>Total interest</dt><dd id="loan-interest">RM 20,958</dd></div>
 							<div><dt>Total payable</dt><dd id="loan-total">RM 80,958</dd></div>
+							<div><dt>Effective rate</dt><dd id="loan-eir">≈ 9.0% p.a.</dd></div>
 						</dl>
 					</div>
 					<a href="#contact" class="btn btn--primary btn--block" data-set-subject="financing">Check my eligibility</a>
-					<p class="loan__fine">Illustration at 4.99% p.a. flat. Actual rate depends on your credit profile and the financier’s approval.</p>
+					<p class="loan__fine">Illustration at 4.99% p.a. flat rate; the effective interest rate (EIR) is shown above. Your actual rate depends on your credit profile and the financier’s approval.</p>
 				</div>
 			</div>
 		</section>
@@ -522,6 +544,7 @@
 						<h2 class="h2">Don’t take <em>our</em> word for it.</h2>
 					</div>
 					<div class="carousel-ctrl">
+						<a href="#" class="link-arrow reviews__all">All 1,100+ Google reviews <svg class="i" aria-hidden="true"><use href="#i-arrow" /></svg></a>
 						<button type="button" class="round-btn" data-carousel="prev" aria-label="Previous review"><svg class="i i--flip" aria-hidden="true"><use href="#i-arrow" /></svg></button>
 						<button type="button" class="round-btn" data-carousel="next" aria-label="Next review"><svg class="i" aria-hidden="true"><use href="#i-arrow" /></svg></button>
 					</div>
@@ -586,7 +609,15 @@
 				<div>
 					<p class="eyebrow">FAQ</p>
 					<h2 class="h2">Questions, <em>answered.</em></h2>
-					<p class="section-head__sub">Still unsure? <a href="https://wa.me/60123456789" target="_blank" rel="noopener">WhatsApp a designer</a> — real people, replies within the hour on working days.</p>
+					<p class="section-head__sub">Still unsure? Ask a real designer — not a bot.</p>
+					<div class="ask-card">
+						<span class="avatar avatar--lg" aria-hidden="true">NA</span>
+						<div>
+							<strong>Nadia Azman</strong>
+							<span>Senior designer · usually replies in 15 min</span>
+						</div>
+						<a href="https://wa.me/60123456789" class="btn btn--dark btn--sm" target="_blank" rel="noopener"><svg class="i" aria-hidden="true"><use href="#i-whatsapp" /></svg> Ask Nadia</a>
+					</div>
 				</div>
 				<div class="accordion">
 					<details>
@@ -627,8 +658,13 @@
 						<li><svg class="i" aria-hidden="true"><use href="#i-whatsapp" /></svg><div><strong>WhatsApp</strong><a href="https://wa.me/60123456789" target="_blank" rel="noopener">+60 12-345 6789</a></div></li>
 						<li><svg class="i" aria-hidden="true"><use href="#i-phone" /></svg><div><strong>Call</strong><a href="tel:+60312345678">03-1234 5678</a><span>Mon–Sat, 9am–7pm</span></div></li>
 						<li><svg class="i" aria-hidden="true"><use href="#i-mail" /></svg><div><strong>Email</strong><a href="mailto:hello@kemas.studio">hello@kemas.studio</a></div></li>
-						<li><svg class="i" aria-hidden="true"><use href="#i-pin" /></svg><div><strong>Experience centre</strong><span>Level 3, Jalan Kemajuan, 46200 Petaling Jaya</span></div></li>
+						<li><svg class="i" aria-hidden="true"><use href="#i-pin" /></svg><div><strong>Experience centre</strong><span>Level 3, Jalan Kemajuan, 46200 Petaling Jaya</span><span>Walk-ins Sat–Sun, 10am–6pm · touch every finish in person</span></div></li>
 					</ul>
+					<div class="contact__promise">
+						<div><strong>&lt; 1 hr</strong><span>median WhatsApp reply</span></div>
+						<div><strong>1 day</strong><span>to your itemised quote</span></div>
+						<div><strong>RM 0</strong><span>for the site visit</span></div>
+					</div>
 				</div>
 
 				<form class="contact__form card" id="contact-form" novalidate>
@@ -640,7 +676,7 @@
 						</div>
 						<div class="field">
 							<label for="c-phone">Mobile</label>
-							<input id="c-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" required pattern="^(\+?6?0)?1[0-9][\s-]?[0-9]{3,4}[\s-]?[0-9]{4}$" placeholder="012-345 6789">
+							<input id="c-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" required pattern="(\+?6?0)?1[0-9][\s\-]?[0-9]{3,4}[\s\-]?[0-9]{4}" placeholder="012-345 6789">
 							<span class="field__err">Enter a valid Malaysian mobile number.</span>
 						</div>
 					</div>

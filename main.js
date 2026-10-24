@@ -11,73 +11,94 @@ const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
 const THEMES = [
     {
         slug: 'emerald-atelier', name: 'Emerald Atelier', style: 'modern', styleLabel: 'Modern luxe',
-        tagline: 'Velvet, marble & fluted timber', img: 'theme-emerald', priceFrom: 68000, sqft: 1250, beds: 3, days: 30,
+        tagline: 'Velvet, marble & fluted timber', img: 'theme-emerald', priceFrom: 68000, sqft: 1250, days: 30, bestFor: 'Own stay & premium rentals',
         desc: 'A jewel-toned living space anchored by a deep green velvet sofa, book-matched marble and warm fluted timber. Designed for owners who entertain — and investors targeting premium expat tenants.',
         palette: [['Forest velvet', '#2E5141'], ['Calacatta', '#ECE8E1'], ['Smoked oak', '#6B4A33'], ['Brass', '#B8954A']],
-        popular: true
+        shots: ['Velvet lounge', 'Fluted timber & art', 'Marble centre table'],
+        finishes: { dining: 'Marble-top table, emerald dining chairs, brass pendant.', kitchen: 'Smoked oak cabinetry, Calacatta quartz, brushed brass handles.', master: 'Fluted timber headboard wall, green velvet bench, warm cove lighting.' },
+        badge: 'Investor favourite'
     },
     {
         slug: 'linen-morning', name: 'Linen Morning', style: 'minimal', styleLabel: 'Warm minimal',
-        tagline: 'Oak, linen & soft daylight', img: 'theme-linen', priceFrom: 42000, sqft: 1000, beds: 3, days: 30,
+        tagline: 'Oak, linen & soft daylight', img: 'theme-linen', priceFrom: 42000, sqft: 1000, days: 30, bestFor: 'Young families',
         desc: 'Pale oak, washed linen and built-in shelving that keeps clutter out of sight. Our most-requested theme for young families moving into their first home.',
         palette: [['Oat linen', '#E6DCCB'], ['White oak', '#C9A97E'], ['Chalk', '#F4F1EA'], ['Sage', '#A3AE95']],
-        popular: true
+        shots: ['Built-in oak shelving', 'Linen lounge', 'Round oak table'],
+        finishes: { dining: 'Round white-oak table, woven chairs, paper lantern pendant.', kitchen: 'Chalk-white shaker doors, oak open shelves, sage tile splashback.', master: 'Linen upholstered bed, oak side tables, sheer + blackout curtains.' },
+        badge: 'Most booked'
     },
     {
         slug: 'ember-loft', name: 'Ember Loft', style: 'industrial', styleLabel: 'Industrial',
-        tagline: 'Leather, brick & black steel', img: 'theme-ember', priceFrom: 47000, sqft: 900, beds: 2, days: 30,
+        tagline: 'Leather, brick & black steel', img: 'theme-ember', priceFrom: 47000, sqft: 900, days: 30, bestFor: 'Rentals near city centres',
         desc: 'Tan leather, charcoal limewash and black steel track lighting. A loft feel for compact units that rents especially well to young professionals near city centres.',
-        palette: [['Cognac leather', '#8A5232'], ['Charcoal', '#2F2F2D'], ['Raw steel', '#5A5D5F'], ['Walnut', '#5B3E2B']]
+        palette: [['Cognac leather', '#8A5232'], ['Charcoal', '#2F2F2D'], ['Raw steel', '#5A5D5F'], ['Walnut', '#5B3E2B']],
+        shots: ['Steel shelving & art', 'Industrial pendants', 'Leather & reclaimed timber'],
+        finishes: { dining: 'Reclaimed timber table, black steel chairs, cage pendant.', kitchen: 'Charcoal matte cabinets, concrete-look quartz, black steel open shelving.', master: 'Leather headboard, limewash feature wall, swing-arm wall lamps.' }
     },
     {
         slug: 'salon-boheme', name: 'Salon Bohème', style: 'eclectic', styleLabel: 'Eclectic',
-        tagline: 'Gallery walls & collected colour', img: 'theme-boheme', priceFrom: 45000, sqft: 1100, beds: 3, days: 30,
+        tagline: 'Gallery walls & collected colour', img: 'theme-boheme', priceFrom: 45000, sqft: 1100, days: 30, bestFor: 'Creative own-stay homes',
         desc: 'Teal velvet, layered rugs and a floor-to-ceiling gallery wall. For people who want a home that looks collected over years, delivered in thirty days.',
-        palette: [['Teal', '#22566A'], ['Terracotta', '#B4583A'], ['Mustard', '#C9A13B'], ['Ivory', '#F1EBDD']]
+        palette: [['Teal', '#22566A'], ['Terracotta', '#B4583A'], ['Mustard', '#C9A13B'], ['Ivory', '#F1EBDD']],
+        shots: ['Gallery wall', 'Textiles & art', 'Layered rugs'],
+        finishes: { dining: 'Mismatched vintage chairs, terracotta table runner, rattan pendant.', kitchen: 'Teal lower cabinets, patterned encaustic tiles, brass rail.', master: 'Mustard velvet headboard, kilim rug, framed print series.' }
     },
     {
         slug: 'soft-arc', name: 'Soft Arc', style: 'minimal', styleLabel: 'Warm minimal',
-        tagline: 'Curves, cove light & calm', img: 'theme-softarc', priceFrom: 38000, sqft: 750, beds: 2, days: 25,
+        tagline: 'Curves, cove light & calm', img: 'theme-softarc', priceFrom: 38000, sqft: 750, days: 25, bestFor: 'Studios & 2-bed rentals',
         desc: 'Curved furniture, hidden cove lighting and a quiet, tonal palette. Our best-value theme for rental studios and 2-bedroom units.',
         palette: [['Mist', '#DCD8D2'], ['Honey oak', '#C08A55'], ['Bone', '#F3EFE8'], ['Graphite', '#4A4B4D']],
-        popular: true
+        shots: ['Curved lounge', 'Media wall', 'Cove lighting'],
+        finishes: { dining: 'Pill-shaped table, boucle chairs, linear LED pendant.', kitchen: 'Handleless bone-white cabinets, honey-oak island cladding.', master: 'Curved upholstered bed, cove-lit ceiling, mist-grey wardrobe.' },
+        badge: 'Best value'
     },
     {
         slug: 'skyline-walnut', name: 'Skyline Walnut', style: 'modern', styleLabel: 'Modern luxe',
-        tagline: 'Walnut, stone & city views', img: 'theme-skyline', priceFrom: 72000, sqft: 1600, beds: 4, days: 35,
+        tagline: 'Walnut, stone & city views', img: 'theme-skyline', priceFrom: 72000, sqft: 1600, days: 35, bestFor: 'High-floor & penthouse units',
         desc: 'Walnut panelling, stacked stone and layered ambient lighting built for high-floor units with a view. Hotel-suite polish for penthouses and dual-key homes.',
-        palette: [['Walnut', '#5A3B28'], ['Travertine', '#CDBFA8'], ['Bronze', '#8C6A45'], ['Ink', '#1E1F1D']]
+        palette: [['Walnut', '#5A3B28'], ['Travertine', '#CDBFA8'], ['Bronze', '#8C6A45'], ['Ink', '#1E1F1D']],
+        shots: ['Stacked-stone fireplace', 'Curved sofa & view', 'Travertine table'],
+        finishes: { dining: 'Travertine table, walnut chairs, bronze chandelier.', kitchen: 'Walnut veneer cabinets, travertine island, bronze fittings.', master: 'Walnut panelled bed wall, bronze sconces, motorised curtains.' }
     },
     {
         slug: 'ivory-hearth', name: 'Ivory Hearth', style: 'minimal', styleLabel: 'Warm minimal',
-        tagline: 'Arches, plaster & rust accents', img: 'room-living', priceFrom: 44000, sqft: 1050, beds: 3, days: 30,
+        tagline: 'Arches, plaster & rust accents', img: 'room-living', priceFrom: 44000, sqft: 1050, days: 30, bestFor: 'Landed homes',
         desc: 'Limewashed walls, arched windows and a low, curved sofa with rust cushions. Mediterranean warmth that suits landed homes and low-density condos.',
-        palette: [['Plaster', '#EDE6DA'], ['Rust', '#A4532F'], ['Ash', '#B9A890'], ['Clay', '#C98F6B']]
+        palette: [['Plaster', '#EDE6DA'], ['Rust', '#A4532F'], ['Ash', '#B9A890'], ['Clay', '#C98F6B']],
+        shots: ['Curved sofa', 'Arched window & art', 'Low oak table'],
+        finishes: { dining: 'Limewashed trestle table, ash chairs, plaster pendant.', kitchen: 'Plaster-finish hood, ash cabinetry, terracotta floor tiles.', master: 'Arched headboard niche, rust linen bedding, limewash walls.' }
     },
     {
         slug: 'marble-pantry', name: 'Marble Pantry', style: 'modern', styleLabel: 'Modern luxe',
-        tagline: 'Island living & brass pendants', img: 'room-kitchen', priceFrom: 56000, sqft: 1300, beds: 3, days: 35,
+        tagline: 'Island living & brass pendants', img: 'room-kitchen', priceFrom: 56000, sqft: 1300, days: 35, bestFor: 'Home cooks',
         desc: 'A kitchen-first theme: waterfall marble island, walnut open shelving and brass pendants. Ideal if you cook, and want the kitchen to be the heart of the home.',
-        palette: [['Carrara', '#EEECE8'], ['Walnut', '#6C4A32'], ['Brass', '#B48D4C'], ['Fog', '#D7D6D2']]
+        palette: [['Carrara', '#EEECE8'], ['Walnut', '#6C4A32'], ['Brass', '#B48D4C'], ['Fog', '#D7D6D2']],
+        shots: ['Walnut shelving', 'Waterfall island', 'Built-in ovens'],
+        finishes: { living: 'Fog-grey sofa, walnut media console, brass floor lamp.', dining: 'Island seating for four plus a walnut dining nook.', master: 'Fog-grey upholstered bed, walnut side tables, brass reading lights.' }
     },
     {
         slug: 'clay-cotton', name: 'Clay & Cotton', style: 'eclectic', styleLabel: 'Eclectic',
-        tagline: 'Fireside textures & terracotta', img: 'room-bedroom', priceFrom: 41000, sqft: 950, beds: 3, days: 30,
+        tagline: 'Fireside textures & terracotta', img: 'room-bedroom', priceFrom: 41000, sqft: 950, days: 30, bestFor: 'Slow-living own stay',
         desc: 'Chunky knits, terracotta cushions and soft, low lighting — a bedroom-led theme for slow mornings and long weekends.',
-        palette: [['Cotton', '#F1ECE3'], ['Terracotta', '#B5603E'], ['Teak', '#7A5236'], ['Stone', '#A79C8C']]
+        palette: [['Cotton', '#F1ECE3'], ['Terracotta', '#B5603E'], ['Teak', '#7A5236'], ['Stone', '#A79C8C']],
+        shots: ['Layered bedding', 'Fireside corner', 'Teak bedside'],
+        finishes: { living: 'Stone-coloured modular sofa, teak coffee table, knit throws.', dining: 'Teak table, cotton-slipcover chairs, clay pendant.', kitchen: 'Cotton-white cabinets, teak worktop, terracotta splashback.' }
     }
 ];
 
+// The room each theme's cover photo shows; other rooms are described by finish spec.
+const COVER_ROOM = { 'marble-pantry': 'kitchen', 'clay-cotton': 'master' };
+
 const ROOMS = {
-    living: { name: 'Living room', note: 'Feature wall, TV console, sofa set, rug, curtains & lighting.' },
-    dining: { name: 'Dining', note: 'Six-seater dining set, pendant light, built-in sideboard.', img: 'room-living' },
-    kitchen: { name: 'Kitchen', note: 'Top & bottom cabinets, quartz top, hob, hood & island seating.', img: 'room-kitchen' },
-    master: { name: 'Master bedroom', note: 'Bed frame & headboard, wardrobe, side tables, blackout curtains.', img: 'room-bedroom' }
+    living: 'Living room',
+    dining: 'Dining',
+    kitchen: 'Kitchen',
+    master: 'Master bedroom'
 };
 
 const themeCard = (t, opts = {}) => `
     <a href="design-detail.html?theme=${t.slug}" class="theme-card${opts.wide ? ' theme-card--wide' : ''}" data-style="${t.style}">
-        ${t.popular && opts.badges ? '<span class="theme-card__badge">Popular</span>' : ''}
+        ${t.badge && opts.badges ? `<span class="theme-card__badge">${t.badge}</span>` : ''}
         <div class="theme-card__img"><img src="assets/img/${t.img}${opts.wide ? '' : '-sm'}.webp" alt="" loading="lazy" width="${opts.wide ? 1024 : 640}" height="${opts.wide ? 1024 : 640}"></div>
         <div class="theme-card__body">
             <div>
@@ -128,10 +149,23 @@ function initHeader() {
         btn.setAttribute('aria-expanded', String(open));
         btn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
         document.body.classList.toggle('nav-open', open);
+        // Visibility flips on the next frame of the transition; focus after it has.
+        if (open) setTimeout(() => $('a', nav).focus(), 60);
     };
     btn.addEventListener('click', () => setOpen(!nav.classList.contains('is-open')));
     nav.addEventListener('click', (e) => { if (e.target.closest('a')) setOpen(false); });
-    document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && nav.classList.contains('is-open')) { setOpen(false); btn.focus(); } });
+    document.addEventListener('keydown', (e) => {
+        if (!nav.classList.contains('is-open')) return;
+        if (e.key === 'Escape') { setOpen(false); btn.focus(); return; }
+        if (e.key === 'Tab') {
+            // Keep focus cycling between the menu button and the drawer's links.
+            const items = [btn, ...$$('a', nav)];
+            const i = items.indexOf(document.activeElement);
+            const nextIdx = e.shiftKey ? (i <= 0 ? items.length - 1 : i - 1) : (i === items.length - 1 ? 0 : i + 1);
+            e.preventDefault();
+            items[nextIdx].focus();
+        }
+    });
     window.addEventListener('resize', () => { if (window.innerWidth > 1040) setOpen(false); });
 }
 
@@ -279,6 +313,20 @@ function bindChips(container, onChange) {
     }));
 }
 
+// When a filter leaves a thin row, offer to adapt a theme rather than leave a hole.
+function syncStyleCta(grid, filter, shown) {
+    let cta = $('.theme-card--cta', grid);
+    if (!cta) {
+        cta = document.createElement('a');
+        cta.className = 'theme-card theme-card--cta';
+        cta.href = 'index.html#contact';
+        cta.innerHTML = `<span class="eyebrow">Not quite it?</span><h3>We’ll adapt any theme to your taste.</h3><p>Tell a designer what you love — we’ll shortlist and tailor three looks for your unit, free.</p><span class="link-arrow">Talk to a designer <svg class="i" aria-hidden="true"><use href="#i-arrow" /></svg></span>`;
+        grid.appendChild(cta);
+    }
+    cta.hidden = filter === 'all' || shown === 0 || shown % 3 === 0;
+    cta.style.gridColumn = shown % 3 === 1 ? 'span 2' : '';
+}
+
 function initThemeFilter() {
     const grid = $('#theme-grid');
     const chips = $('.themes .chips');
@@ -294,6 +342,7 @@ function initThemeFilter() {
         // The wide feature card only makes sense in the unfiltered view.
         $$('.theme-card', grid).forEach((card) => card.classList.toggle('theme-card--wide', filter === 'all' && card.dataset.wideDefault === '1'));
         if (empty) empty.hidden = shown > 0;
+        syncStyleCta(grid, filter, shown);
     });
     $$('.theme-card--wide', grid).forEach((c) => { c.dataset.wideDefault = '1'; });
 }
@@ -328,6 +377,18 @@ const PRICING = {
 };
 const FLAT_RATE = 0.0499;
 const monthlyFlat = (principal, months) => (principal * (1 + FLAT_RATE * (months / 12))) / months;
+// Effective annual rate of a flat-rate loan: solve for the monthly rate whose annuity matches the instalment.
+const effectiveRate = (months) => {
+    const pay = monthlyFlat(1, months);
+    let lo = 0;
+    let hi = 0.05;
+    for (let k = 0; k < 60; k++) {
+        const r = (lo + hi) / 2;
+        const pv = (pay * (1 - Math.pow(1 + r, -months))) / r;
+        if (pv > 1) lo = r; else hi = r;
+    }
+    return ((lo + hi) / 2) * 12;
+};
 
 function initEstimator() {
     const form = $('#est-form');
@@ -361,7 +422,7 @@ function initEstimator() {
 
     const calc = (s) => {
         const scope = PRICING.scope[s.scope];
-        const areaShare = s.areas.includes('whole') || !s.areas.length
+        const areaShare = s.areas.includes('whole')
             ? 1
             : Math.min(1, s.areas.reduce((sum, a) => sum + (PRICING.areas[a] || 0), 0));
         // Larger homes get a modest economy of scale on the per-sq-ft rate.
@@ -386,9 +447,34 @@ function initEstimator() {
         requestAnimationFrame(step);
     };
 
+    const maxBeds = (size) => Math.min(6, Math.max(1, Math.round(size / 300)));
+    const clampBeds = () => {
+        const max = maxBeds(parseInt(sizeInput.value, 10));
+        let v = parseInt(bedsInput.value, 10);
+        const hint = $('#beds-hint');
+        if (v > max) v = max;
+        hint.textContent = v === max && max < 6 ? `Up to ${max} bedroom${max > 1 ? 's' : ''} at this size.` : '';
+        bedsInput.value = v;
+        $('#beds-out').textContent = v;
+        $$('.stepper__btn', form).forEach((sb) => { sb.disabled = (sb.dataset.stepDir === '-1' && v === 1) || (sb.dataset.stepDir === '1' && v >= max); });
+    };
+
+    let latest = null;
     const render = () => {
         const s = read();
+        const noAreas = !s.areas.length;
+        root.classList.toggle('is-empty', noAreas);
+        if (noAreas) {
+            // Don't show a price for nothing.
+            $('#est-low').textContent = '—'; $('#est-high').textContent = '—';
+            $('#est-monthly').textContent = 'RM —';
+            $('#est-bar-val').textContent = 'Pick a space';
+            lastLow = 0; lastHigh = 0; latest = null;
+            return;
+        }
         const { low, high, scope } = calc(s);
+        latest = { s, low, high, scope };
+        $('#est-bar-val').textContent = `RM ${Math.round(low / 1000)}k – ${Math.round(high / 1000)}k`;
         animateTo($('#est-low'), lastLow, low);
         animateTo($('#est-high'), lastHigh, high);
         lastLow = low; lastHigh = high;
@@ -463,6 +549,14 @@ function initEstimator() {
         const name = $('#lead-name').value.trim().split(' ')[0];
         $('#done-name').textContent = name || 'there';
         $('#done-ref').textContent = `KS-${String(Math.floor(1000 + Math.random() * 9000))}`;
+        if (latest) {
+            const range = `RM ${fmt(latest.low)} – ${fmt(latest.high)}`;
+            $('#done-range').textContent = range;
+            $('#done-scope').textContent = latest.scope.label;
+            $('#done-days').textContent = latest.scope.days;
+            const msg = `Hi Kemas! My estimate (${$('#done-ref').textContent}): ${range}, ${latest.scope.label}, ${PRICING.type[latest.s.type].label} ${fmt(latest.s.size)} sq ft. ${shareUrl()}`;
+            $('#done-wa').href = `https://wa.me/60123456789?text=${encodeURIComponent(msg)}`;
+        }
         steps.forEach((st) => st.classList.remove('is-active'));
         $('#est-nav').hidden = true;
         $('#est-stepcount').textContent = 'Done';
@@ -479,6 +573,7 @@ function initEstimator() {
         $('#beds-out').textContent = bedsInput.value = '3';
         $('#size-out').textContent = fmt(sizeInput.value);
         updateFill(sizeInput);
+        clampBeds();
         $$('.field', form).forEach((f) => f.classList.remove('is-invalid'));
         $('#est-done').hidden = true;
         $('#est-nav').hidden = false;
@@ -506,14 +601,13 @@ function initEstimator() {
     sizeInput.addEventListener('input', () => {
         $('#size-out').textContent = fmt(sizeInput.value) + (sizeInput.value === sizeInput.max ? '+' : '');
         updateFill(sizeInput);
+        clampBeds();
         render();
     });
 
     $$('.stepper__btn', form).forEach((b) => b.addEventListener('click', () => {
-        const v = Math.min(6, Math.max(1, parseInt(bedsInput.value, 10) + parseInt(b.dataset.stepDir, 10)));
-        bedsInput.value = v;
-        $('#beds-out').textContent = v;
-        $$('.stepper__btn', form).forEach((sb) => { sb.disabled = (sb.dataset.stepDir === '-1' && v === 1) || (sb.dataset.stepDir === '1' && v === 6); });
+        bedsInput.value = Math.max(1, parseInt(bedsInput.value, 10) + parseInt(b.dataset.stepDir, 10));
+        clampBeds();
         render();
     }));
 
@@ -529,7 +623,64 @@ function initEstimator() {
         if (radio) { radio.checked = true; render(); }
     }));
 
+    // Shareable estimates: ?est=purpose.type.size.beds.areas.scope.style
+    const shareUrl = () => {
+        const s = read();
+        const code = [s.purpose, s.type, s.size, s.beds, s.areas.join('_'), s.scope, s.style].join('.');
+        const url = new URL(location.href);
+        url.search = `?est=${code}`;
+        url.hash = 'estimate';
+        return url.toString();
+    };
+    const restore = () => {
+        const code = new URLSearchParams(location.search).get('est');
+        if (!code) return;
+        const [purpose, type, size, beds, areas, scope, style] = code.split('.');
+        const pick = (name, val) => { const el = $(`input[name="${name}"][value="${val}"]`, form); if (el) el.checked = true; };
+        pick('purpose', purpose); pick('type', type); pick('scope', scope); pick('style', style);
+        const sz = parseInt(size, 10);
+        if (sz >= 400 && sz <= 4000) { sizeInput.value = sz; $('#size-out').textContent = fmt(sz); }
+        if (parseInt(beds, 10) > 0) bedsInput.value = parseInt(beds, 10);
+        if (areas) {
+            const list = areas.split(/[_+\s]/);
+            $$('input[name="areas"]', form).forEach((c) => { c.checked = list.includes(c.value); });
+        }
+    };
+    $$('[data-share-estimate]').forEach((btn) => btn.addEventListener('click', async () => {
+        const url = shareUrl();
+        const label = $('span', btn) || btn;
+        const original = label.textContent;
+        try {
+            if (navigator.share && matchMedia('(pointer: coarse)').matches) await navigator.share({ title: 'My Kemas makeover estimate', url });
+            else { await navigator.clipboard.writeText(url); label.textContent = 'Link copied'; }
+        } catch (e) {
+            history.replaceState(null, '', url);
+            label.textContent = 'Link is in your address bar';
+        }
+        setTimeout(() => { label.textContent = original; }, 2400);
+    }));
+
+    // Mobile: keep the live number visible while answering questions.
+    const bar = $('#est-bar');
+    const summary = $('.est__summary', root);
+    if (bar && 'IntersectionObserver' in window) {
+        let formIn = false;
+        let summaryIn = false;
+        const sync = () => {
+            const show = formIn && !summaryIn && window.innerWidth <= 980 && $('#est-done').hidden;
+            bar.classList.toggle('is-visible', show);
+            bar.setAttribute('aria-hidden', String(!show));
+            $('#est-bar-btn').tabIndex = show ? 0 : -1;
+        };
+        new IntersectionObserver(([e]) => { formIn = e.isIntersecting; sync(); }, { threshold: 0.05 }).observe(form);
+        new IntersectionObserver(([e]) => { summaryIn = e.isIntersecting; sync(); }, { threshold: 0.2 }).observe(summary);
+        $('#est-bar-btn').addEventListener('click', () => summary.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth', block: 'start' }));
+        form.addEventListener('click', sync);
+    }
+
+    restore();
     updateFill(sizeInput);
+    clampBeds();
     showStep(1);
     render();
 }
@@ -545,7 +696,7 @@ function validateFields(fields) {
         const val = input.value.trim();
         let ok = input.checkValidity();
         if (input.required && !val) ok = false;
-        if (input.type === 'tel' && val) ok = new RegExp(input.pattern).test(val);
+        if (input.type === 'tel' && val) ok = new RegExp(`^(?:${input.pattern})$`).test(val);
         field.classList.toggle('is-invalid', !ok);
         input.setAttribute('aria-invalid', String(!ok));
         if (!ok && !firstBad) firstBad = input;
@@ -578,6 +729,7 @@ function initLoan() {
         $('#loan-monthly').textContent = fmt(monthly);
         $('#loan-interest').textContent = `RM ${fmt(totalPay - p)}`;
         $('#loan-total').textContent = `RM ${fmt(totalPay)}`;
+        $('#loan-eir').textContent = `≈ ${(effectiveRate(months) * 100).toFixed(1)}% p.a.`;
     };
     amt.addEventListener('input', update);
     $$('input[name="tenure"]', loan).forEach((r) => r.addEventListener('change', update));
@@ -649,6 +801,12 @@ function initContactForm() {
 // =========================================
 function initActionBar() {
     const bar = $('#action-bar');
+    const wa = $('.wa-float');
+    if (wa && $('.hero')) {
+        const syncWa = () => wa.classList.toggle('is-hidden', window.scrollY < window.innerHeight * 0.5);
+        syncWa();
+        window.addEventListener('scroll', syncWa, { passive: true });
+    }
     if (!bar) return;
     const hideNear = $$('#estimate, #contact, .dt-aside');
     let nearCount = 0;
@@ -676,16 +834,19 @@ function initCatalogue() {
     if (!grid) return;
     const sort = $('#catalogue-sort');
     const count = $('#catalogue-count');
-    let filter = new URLSearchParams(location.search).get('style') || 'all';
+    const params = new URLSearchParams(location.search);
+    let filter = params.get('style') || 'all';
+    if (params.has('missing')) $('#catalogue-missing').hidden = false;
 
     const render = () => {
         let list = THEMES.filter((t) => filter === 'all' || t.style === filter);
         const by = sort.value;
         if (by === 'price-asc') list = [...list].sort((a, b) => a.priceFrom - b.priceFrom);
         if (by === 'price-desc') list = [...list].sort((a, b) => b.priceFrom - a.priceFrom);
-        if (by === 'popular') list = [...list].sort((a, b) => (b.popular ? 1 : 0) - (a.popular ? 1 : 0));
+        if (by === 'popular') list = [...list].sort((a, b) => (b.badge ? 1 : 0) - (a.badge ? 1 : 0));
         grid.innerHTML = list.map((t) => themeCard(t, { meta: true, badges: true })).join('');
         count.textContent = `${list.length} ${list.length === 1 ? 'theme' : 'themes'}`;
+        syncStyleCta(grid, filter, list.length);
     };
 
     const chips = $('.catalogue .chips');
@@ -711,7 +872,8 @@ function initCatalogue() {
 function initDetailPage() {
     if (!document.body.classList.contains('page-detail')) return;
     const slug = new URLSearchParams(location.search).get('theme');
-    const theme = THEMES.find((t) => t.slug === slug) || THEMES[0];
+    const theme = THEMES.find((t) => t.slug === slug);
+    if (!theme) { location.replace(`designs.html?missing=${encodeURIComponent(slug || '')}`); return; }
     const idx = THEMES.indexOf(theme);
 
     document.title = `${theme.name} — Design theme | Kemas Studio`;
@@ -723,7 +885,7 @@ function initDetailPage() {
     $('#dt-img').src = `assets/img/${theme.img}.webp`;
     $('#dt-img').alt = `${theme.name} theme — ${theme.tagline}`;
     $('#dt-sqft').textContent = `${fmt(theme.sqft)} sq ft`;
-    $('#dt-beds').textContent = `${theme.beds} bedrooms`;
+    $('#dt-best').textContent = theme.bestFor;
     $('#dt-days').textContent = `${theme.days} working days`;
     $('#dt-stylestat').textContent = theme.styleLabel;
     $('#dt-desc').textContent = theme.desc;
@@ -739,34 +901,33 @@ function initDetailPage() {
     $('#dt-monthly').textContent = `RM ${fmt(monthlyFlat(p, 84))}`;
     $('#dt-aside-title').textContent = `Get the ${theme.name} look`;
 
-    // Floor plan rooms
-    const rooms = { ...ROOMS, living: { ...ROOMS.living, img: theme.img } };
+    // Floor plan: the photographed room shows its photo; the rest show the theme's finish spec.
+    const coverRoom = COVER_ROOM[theme.slug] || 'living';
     const roomCard = $('#plan-room');
     const showRoom = (key) => {
-        const r = rooms[key];
         $$('.hotspot').forEach((h) => { const on = h.dataset.room === key; h.classList.toggle('is-active', on); h.setAttribute('aria-pressed', String(on)); });
         $$('#plan-rooms .chip-btn').forEach((c) => { const on = c.dataset.room === key; c.classList.toggle('is-active', on); c.setAttribute('aria-pressed', String(on)); });
-        $('img', roomCard).src = `assets/img/${r.img}-sm.webp`;
-        $('img', roomCard).alt = `${r.name} in the ${theme.name} theme`;
-        $('h3', roomCard).textContent = r.name;
-        $('p', roomCard).textContent = r.note;
+        if (key === coverRoom) {
+            roomCard.innerHTML = `
+                <img src="assets/img/${theme.img}-sm.webp" alt="${ROOMS[key]} in the ${theme.name} theme" width="640" height="640">
+                <div class="plan__room-body"><span class="plan__room-tag">As photographed</span><h3>${ROOMS[key]}</h3><p>${theme.tagline}. ${theme.shots.join(', ')}.</p></div>`;
+        } else {
+            roomCard.innerHTML = `
+                <div class="plan__board" aria-hidden="true">${theme.palette.map(([n, hex]) => `<span style="background:${hex}"><em>${n}</em></span>`).join('')}</div>
+                <div class="plan__room-body"><span class="plan__room-tag">Finish spec</span><h3>${ROOMS[key]}</h3><p>${theme.finishes[key]}</p><p class="plan__room-note">You’ll see this room in 3D, on your own floor plan, before you sign.</p></div>`;
+        }
         roomCard.classList.remove('is-swapping');
         void roomCard.offsetWidth;
         roomCard.classList.add('is-swapping');
     };
     $$('.hotspot, #plan-rooms .chip-btn').forEach((h) => h.addEventListener('click', () => showRoom(h.dataset.room)));
-    showRoom('living');
+    showRoom(coverRoom);
 
-    // Gallery + lightbox
-    const shots = [
-        { img: theme.img, cap: 'Living room' },
-        { img: 'room-kitchen', cap: 'Kitchen' },
-        { img: 'room-bedroom', cap: 'Master bedroom' },
-        { img: 'room-living', cap: 'Dining & reading nook' },
-        { img: 'theme-softarc', cap: 'Second bedroom' }
-    ].filter((s, i, arr) => arr.findIndex((x) => x.img === s.img) === i);
+    // Gallery: the theme's own photo plus close-ups of it.
+    const shots = [{ img: theme.img, full: true, cap: theme.name }]
+        .concat(theme.shots.map((cap, i) => ({ img: `${theme.img}-d${i + 1}`, cap })));
     const gallery = $('#dt-gallery');
-    gallery.innerHTML = shots.map((s, i) => `<button type="button" data-i="${i}" data-caption="${s.cap}" aria-label="Open photo: ${s.cap}"><img src="assets/img/${s.img}${i === 0 ? '' : '-sm'}.webp" alt="" loading="lazy"></button>`).join('');
+    gallery.innerHTML = shots.map((s, i) => `<button type="button" data-i="${i}" data-caption="${s.cap}" aria-label="Open photo: ${s.cap}"><img src="assets/img/${s.img}${s.full ? '' : ''}.webp" alt="" loading="lazy" width="640" height="640"></button>`).join('');
     initLightbox(shots, gallery);
     $('#dt-open-gallery').addEventListener('click', () => $('button', gallery).click());
 
@@ -791,9 +952,12 @@ function initLightbox(shots, gallery) {
         lastFocus = document.activeElement;
         show(n);
         lb.hidden = false;
-        requestAnimationFrame(() => lb.classList.add('is-open'));
         document.body.style.overflow = 'hidden';
-        $('.lightbox__close', lb).focus();
+        // Focus once the dialog is visible; hidden elements can't take focus.
+        requestAnimationFrame(() => {
+            lb.classList.add('is-open');
+            setTimeout(() => $('.lightbox__close', lb).focus(), 60);
+        });
     };
     const close = () => {
         lb.classList.remove('is-open');
