@@ -61,7 +61,7 @@ const THEMES = [
         finishes: { dining: 'Travertine table, walnut chairs, bronze chandelier.', kitchen: 'Walnut veneer cabinets, travertine island, bronze fittings.', master: 'Walnut panelled bed wall, bronze sconces, motorised curtains.' }
     },
     {
-        slug: 'ivory-hearth', name: 'Ivory Hearth', style: 'minimal', styleLabel: 'Warm minimal',
+        slug: 'ivory-arch', name: 'Ivory Arch', style: 'minimal', styleLabel: 'Warm minimal',
         tagline: 'Arches, plaster & rust accents', img: 'room-living', sqft: 1050, bestFor: 'Landed homes',
         desc: 'Limewashed walls, arched windows and a low, curved sofa with rust cushions. Mediterranean warmth that suits landed homes and low-density condos.',
         palette: [['Plaster', '#EDE6DA'], ['Rust', '#A4532F'], ['Ash', '#B9A890'], ['Clay', '#C98F6B']],
@@ -70,7 +70,7 @@ const THEMES = [
     },
     {
         slug: 'marble-pantry', name: 'Marble Pantry', style: 'modern', styleLabel: 'Modern luxe',
-        tagline: 'Island living & brass pendants', img: 'room-kitchen', sqft: 1300, bestFor: 'Home cooks',
+        tagline: 'Island living & brass pendants', focus: 'kitchen', img: 'room-kitchen', sqft: 1300, bestFor: 'Home cooks',
         desc: 'A kitchen-first theme: waterfall marble island, walnut open shelving and brass pendants. Ideal if you cook, and want the kitchen to be the heart of the home.',
         palette: [['Carrara', '#EEECE8'], ['Walnut', '#6C4A32'], ['Brass', '#B48D4C'], ['Fog', '#D7D6D2']],
         shots: ['Walnut shelving', 'Waterfall island', 'Built-in ovens'],
@@ -78,7 +78,7 @@ const THEMES = [
     },
     {
         slug: 'clay-cotton', name: 'Clay & Cotton', style: 'eclectic', styleLabel: 'Eclectic',
-        tagline: 'Knit textures & terracotta', img: 'room-bedroom', sqft: 950, bestFor: 'Slow-living own stay',
+        tagline: 'Knit textures & terracotta', focus: 'bedrooms', img: 'room-bedroom', sqft: 950, bestFor: 'Slow-living own stay',
         desc: 'Chunky knits, terracotta cushions and soft, low lighting — a bedroom-led theme for slow mornings and long weekends.',
         palette: [['Cotton', '#F1ECE3'], ['Terracotta', '#B5603E'], ['Teak', '#7A5236'], ['Stone', '#A79C8C']],
         shots: ['Layered bedding', 'Reading corner', 'Teak bedside'],
@@ -257,9 +257,11 @@ function initReveal() {
             if (entry.isIntersecting) { entry.target.classList.add('is-in'); io.unobserve(entry.target); }
         });
     }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+    const hashTarget = location.hash.length > 1 ? document.getElementById(location.hash.slice(1)) : null;
     targets.forEach((el) => {
-        // Anything already on screen at load stays visible — no flash of hidden content.
+        // Anything already on screen at load, or what the link points to, stays visible — no flash of hidden content.
         if (el.getBoundingClientRect().top < window.innerHeight) return;
+        if (hashTarget && hashTarget.contains(el)) return;
         el.classList.add('reveal');
         io.observe(el);
     });
@@ -433,7 +435,7 @@ const PRICING = {
     // Breakdown of the total by trade, by scope
     split: {
         furnish: [['Furniture', 0.62], ['Lighting & curtains', 0.2], ['Décor & styling', 0.18]],
-        partial: [['Carpentry', 0.38], ['Furniture', 0.32], ['Electrical & lighting', 0.14], ['Paint & ceiling', 0.16]],
+        partial: [['Carpentry & built-ins', 0.37], ['Furniture & soft furnishings', 0.33], ['Lighting & electrical', 0.13], ['Paint, ceiling & styling', 0.17]],
         full: [['Civil & wet works', 0.34], ['Carpentry & kitchen', 0.28], ['Furniture', 0.22], ['Electrical & plumbing', 0.16]]
     },
     rentPerSqft: { condo: 2.6, apartment: 2.1, terrace: 1.7, semid: 1.8, bungalow: 1.9 }
@@ -458,6 +460,21 @@ const effectiveRate = (months) => {
     return ((lo + hi) / 2) * 12;
 };
 
+// Split a total into trade lines, rounded to RM 100, with the remainder on the last line so they always sum.
+// Furniture lines drop out when no furnished space (living, bedrooms, study) is in scope.
+function splitLines(total, scopeKey, areas = ['whole']) {
+    const furnished = ['whole', 'living', 'bedrooms', 'study'].some((a) => areas.includes(a));
+    let lines = PRICING.split[scopeKey].filter(([label]) => furnished || !/Furniture/.test(label));
+    const sum = lines.reduce((t, [, sh]) => t + sh, 0);
+    lines = lines.map(([label, sh]) => [label, sh / sum]);
+    let allocated = 0;
+    return lines.map(([label, sh], i) => {
+        const v = i === lines.length - 1 ? total - allocated : Math.round((total * sh) / 100) * 100;
+        allocated += v;
+        return [label, v, sh];
+    });
+}
+
 const typicalBeds = (size) => (size < 600 ? 1 : size < 900 ? 2 : size < 1400 ? 3 : size < 2200 ? 4 : size < 3000 ? 5 : 6);
 
 // The one pricing model. The estimator, theme prices, monthly figures and delivery days all come from here.
@@ -472,7 +489,9 @@ function estimate(s) {
     const base = s.size * areaShare * PRICING.type[s.type].mult * PRICING.style[s.style] * scale * bedAdj;
     const low = Math.max(15000, Math.round((base * scope.rate[0]) / 500) * 500);
     const high = Math.max(low + 5000, Math.round((base * scope.rate[1]) / 500) * 500);
-    return { low, high, scope, days: workingDays(scope, s.size) };
+    // Fewer spaces, fewer days: a kitchen-only job doesn't take as long as a whole home.
+    const days = Math.max(10, Math.round((workingDays(scope, s.size) * (0.4 + 0.6 * areaShare)) / 5) * 5);
+    return { low, high, scope, days };
 }
 
 // A theme's price is the estimate for its sample unit: a whole-home makeover of a condo that size.
@@ -543,6 +562,7 @@ function initEstimator() {
 
     let latest = null;
     let touched = false;
+    let fromSlug = null;
     const summary = $('.est__summary', root);
     const render = () => {
         const s = read();
@@ -570,7 +590,7 @@ function initEstimator() {
         } else {
             monthlyEl.innerHTML = `or from <strong id="est-monthly">RM ${fmt(monthlyFlat(low, 84))}</strong>/month over 84 months*`;
         }
-        $('#est-days').textContent = `${workingDays(scope, s.size)} working days`;
+        $('#est-days').textContent = `${calc(s).days} working days`;
         $('#est-sum-title').textContent = touched ? 'Your live estimate' : 'Example · 1,000 sq ft condo';
         $('#est-scope').textContent = scope.label;
         $('#est-prop').textContent = `${PRICING.type[s.type].label} · ${fmt(s.size)} sq ft · ${s.beds} bed`;
@@ -582,14 +602,14 @@ function initEstimator() {
             $('#est-rent').textContent = `RM ${fmt(rent * 0.95)}–${fmt(rent * 1.15)}/mo`;
         }
 
-        const mid = (low + high) / 2;
-        const split = PRICING.split[s.scope];
-        const maxShare = Math.max(...split.map(([, share]) => share));
-        $('#est-bars').innerHTML = split.map(([label, share]) => `
+        // Same split as the theme pages, applied to the low end of the range.
+        const lines = splitLines(low, s.scope, s.areas);
+        const maxV = Math.max(...lines.map(([, v]) => v));
+        $('#est-bars').innerHTML = `<p class="bar__caption">Breakdown at RM ${fmt(low)}</p>` + lines.map(([label, v]) => `
             <div class="bar">
                 <span class="bar__label">${label}</span>
-                <span class="bar__val">≈ RM ${fmt(Math.round((mid * share) / 100) * 100)}</span>
-                <span class="bar__track"><span class="bar__fill" style="width:${Math.round((share / maxShare) * 100)}%"></span></span>
+                <span class="bar__val">RM ${fmt(v)}</span>
+                <span class="bar__track"><span class="bar__fill" style="width:${Math.round((v / maxV) * 100)}%"></span></span>
             </div>`).join('');
     };
 
@@ -643,19 +663,24 @@ function initEstimator() {
         if (latest) {
             const range = `${kRM(latest.low)} – ${kRM(latest.high).replace('RM ', '')}`;
             $('#done-range').textContent = range;
-            // Recommend themes in the chosen style first, then any theme whose sample price fits under the top of the range.
-            const recs = THEMES
-                .filter((t) => t.priceFrom <= latest.high)
-                .sort((a, b) => (b.style === latest.s.style) - (a.style === latest.s.style) || a.priceFrom - b.priceFrom)
-                .slice(0, 3);
+            // Rank themes: the one the visitor came from, then ones built around the spaces picked,
+            // then the chosen style, then the closest sample price to the middle of their range.
+            const areas = latest.s.areas;
+            const mid = (latest.low + latest.high) / 2;
+            const score = (t) => (t.slug === fromSlug ? 1000 : 0)
+                + ((t.focus && areas.includes(t.focus)) ? 60 : 0)
+                + ((!t.focus || t.focus === 'living') && (areas.includes('whole') || areas.includes('living')) ? 20 : 0)
+                + (t.style === latest.s.style ? 30 : 0)
+                - Math.min(40, (Math.abs(t.priceFrom - mid) / mid) * 40);
+            const recs = [...THEMES].sort((a, b) => score(b) - score(a)).slice(0, 3);
             $('#est-recs').hidden = !recs.length;
             $('#est-recs-list').innerHTML = recs.map((t) => `
                 <a class="rec" href="design-detail.html?theme=${t.slug}">
                     <img src="assets/img/${t.img}-sm.webp" alt="" width="640" height="640" loading="lazy">
-                    <span><strong>${t.name}</strong><small>${t.styleLabel} · sample from ${kRM(t.priceFrom)}</small></span>
+                    <span><strong>${t.name}</strong><small>${t.styleLabel} · <span class="nowrap">from ${kRM(t.priceFrom)}</span></small></span>
                 </a>`).join('');
             $('#done-scope').textContent = latest.scope.label;
-            $('#done-days').textContent = `${workingDays(latest.scope, latest.s.size)} working days`;
+            $('#done-days').textContent = `${calc(latest.s).days} working days`;
             const msg = `Hi Kemas! My estimate (${$('#done-ref').textContent}): ${range}, ${latest.scope.label}, ${PRICING.type[latest.s.type].label} ${fmt(latest.s.size)} sq ft. ${shareUrl()}`;
             $('#done-wa').href = `https://wa.me/60123456789?text=${encodeURIComponent(msg)}`;
         }
@@ -750,6 +775,15 @@ function initEstimator() {
         touched = true;
         bedsTouched = true;
         const fromTheme = THEMES.find((t) => t.slug === params.get('theme'));
+        if (fromTheme) {
+            fromSlug = fromTheme.slug;
+            // Show the theme they came from as the selected look.
+            const opt = $(`input[name="style"][value="${fromTheme.style}"]`, form)?.closest('.opt');
+            if (opt) {
+                $('img', opt).src = `assets/img/${fromTheme.img}-sm.webp`;
+                $('.opt__title', opt).textContent = fromTheme.name;
+            }
+        }
         const banner = $('#est-prefill');
         banner.textContent = fromTheme
             ? `Pre-filled for ${fromTheme.name}. Adjust anything that doesn’t match your home.`
@@ -794,6 +828,7 @@ function initEstimator() {
         const sync = () => {
             const show = formIn && !summaryIn && window.innerWidth <= 980 && $('#est-done').hidden;
             bar.classList.toggle('is-visible', show);
+            document.body.classList.toggle('est-bar-on', show);
             bar.setAttribute('aria-hidden', String(!show));
             $('#est-bar-btn').tabIndex = show ? 0 : -1;
         };
@@ -805,7 +840,7 @@ function initEstimator() {
 
     const restored = restore();
     updateFill(sizeInput);
-    if (!restored) clampBeds();
+    clampBeds();
     // A pre-filled estimate skips to the last question, with everything already answered.
     showStep(restored ? total - 1 : 1);
     render();
@@ -913,12 +948,18 @@ function initContactForm() {
         const btn = $('button[type="submit"]', form);
         btn.disabled = true;
         btn.firstChild.textContent = 'Sending… ';
+        const first = $('#c-name').value.trim().split(' ')[0];
         setTimeout(() => {
-            form.reset();
-            btn.disabled = false;
-            btn.firstChild.textContent = 'Send to a designer ';
-            status.textContent = 'Thanks — a designer will WhatsApp you within the hour (Mon–Sat, 9am–7pm).';
-            status.classList.add('is-ok');
+            const ref = `KS-${Math.floor(1000 + Math.random() * 9000)}`;
+            form.classList.add('is-sent');
+            form.insertAdjacentHTML('beforeend', `
+                <div class="sent" tabindex="-1">
+                    <div class="est__done-icon"><svg class="i" aria-hidden="true"><use href="#i-check" /></svg></div>
+                    <h3 class="h3">Message received.</h3>
+                    <p>Thanks, ${first.replace(/[<>&"]/g, '')}. A designer will WhatsApp you within the hour (Mon–Sat, 9am–7pm). Your reference is <strong>${ref}</strong>.</p>
+                    <a class="btn btn--dark" href="https://wa.me/60123456789?text=${encodeURIComponent(`Hi Kemas, following up on enquiry ${ref}.`)}" target="_blank" rel="noopener"><svg class="i" aria-hidden="true"><use href="#i-whatsapp" /></svg> Chat now instead</a>
+                </div>`);
+            $('.sent', form).focus();
         }, 900);
     });
 }
@@ -1022,20 +1063,15 @@ function initDetailPage() {
 
     // Price lines scale from the theme's base price.
     const p = theme.priceFrom;
-    const shares = [['Carpentry & built-ins', 0.37], ['Furniture & soft furnishings', 0.33], ['Lighting & electrical', 0.13], ['Paint, ceiling & styling', 0.17]];
-    // Round each line to RM 100 and give the remainder to the last line, so the lines always sum to the total.
-    let allocated = 0;
-    const amounts = shares.map(([, share], i) => {
-        const v = i === shares.length - 1 ? p - allocated : Math.round((p * share) / 100) * 100;
-        allocated += v;
-        return v;
-    });
     $('#dt-lines').innerHTML = `<div><dt>Design & 3D render</dt><dd>Included</dd></div>`
-        + shares.map(([n], i) => `<div><dt>${n}</dt><dd>RM ${fmt(amounts[i])}</dd></div>`).join('')
+        + splitLines(p, 'partial').map(([n, v]) => `<div><dt>${n}</dt><dd>RM ${fmt(v)}</dd></div>`).join('')
         + `<div class="total"><dt>From</dt><dd>RM ${fmt(p)}</dd></div>`;
     $('#dt-monthly').textContent = `RM ${fmt(monthlyFlat(p, 84))}`;
     $('#dt-aside-title').textContent = `Get the ${theme.name} look`;
-    $('#dt-estimate').href = `index.html?est=own.condo.${theme.sqft}.${theme.beds}.whole.partial.${theme.style}&theme=${theme.slug}#estimate`;
+    const estHref = `index.html?est=own.condo.${theme.sqft}.${theme.beds}.whole.partial.${theme.style}&theme=${theme.slug}#estimate`;
+    // Every estimate link on this page carries the theme through.
+    $$('a[href="index.html#estimate"]').forEach((a) => { a.href = estHref; });
+    $('#dt-estimate').href = estHref;
     $('#dt-sample').textContent = `Sample unit: ${fmt(theme.sqft)} sq ft condo, ${theme.beds}-bed, whole-home makeover · RM ${fmt(theme.priceFrom)} – ${fmt(theme.priceTo)}`;
     $('#dt-wa').href = `https://wa.me/60123456789?text=${encodeURIComponent(`Hi Kemas! I'm interested in the ${theme.name} theme (from RM ${fmt(theme.priceFrom)}). Could a designer advise on my unit?`)}`;
 
@@ -1053,7 +1089,7 @@ function initDetailPage() {
         if (key === coverRoom) {
             roomCard.innerHTML = `
                 <img src="assets/img/${theme.img}-sm.webp" alt="${ROOMS[key]} in the ${theme.name} theme" width="640" height="640">
-                <div class="plan__room-body"><span class="plan__room-tag">As photographed</span><h3>${ROOMS[key]}</h3><p>${theme.desc.split('. ')[0]}.</p></div>`;
+                <div class="plan__room-body"><span class="plan__room-tag">As photographed</span><h3>${ROOMS[key]}</h3><p>${theme.desc.split('. ')[0].replace(/\.$/, '')}.</p></div>`;
         } else {
             roomCard.innerHTML = `
                 <div class="plan__board" aria-hidden="true">${theme.palette.map(([n, hex]) => `<span style="background:${hex}"><em>${n}</em></span>`).join('')}</div>
@@ -1066,13 +1102,8 @@ function initDetailPage() {
     $$('.hotspot, #plan-rooms .chip-btn').forEach((h) => h.addEventListener('click', () => showRoom(h.dataset.room)));
     showRoom(coverRoom);
 
-    // Gallery: the theme's own photo plus close-ups of it.
-    const shots = [{ img: theme.img, full: true, cap: theme.name }]
-        .concat(theme.shots.map((cap, i) => ({ img: `${theme.img}-d${i + 1}`, cap })));
-    const gallery = $('#dt-gallery');
-    gallery.innerHTML = shots.map((s, i) => `<button type="button" data-i="${i}" data-caption="${s.cap}" aria-label="Open photo: ${s.cap}"><img src="assets/img/${s.img}${s.full ? '' : ''}.webp" alt="" loading="lazy" width="640" height="640"></button>`).join('');
-    initLightbox(shots, gallery);
-    $('#dt-open-gallery').addEventListener('click', () => $('button', gallery).click());
+    // One honest photo per theme: the hero opens it full-screen.
+    initLightbox([{ img: theme.img, cap: `${theme.name} · ${ROOMS[coverRoom]}` }], $('#dt-open-gallery'));
 
     // More themes
     const others = [1, 2, 3].map((o) => THEMES[(idx + o) % THEMES.length]);
@@ -1089,7 +1120,7 @@ function initLightbox(shots, gallery) {
         i = (n + shots.length) % shots.length;
         img.src = `assets/img/${shots[i].img}.webp`;
         img.alt = shots[i].cap;
-        cap.textContent = `${shots[i].cap} · ${i + 1} / ${shots.length}`;
+        cap.textContent = shots.length > 1 ? `${shots[i].cap} · ${i + 1} / ${shots.length}` : shots[i].cap;
     };
     const open = (n) => {
         lastFocus = document.activeElement;
@@ -1108,7 +1139,8 @@ function initLightbox(shots, gallery) {
         setTimeout(() => { lb.hidden = true; }, 300);
         if (lastFocus) lastFocus.focus();
     };
-    gallery.addEventListener('click', (e) => { const b = e.target.closest('button'); if (b) open(parseInt(b.dataset.i, 10)); });
+    gallery.addEventListener('click', (e) => { const b = e.target.closest('button'); if (b) open(parseInt(b.dataset.i || '0', 10)); });
+    $$('[data-lb]', lb).forEach((b) => { b.hidden = shots.length < 2; });
     $('[data-lb="prev"]', lb).addEventListener('click', () => show(i - 1));
     $('[data-lb="next"]', lb).addEventListener('click', () => show(i + 1));
     $('.lightbox__close', lb).addEventListener('click', close);
@@ -1120,7 +1152,7 @@ function initLightbox(shots, gallery) {
         if (e.key === 'ArrowRight') show(i + 1);
         if (e.key === 'Tab') {
             // Keep focus inside the dialog.
-            const f = $$('button', lb);
+            const f = $$('button', lb).filter((b) => !b.hidden);
             const first = f[0];
             const last = f[f.length - 1];
             if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }

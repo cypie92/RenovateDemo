@@ -127,7 +127,7 @@ legend { padding: 0; }
     width: 52px; height: 52px; border-radius: 50%; border: 1.5px solid var(--line-strong); background: transparent;
     display: grid; place-items: center; transition: all .25s var(--ease);
 }
-.round-btn:hover { background: var(--ink); color: #fff; border-color: var(--ink); }
+.round-btn:hover, .round-btn:active { background: var(--forest); color: #fff; border-color: var(--forest); }
 .round-btn:disabled { opacity: .3; pointer-events: none; }
 
 .chip { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600; padding: 4px 10px; border-radius: 999px; }
@@ -239,7 +239,7 @@ body.nav-open .site-header::before { background: var(--paper); }
     animation: floatIn .9s .5s var(--ease) both;
 }
 .float-card--timeline { left: -40px; bottom: 56px; width: 290px; }
-.float-card--theme { right: 20px; top: 112px; width: 236px; padding: 14px 16px 16px; animation-delay: .7s; }
+.float-card--theme { right: 20px; top: 112px; width: 252px; padding: 14px 16px 16px; animation-delay: .7s; }
 @media (max-width: 1180px) and (min-width: 901px) {
     .float-card--theme { width: auto; padding: 10px 10px 8px; top: 96px; right: 16px; }
     .float-card--theme .float-card__label, .float-card__theme span { display: none; }
@@ -256,7 +256,7 @@ body.nav-open .site-header::before { background: var(--paper); }
 .theme-dot:hover { transform: scale(1.08); }
 .theme-dot.is-active { border-color: var(--cream); box-shadow: 0 0 0 2px var(--clay); }
 .float-card__theme { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; text-decoration: none; padding-top: 10px; border-top: 1px solid var(--line); }
-.float-card__theme strong { font-family: var(--font-display); font-weight: 450; font-size: 17px; letter-spacing: -0.01em; }
+.float-card__theme strong { font-family: var(--font-display); font-weight: 450; font-size: 17px; letter-spacing: -0.01em; white-space: nowrap; }
 .float-card__theme span { font-size: 12.5px; color: var(--muted); white-space: nowrap; }
 .float-card__theme:hover strong { color: var(--clay-2); }
 .hero__img img { transition: opacity .35s var(--ease); }
@@ -707,7 +707,7 @@ input[type="range"]:focus-visible::-moz-range-thumb { box-shadow: 0 0 0 4px rgba
 .site-footer__bottom a { display: inline-block; padding: 11px 0; }
 .site-footer a { text-decoration: none; }
 .site-footer__cols a:hover, .site-footer__bottom a:hover { color: #fff; }
-.site-footer__bottom { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; padding-top: 28px; font-size: 13.5px; }
+.site-footer__bottom { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; padding-top: 28px; font-size: 13.5px; }
 .site-footer__bottom div { display: flex; gap: 24px; }
 @media (max-width: 860px) {
     .site-footer__top { grid-template-columns: 1fr; gap: 44px; }
@@ -1100,10 +1100,13 @@ input[type="range"]:focus-visible::-moz-range-thumb { box-shadow: 0 0 0 4px rgba
 .journey__fill { display: block; height: 100%; width: 0; background: linear-gradient(90deg, var(--forest-2), var(--clay)); border-radius: inherit; transition: width .7s var(--ease); }
 .journey__end { font-size: 12.5px; color: var(--muted); white-space: nowrap; }
 .journey__steps { counter-reset: step; }
-.jstep { position: relative; counter-increment: step; padding: 0 0 0 76px; min-height: 52vh; display: flex; flex-direction: column; justify-content: center; opacity: .38; transition: opacity .5s var(--ease); }
+.jstep { position: relative; counter-increment: step; padding: 0 0 0 76px; min-height: 52vh; display: flex; flex-direction: column; justify-content: center; color: var(--muted); transition: color .5s var(--ease); }
+.jstep p { transition: color .5s var(--ease); }
+.jstep:not(.is-active) p, .jstep:not(.is-active) h3 { color: var(--muted); }
+.jstep:not(.is-active)::before { opacity: .45; }
 .jstep:first-child { min-height: 40vh; justify-content: flex-start; padding-top: 12px; }
 .jstep:last-child { min-height: 44vh; }
-.jstep.is-active { opacity: 1; }
+.jstep.is-active { color: var(--ink); }
 .jstep::before {
     content: counter(step); position: absolute; left: 0; top: 50%; transform: translateY(-50%);
     display: grid; place-items: center; width: 52px; height: 52px; border-radius: 50%;
@@ -1118,7 +1121,9 @@ input[type="range"]:focus-visible::-moz-range-thumb { box-shadow: 0 0 0 4px rgba
 @media (max-width: 900px) {
     .journey { grid-template-columns: 1fr; }
     .journey__media { display: none; }
-    .jstep, .jstep:first-child, .jstep:last-child { min-height: 0; opacity: 1; padding: 0 0 40px 64px; justify-content: flex-start; }
+    .jstep:not(.is-active) p, .jstep:not(.is-active) h3 { color: inherit; }
+    .jstep:not(.is-active)::before { opacity: 1; }
+    .jstep, .jstep:first-child, .jstep:last-child { min-height: 0; color: var(--ink); padding: 0 0 40px 64px; justify-content: flex-start; }
     .jstep::before, .jstep:first-child::before { top: 0; transform: none; width: 44px; height: 44px; font-size: 18px; }
     .jstep:not(:last-child)::after { content: ""; position: absolute; left: 21px; top: 52px; bottom: 8px; width: 1.5px; background: var(--line-strong); }
     .jstep__img { display: block; order: 4; margin-top: 16px; width: 100%; aspect-ratio: 16 / 10; object-fit: cover; border-radius: var(--r-sm); }
@@ -1142,3 +1147,21 @@ input[type="range"]:focus-visible::-moz-range-thumb { box-shadow: 0 0 0 4px rgba
 .quote-card__foot { display: flex; justify-content: space-between; align-items: center; margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--line); color: var(--muted); font-size: 13px; }
 .quote-card__foot strong { color: var(--ink); }
 .quote-card__stamp { font-weight: 700; letter-spacing: .12em; text-transform: uppercase; font-size: 12px; color: var(--ok); border: 2px solid var(--ok); border-radius: 6px; padding: 3px 10px; transform: rotate(-8deg); }
+
+/* ---------- Round 5 additions ---------- */
+.nowrap { white-space: nowrap; }
+.bar__caption { font-size: 12.5px; color: #C3CFC7; margin-bottom: 2px; }
+/* WhatsApp float collides with cards on mid widths; header phone + action bar cover those sizes */
+@media (max-width: 1180px) { .wa-float { display: none; } }
+@media (max-width: 1180px) { .float-card--timeline .chip { display: none; } }
+/* Keep the estimator's Back/Continue clear of the sticky live-estimate bar */
+@media (max-width: 980px) { body.est-bar-on .est__form { padding-bottom: 104px; } }
+.contact__form { position: relative; }
+.contact__form.is-sent > :not(.sent) { visibility: hidden; }
+.sent { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 14px; padding: clamp(24px, 4vw, 44px); background: var(--cream); border-radius: inherit; outline: none; animation: fadeUp .5s var(--ease); }
+.sent p { color: var(--ink-2); }
+.cta-band__side { display: flex; align-items: center; gap: 24px; flex-wrap: wrap; }
+.cta-band__stack { display: flex; }
+.cta-band__stack img { width: 72px; height: 72px; border-radius: 50%; object-fit: cover; border: 3px solid var(--clay-3); }
+.cta-band__stack img + img { margin-left: -18px; }
+.care-card .link-arrow { margin-top: 6px; }
