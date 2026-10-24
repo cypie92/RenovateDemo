@@ -205,14 +205,18 @@ function initHeroThemes() {
         $('#hero-theme-name').textContent = dot.dataset.name;
         $('#hero-theme-price').textContent = `from RM ${dot.dataset.price}`;
         $('#hero-theme-link').href = `design-detail.html?theme=${dot.dataset.slug}`;
-        const swap = () => {
-            img.src = `assets/img/${dot.dataset.img}.webp`;
-            img.alt = `Living room in the ${dot.dataset.name} design theme`;
-            fig.classList.remove('is-fading');
-        };
-        if (prefersReducedMotion) { swap(); return; }
-        fig.classList.add('is-fading');
-        setTimeout(swap, 300);
+        const alt = `Living room in the ${dot.dataset.name} design theme`;
+        if (prefersReducedMotion) { img.src = `assets/img/${dot.dataset.img}.webp`; img.alt = alt; return; }
+        // Crossfade: lay the new photo over the old one, then make it the base.
+        $$('.hero__next', fig).forEach((n) => n.remove());
+        const next = new Image();
+        next.className = 'hero__next';
+        next.alt = '';
+        next.src = `assets/img/${dot.dataset.img}.webp`;
+        fig.appendChild(next);
+        const reveal = () => requestAnimationFrame(() => next.classList.add('is-in'));
+        if (next.complete) reveal(); else next.onload = reveal;
+        next.addEventListener('transitionend', () => { img.src = next.src; img.alt = alt; next.remove(); }, { once: true });
     }));
 }
 
@@ -677,7 +681,7 @@ function initEstimator() {
             $('#est-recs-list').innerHTML = recs.map((t) => `
                 <a class="rec" href="design-detail.html?theme=${t.slug}">
                     <img src="assets/img/${t.img}-sm.webp" alt="" width="640" height="640" loading="lazy">
-                    <span><strong>${t.name}</strong><small>${t.styleLabel} · <span class="nowrap">from ${kRM(t.priceFrom)}</span></small></span>
+                    <span><strong>${t.name}</strong><small>${t.styleLabel}</small><small class="rec__price">from ${kRM(t.priceFrom)}</small></span>
                 </a>`).join('');
             $('#done-scope').textContent = latest.scope.label;
             $('#done-days').textContent = `${calc(latest.s).days} working days`;
@@ -691,6 +695,7 @@ function initEstimator() {
         const done = $('#est-done');
         done.hidden = false;
         root.classList.add('is-done');
+        $('#est-prefill').hidden = true;
         done.focus();
     });
 
@@ -707,8 +712,12 @@ function initEstimator() {
         $('#est-done').hidden = true;
         root.classList.remove('is-done');
         $('#est-nav').hidden = false;
+        $('#est-prefill').hidden = true;
         showStep(1);
         render();
+        const q = $('.est__step.is-active .est__q', form);
+        q.tabIndex = -1;
+        q.focus();
     });
 
     // "Whole home" and individual spaces are mutually exclusive.
@@ -839,6 +848,8 @@ function initEstimator() {
     }
 
     const restored = restore();
+    // Scope chips quote the same base days the model uses.
+    $$('input[name="scope"]', form).forEach((r) => { $('.opt__tag', r.closest('.opt')).textContent = `~${PRICING.scope[r.value].days} days`; });
     updateFill(sizeInput);
     clampBeds();
     // A pre-filled estimate skips to the last question, with everything already answered.
@@ -1072,11 +1083,12 @@ function initDetailPage() {
     // Every estimate link on this page carries the theme through.
     $$('a[href="index.html#estimate"]').forEach((a) => { a.href = estHref; });
     $('#dt-estimate').href = estHref;
-    $('#dt-sample').textContent = `Sample unit: ${fmt(theme.sqft)} sq ft condo, ${theme.beds}-bed, whole-home makeover · RM ${fmt(theme.priceFrom)} – ${fmt(theme.priceTo)}`;
+    $('#dt-sample').innerHTML = `Sample unit: ${fmt(theme.sqft)} sq ft, ${theme.beds}-bed condo, whole-home makeover.<br><strong>${kRM(theme.priceFrom)} – ${kRM(theme.priceTo).replace('RM ', '')}</strong> depending on finishes.`;
     $('#dt-wa').href = `https://wa.me/60123456789?text=${encodeURIComponent(`Hi Kemas! I'm interested in the ${theme.name} theme (from RM ${fmt(theme.priceFrom)}). Could a designer advise on my unit?`)}`;
 
     // Floor plan: the photographed room shows its photo; the rest show the theme's finish spec.
     const coverRoom = COVER_ROOM[theme.slug] || 'living';
+    const roomTexture = { living: 1, dining: 3, kitchen: 2, master: 1 };
     const roomCard = $('#plan-room');
     const showRoom = (key) => {
         $$('.hotspot').forEach((h) => {
@@ -1092,8 +1104,11 @@ function initDetailPage() {
                 <div class="plan__room-body"><span class="plan__room-tag">As photographed</span><h3>${ROOMS[key]}</h3><p>${theme.desc.split('. ')[0].replace(/\.$/, '')}.</p></div>`;
         } else {
             roomCard.innerHTML = `
-                <div class="plan__board" aria-hidden="true">${theme.palette.map(([n, hex]) => `<span style="background:${hex}"><em>${n}</em></span>`).join('')}</div>
-                <div class="plan__room-body"><span class="plan__room-tag">Finish spec</span><h3>${ROOMS[key]}</h3><p>${theme.finishes[key]}</p><p class="plan__room-note">You’ll see this room in 3D, on your own floor plan, before you sign.</p></div>`;
+                <div class="plan__board" aria-hidden="true">
+                    <span class="plan__texture" style="background-image:url('assets/img/${theme.img}-d${roomTexture[key]}.webp')"></span>
+                    ${theme.palette.map(([n, hex]) => `<span style="background:${hex}"><em>${n}</em></span>`).join('')}
+                </div>
+                <div class="plan__room-body"><span class="plan__room-tag">Finish spec · materials from this theme</span><h3>${ROOMS[key]}</h3><p>${theme.finishes[key]}</p><p class="plan__room-note">You’ll see this room in 3D, on your own floor plan, before you sign.</p></div>`;
         }
         roomCard.classList.remove('is-swapping');
         void roomCard.offsetWidth;
@@ -1103,7 +1118,14 @@ function initDetailPage() {
     showRoom(coverRoom);
 
     // One honest photo per theme: the hero opens it full-screen.
-    initLightbox([{ img: theme.img, cap: `${theme.name} · ${ROOMS[coverRoom]}` }], $('#dt-open-gallery'));
+    // The photographed room plus close-ups of it, labelled as such.
+    const shots = [{ img: theme.img, cap: `${theme.name} · ${ROOMS[coverRoom]}` }]
+        .concat(theme.shots.map((cap, i) => ({ img: `${theme.img}-d${i + 1}`, cap: `Detail · ${cap}` })));
+    $('#dt-details').innerHTML = theme.shots.map((cap, i) => `
+        <button type="button" data-i="${i + 1}" aria-label="Open detail: ${cap}">
+            <img src="assets/img/${theme.img}-d${i + 1}.webp" alt="" loading="lazy" width="640" height="640"><span>${cap}</span>
+        </button>`).join('');
+    initLightbox(shots, $('.dt-hero'));
 
     // More themes
     const others = [1, 2, 3].map((o) => THEMES[(idx + o) % THEMES.length]);
